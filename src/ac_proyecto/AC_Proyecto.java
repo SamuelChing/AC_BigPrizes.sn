@@ -18,6 +18,7 @@ public class AC_Proyecto {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        //Prueba 1
         Ventana_Login login = new Ventana_Login();
         login.setVisible(true);
     }
