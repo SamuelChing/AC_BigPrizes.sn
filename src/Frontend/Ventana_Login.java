@@ -5,6 +5,12 @@
  */
 package Frontend;
 
+import Modelo.ConexionDB;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Samuel
@@ -31,16 +37,15 @@ public class Ventana_Login extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        password_input = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         user_input = new javax.swing.JTextField();
         btn_iniciar = new javax.swing.JButton();
+        jPasswordField1 = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BigPrizes.sn inicio de sesion");
-        setPreferredSize(new java.awt.Dimension(1200, 800));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -62,10 +67,6 @@ public class Ventana_Login extends javax.swing.JFrame {
         jLabel2.setText("Contraseña");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
 
-        password_input.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        password_input.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel2.add(password_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 330, 30));
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Usuario");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
@@ -79,7 +80,17 @@ public class Ventana_Login extends javax.swing.JFrame {
         btn_iniciar.setForeground(new java.awt.Color(255, 255, 255));
         btn_iniciar.setText("Ingresar");
         btn_iniciar.setBorder(null);
+        btn_iniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_iniciarActionPerformed(evt);
+            }
+        });
         jPanel2.add(btn_iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, 80, 30));
+
+        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPasswordField1.setText("jPasswordField1");
+        jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel2.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 330, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 430, 350));
 
@@ -89,12 +100,46 @@ public class Ventana_Login extends javax.swing.JFrame {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/lottery.png"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 810));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 1200, 810));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciarActionPerformed
+        // TODO add your handling code here:
+        if(user_input.getText().trim().isBlank() || jPasswordField1.getText().trim().isBlank()){
+            //retornar error
+        }
+        else{
+            ConexionDB Modelo;
+            try {
+                Modelo = new ConexionDB("LotteryDB", "root", "password1234");
+                int retorno= Modelo.ResultadoNumero(Modelo.EjecutarConsulta("select Login('"+user_input.getText()+"','"+jPasswordField1.getText().trim()+"');"));
+                if(retorno==0){
+                    Ventana_Administrador ventana_Administrador = new Ventana_Administrador();
+                    ventana_Administrador.setVisible(true);
+                    this.dispose();
+                }
+                else{
+                    if(retorno==1){
+                        //Es Cliente
+                        //System.out.println(retorno);
+                    }
+                    else{
+                        //System.out.println(retorno);
+                    }
+                }
+                System.out.println(retorno);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Ventana_Login.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Ventana_Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           
+        }
+    }//GEN-LAST:event_btn_iniciarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,7 +185,7 @@ public class Ventana_Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField password_input;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField user_input;
     // End of variables declaration//GEN-END:variables
 }
