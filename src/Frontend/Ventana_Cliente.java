@@ -9,12 +9,12 @@ package Frontend;
  *
  * @author Samuel
  */
-public class Ventana_Administrador extends javax.swing.JFrame {
+public class Ventana_Cliente extends javax.swing.JFrame {
 
     /**
-     * Creates new form Ventana_Administrador
+     * Creates new form Ventana_Cliente
      */
-    public Ventana_Administrador() {
+    public Ventana_Cliente() {
         initComponents();
     }
 
@@ -30,7 +30,6 @@ public class Ventana_Administrador extends javax.swing.JFrame {
         panel_Header = new javax.swing.JPanel();
         btn_CerrarSesion = new javax.swing.JButton();
         jLabel53 = new javax.swing.JLabel();
-        btn_estadisticas = new javax.swing.JButton();
         btn_inicio = new javax.swing.JButton();
         btn_verificar = new javax.swing.JButton();
         btn_estadisticas1 = new javax.swing.JButton();
@@ -129,54 +128,9 @@ public class Ventana_Administrador extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jLabel112 = new javax.swing.JLabel();
         jLabel111 = new javax.swing.JLabel();
-        panel_admi = new javax.swing.JPanel();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel81 = new javax.swing.JLabel();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel84 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
-        jLabel87 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
-        jLabel88 = new javax.swing.JLabel();
-        jSpinner2 = new javax.swing.JSpinner();
-        jButton12 = new javax.swing.JButton();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTable6 = new javax.swing.JTable();
-        jLabel89 = new javax.swing.JLabel();
-        jButton13 = new javax.swing.JButton();
-        jLabel85 = new javax.swing.JLabel();
-        jLabel86 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jTable7 = new javax.swing.JTable();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel74 = new javax.swing.JLabel();
-        jLabel75 = new javax.swing.JLabel();
-        jLabel76 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jLabel77 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jLabel78 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jLabel79 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jLabel80 = new javax.swing.JLabel();
-        jLabel114 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Modo Admi");
-        setBackground(new java.awt.Color(39, 33, 60));
-        setResizable(false);
+        setPreferredSize(new java.awt.Dimension(1200, 800));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panel_Header.setBackground(new java.awt.Color(39, 33, 60));
@@ -198,18 +152,6 @@ public class Ventana_Administrador extends javax.swing.JFrame {
         jLabel53.setForeground(new java.awt.Color(255, 255, 255));
         jLabel53.setText("BigPrizes.sn");
         panel_Header.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
-
-        btn_estadisticas.setBackground(new java.awt.Color(39, 33, 60));
-        btn_estadisticas.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        btn_estadisticas.setForeground(new java.awt.Color(255, 255, 255));
-        btn_estadisticas.setText("Administración");
-        btn_estadisticas.setBorder(null);
-        btn_estadisticas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_estadisticasActionPerformed(evt);
-            }
-        });
-        panel_Header.add(btn_estadisticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, -1, -1));
 
         btn_inicio.setBackground(new java.awt.Color(39, 33, 60));
         btn_inicio.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -738,261 +680,39 @@ public class Ventana_Administrador extends javax.swing.JFrame {
 
         getContentPane().add(panel_estadisticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 1200, 630));
 
-        panel_admi.setBackground(new java.awt.Color(255, 255, 255));
-        panel_admi.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTabbedPane2.setBackground(new java.awt.Color(255, 255, 255));
-        jTabbedPane2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel81.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel81.setText("En esta sección podrá agregar, modificar y eliminar planes de premios");
-        jPanel7.add(jLabel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
-
-        jButton9.setBackground(new java.awt.Color(204, 51, 0));
-        jButton9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton9.setForeground(new java.awt.Color(255, 255, 255));
-        jButton9.setText("Eliminar");
-        jButton9.setBorder(null);
-        jPanel7.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 490, 210, 40));
-
-        jButton10.setBackground(new java.awt.Color(51, 204, 0));
-        jButton10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton10.setForeground(new java.awt.Color(255, 255, 255));
-        jButton10.setText("Generar plan");
-        jButton10.setBorder(null);
-        jPanel7.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 210, 40));
-
-        jButton11.setBackground(new java.awt.Color(51, 102, 255));
-        jButton11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton11.setForeground(new java.awt.Color(255, 255, 255));
-        jButton11.setText("Editar");
-        jButton11.setBorder(null);
-        jPanel7.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 490, 210, 40));
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel84.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel84.setText("Cantidad de fracciones");
-        jPanel1.add(jLabel84, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
-
-        jTextField11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel1.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 150, 30));
-
-        jLabel87.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel87.setText("Premios");
-        jPanel1.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
-
-        jTextField13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel1.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 150, 30));
-
-        jLabel88.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel88.setText("Ganancia");
-        jPanel1.add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
-
-        jSpinner2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel1.add(jSpinner2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 150, 30));
-
-        jButton12.setBackground(new java.awt.Color(204, 51, 0));
-        jButton12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton12.setForeground(new java.awt.Color(255, 255, 255));
-        jButton12.setText("eliminar");
-        jButton12.setBorder(null);
-        jPanel1.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 100, 40));
-
-        jTable6.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Nombre ", "Ganancia", "Fracciones"
-            }
-        ));
-        jScrollPane6.setViewportView(jTable6);
-
-        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, 230, 170));
-
-        jLabel89.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel89.setText("nombre de premio");
-        jPanel1.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
-        jButton13.setBackground(new java.awt.Color(51, 102, 255));
-        jButton13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton13.setForeground(new java.awt.Color(255, 255, 255));
-        jButton13.setText("agregar");
-        jButton13.setBorder(null);
-        jPanel1.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 100, 40));
-
-        jPanel7.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 510, 290));
-
-        jLabel85.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel85.setText("Nombre del plan");
-        jPanel7.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
-
-        jLabel86.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel86.setText("Agregar premio");
-        jPanel7.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
-
-        jTextField12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel7.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 210, 30));
-
-        jScrollPane7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
-        jTable7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTable7.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "ID", "Nombre", "Cantidad de fracciones", "Ganancia Total"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane7.setViewportView(jTable7);
-
-        jPanel7.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 97, 510, 360));
-
-        jTabbedPane2.addTab("Plan de premio", jPanel7);
-
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel74.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel74.setText("Precio de sorteo");
-        jPanel6.add(jLabel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, -1, -1));
-
-        jLabel75.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel75.setText("Seleccione un sorteo y toque el botón de la acción que desea realizar");
-        jPanel6.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, -1, -1));
-
-        jLabel76.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel76.setText("Nombre del sorteo");
-        jPanel6.add(jLabel76, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
-
-        jTextField6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel6.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 210, 30));
-
-        jComboBox5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chances", "Lotería", " " }));
-        jPanel6.add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 210, -1));
-
-        jLabel77.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel77.setText("Fecha de sorteo");
-        jPanel6.add(jLabel77, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
-
-        jSpinner1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel6.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 210, -1));
-
-        jLabel78.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel78.setText("Cantidad de fracciones");
-        jPanel6.add(jLabel78, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
-
-        jTextField7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTextField7.setText("dd/mm/yyyy");
-        jPanel6.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 210, 30));
-
-        jLabel79.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel79.setText("Tipo de sorteo");
-        jPanel6.add(jLabel79, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
-
-        jTextField8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel6.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 210, 30));
-
-        jButton6.setBackground(new java.awt.Color(204, 51, 0));
-        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Eliminar");
-        jButton6.setBorder(null);
-        jPanel6.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 490, 210, 40));
-
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Fecha de sorteo", "Tipo", "Cantidad de fracciones", "Precio de sorteo"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane5.setViewportView(jTable5);
-
-        jPanel6.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 750, 370));
-
-        jButton7.setBackground(new java.awt.Color(51, 204, 0));
-        jButton7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("Agregar");
-        jButton7.setBorder(null);
-        jPanel6.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 210, 40));
-
-        jButton8.setBackground(new java.awt.Color(51, 102, 255));
-        jButton8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setText("Editar");
-        jButton8.setBorder(null);
-        jPanel6.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 490, 210, 40));
-
-        jLabel80.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel80.setText("En esta sección podrá agregar, modificar y eliminar sorteos");
-        jPanel6.add(jLabel80, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
-
-        jTabbedPane2.addTab("Sorteo", jPanel6);
-
-        panel_admi.add(jTabbedPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 1140, 580));
-
-        jLabel114.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/lottery.png"))); // NOI18N
-        jLabel114.setText("jLabel1");
-        panel_admi.add(jLabel114, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        getContentPane().add(panel_admi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 1200, 630));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_estadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_estadisticasActionPerformed
+    private void btn_CerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarSesionActionPerformed
         // TODO add your handling code here:
-          panel_inicio.setVisible(false);
-         panel_verificar.setVisible(false);
-         panel_estadisticas.setVisible(false);
-         panel_admi.setVisible(true);
-    }//GEN-LAST:event_btn_estadisticasActionPerformed
+        Ventana_Login login = new Ventana_Login();
+        login.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_CerrarSesionActionPerformed
 
     private void btn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inicioActionPerformed
         // TODO add your handling code here:
-         panel_inicio.setVisible(true);
-         panel_verificar.setVisible(false);
-         panel_estadisticas.setVisible(false);
-         panel_admi.setVisible(false);
+        panel_inicio.setVisible(true);
+        panel_verificar.setVisible(false);
+        panel_estadisticas.setVisible(false);
+       
     }//GEN-LAST:event_btn_inicioActionPerformed
 
     private void btn_verificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_verificarActionPerformed
         // TODO add your handling code here:
-       panel_inicio.setVisible(false);
-         panel_verificar.setVisible(true);
-         panel_estadisticas.setVisible(false);
-         panel_admi.setVisible(false);
+        panel_inicio.setVisible(false);
+        panel_verificar.setVisible(true);
+        panel_estadisticas.setVisible(false);
+       
     }//GEN-LAST:event_btn_verificarActionPerformed
+
+    private void btn_estadisticas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_estadisticas1ActionPerformed
+        // TODO add your handling code here:
+        panel_inicio.setVisible(false);
+        panel_verificar.setVisible(false);
+        panel_estadisticas.setVisible(true);
+      
+    }//GEN-LAST:event_btn_estadisticas1ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
@@ -1001,21 +721,6 @@ public class Ventana_Administrador extends javax.swing.JFrame {
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
-
-    private void btn_estadisticas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_estadisticas1ActionPerformed
-        // TODO add your handling code here:
-         panel_inicio.setVisible(false);
-         panel_verificar.setVisible(false);
-         panel_estadisticas.setVisible(true);
-         panel_admi.setVisible(false);
-    }//GEN-LAST:event_btn_estadisticas1ActionPerformed
-
-    private void btn_CerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarSesionActionPerformed
-        // TODO add your handling code here:
-        Ventana_Login login = new Ventana_Login();
-        login.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btn_CerrarSesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1034,54 +739,43 @@ public class Ventana_Administrador extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Ventana_Administrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ventana_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Ventana_Administrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ventana_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Ventana_Administrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ventana_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Ventana_Administrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ventana_Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ventana_Administrador().setVisible(true);
+                new Ventana_Cliente().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_CerrarSesion;
-    private javax.swing.JButton btn_estadisticas;
     private javax.swing.JButton btn_estadisticas1;
     private javax.swing.JButton btn_inicio;
     private javax.swing.JButton btn_verificar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel111;
     private javax.swing.JLabel jLabel112;
-    private javax.swing.JLabel jLabel114;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -1143,58 +837,25 @@ public class Ventana_Administrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel74;
-    private javax.swing.JLabel jLabel75;
-    private javax.swing.JLabel jLabel76;
-    private javax.swing.JLabel jLabel77;
-    private javax.swing.JLabel jLabel78;
-    private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel80;
-    private javax.swing.JLabel jLabel81;
-    private javax.swing.JLabel jLabel84;
-    private javax.swing.JLabel jLabel85;
-    private javax.swing.JLabel jLabel86;
-    private javax.swing.JLabel jLabel87;
-    private javax.swing.JLabel jLabel88;
-    private javax.swing.JLabel jLabel89;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
-    private javax.swing.JTable jTable5;
-    private javax.swing.JTable jTable6;
-    private javax.swing.JTable jTable7;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JPanel panel_Header;
-    private javax.swing.JPanel panel_admi;
     private javax.swing.JPanel panel_estadisticas;
     private javax.swing.JPanel panel_inicio;
     private javax.swing.JPanel panel_verificar;

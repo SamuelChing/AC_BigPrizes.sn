@@ -5,6 +5,8 @@
  */
 package ac_proyecto;
 
+import Frontend.Ventana_Login;
+
 /**
  *
  * @author Samuel
@@ -16,6 +18,8 @@ public class AC_Proyecto {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Ventana_Login login = new Ventana_Login();
+        login.setVisible(true);
     }
     
 }
