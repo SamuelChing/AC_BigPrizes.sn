@@ -40,7 +40,7 @@ public class Ventana_Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         user_input = new javax.swing.JTextField();
         btn_iniciar = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        password_input = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
@@ -88,9 +88,9 @@ public class Ventana_Login extends javax.swing.JFrame {
         });
         jPanel2.add(btn_iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, 80, 30));
 
-        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jPanel2.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 330, 30));
+        password_input.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        password_input.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel2.add(password_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 330, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 430, 350));
 
@@ -109,11 +109,11 @@ public class Ventana_Login extends javax.swing.JFrame {
 
     private void btn_iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciarActionPerformed
         // TODO add your handling code here:
-        if(user_input.getText().trim().isBlank() || jPasswordField1.getText().trim().isBlank()){
+        if(user_input.getText().trim().isBlank() || password_input.getText().trim().isBlank()){
             JOptionPane.showMessageDialog(null, "Espacios vacíos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
         }
         else{  
-            ControladorDataBase.getControlador().InicioSesion(user_input.getText(), jPasswordField1.getText().trim(),this);
+            ControladorDataBase.getControlador().InicioSesion(user_input.getText(), password_input.getText().trim(),this);
         }
     }//GEN-LAST:event_btn_iniciarActionPerformed
 
@@ -161,7 +161,7 @@ public class Ventana_Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField password_input;
     private javax.swing.JTextField user_input;
     // End of variables declaration//GEN-END:variables
 }
