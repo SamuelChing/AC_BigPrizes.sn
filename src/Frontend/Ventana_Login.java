@@ -5,8 +5,7 @@
  */
 package Frontend;
 
-import Modelo.ConexionDB;
-import java.sql.SQLException;
+import Controlador.ControladorDataBase;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -22,6 +21,7 @@ public class Ventana_Login extends javax.swing.JFrame {
      */
     public Ventana_Login() {
         initComponents();
+        setLocationRelativeTo(null);        
     }
 
     /**
@@ -46,6 +46,7 @@ public class Ventana_Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BigPrizes.sn inicio de sesion");
+        setPreferredSize(new java.awt.Dimension(1200, 750));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -88,7 +89,6 @@ public class Ventana_Login extends javax.swing.JFrame {
         jPanel2.add(btn_iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, 80, 30));
 
         jPasswordField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPasswordField1.setText("jPasswordField1");
         jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jPanel2.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 330, 30));
 
@@ -110,34 +110,10 @@ public class Ventana_Login extends javax.swing.JFrame {
     private void btn_iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciarActionPerformed
         // TODO add your handling code here:
         if(user_input.getText().trim().isBlank() || jPasswordField1.getText().trim().isBlank()){
-            //retornar error
+            JOptionPane.showMessageDialog(null, "Espacios vacíos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
         }
-        else{
-            ConexionDB Modelo;
-            try {
-                Modelo = new ConexionDB("LotteryDB", "root", "password1234");
-                int retorno= Modelo.ResultadoNumero(Modelo.EjecutarConsulta("select Login('"+user_input.getText()+"','"+jPasswordField1.getText().trim()+"');"));
-                if(retorno==0){
-                    Ventana_Administrador ventana_Administrador = new Ventana_Administrador();
-                    ventana_Administrador.setVisible(true);
-                    this.dispose();
-                }
-                else{
-                    if(retorno==1){
-                        //Es Cliente
-                        //System.out.println(retorno);
-                    }
-                    else{
-                        //System.out.println(retorno);
-                    }
-                }
-                System.out.println(retorno);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(Ventana_Login.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(Ventana_Login.class.getName()).log(Level.SEVERE, null, ex);
-            }
-           
+        else{  
+            ControladorDataBase.getControlador().InicioSesion(user_input.getText(), jPasswordField1.getText().trim(),this);
         }
     }//GEN-LAST:event_btn_iniciarActionPerformed
 

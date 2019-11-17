@@ -5,7 +5,9 @@
  */
 package ac_proyecto;
 
+import Controlador.ControladorDataBase;
 import Frontend.Ventana_Login;
+import java.sql.SQLException;
 
 /**
  *
@@ -16,11 +18,14 @@ public class AC_Proyecto {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        //Prueba 1
-        Ventana_Login login = new Ventana_Login();
-        login.setVisible(true);
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+        //  Se crea los objetos Singleton
+        ControladorDataBase.CrearControlador();
+        
+        //  Se crea la ventana inicial
+        //Ventana_Login login = new Ventana_Login();
+        //login.setVisible(true); 
+        ControladorDataBase.getControlador().LlenarTablaConsulta("Select * From Usuario", null);
     }
     
 }

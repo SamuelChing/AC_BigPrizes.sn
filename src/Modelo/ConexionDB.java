@@ -18,47 +18,51 @@ import java.sql.Statement;
  */
 public class ConexionDB 
 {
-    //  Datos del modelo de almacenamiento
+    //  Datos del modelo de almacenamiento 
+    private static ConexionDB Conexion = null;
     private String DRIVER = "org.gjt.mm.mysql.Driver";
-    private String URL;
-    private String Usuario;
-    private String Contrasena; 
+    private String URL = "jdbc:mysql://localhost:3306/LotteryDB?useUnicode=true&characterEncoding=utf-8&useSSL=false";
+    private String Usuario = "root";
+    private String Contrasena = "Nahum.Nisshi33"; 
     private Connection DataBase;                     
     
-    /**
-     * Constructor de la base
-     * @param NombreBase Nombre de la base de datos a conectar
-     * @param Usuario Nombre del usuario con permisos de conexión
-     * @param Contrasena Contraseña del usuario
-     */
-    public ConexionDB(String NombreBase, String Usuario, String Contrasena) throws ClassNotFoundException, SQLException 
-    {
-        this.URL = "jdbc:mysql://localhost:3306/"+NombreBase+"?useUnicode=true&characterEncoding=utf-8&useSSL=false";
-        this.Usuario = Usuario;
-        this.Contrasena = Contrasena;
+    /// Constructor de la clase
+    public ConexionDB() throws ClassNotFoundException, SQLException 
+    {                        
         Class.forName(DRIVER);
-        this.DataBase = DriverManager.getConnection(URL, Usuario,Contrasena);
+        this.DataBase = DriverManager.getConnection(URL, Usuario,Contrasena);        
+    }
+    
+    //  Método que crea el objeto singleton
+    public static void CrearConexionDB() throws ClassNotFoundException, SQLException
+    {
+        if(Conexion == null){
+            Conexion = new ConexionDB();
+        }
+    }
+    
+    //  Método que retorna el objeto singletón
+    public static ConexionDB getConexionDB(){
+        return Conexion;
     }
     /**
-     * Método que convierte una respuesta de consulta en un entero
-     * @param Resultado Es un objeto que tiene el resultado de una consulta
+     * Método que procesa una respuesta de consulta en un string
+     * @param Resultado Es un objeto que tiene el resultado de una consulta a procedimiento
      * @return  Un entero resultado de la consulta
      * @throws SQLException 
      */
-    public int ResultadoNumero(ResultSet Resultado) throws SQLException
+    public String ResultadoString(ResultSet Resultado) throws SQLException
     {
-        ResultSetMetaData rsMd = Resultado.getMetaData();        
-        int cantidadColumnas = rsMd.getColumnCount();
+        ResultSetMetaData rsMd = Resultado.getMetaData();
         Resultado.next();                                
         String ResultadoFin = Resultado.getObject(1).toString();
-        Resultado.close(); 
-        System.out.println(ResultadoFin);
-        return Integer.parseInt(ResultadoFin);
+        Resultado.close();         
+        return ResultadoFin;
     }
     /**
      * 
      * @param Consulta Un string con la consulta
-     * @return  El resultado de la consulta en ResultSet formato
+     * @return  El resultado de la consulta en ResultSet formato que necesita ser procesado
      * @throws ClassNotFoundException
      * @throws SQLException 
      */
@@ -68,5 +72,5 @@ public class ConexionDB
         ResultSet Resultado = Statement.executeQuery(Consulta);
         
         return Resultado;
-    }
+    }    
 }
