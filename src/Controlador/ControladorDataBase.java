@@ -5,8 +5,8 @@
  */
 package Controlador;
 
+import Frontend.Login;
 import Frontend.Ventana_Administrador;
-import Frontend.Ventana_Login;
 import Modelo.ConexionDB;
 import com.mysql.jdbc.ResultSetMetaData;
 import java.sql.ResultSet;
@@ -41,7 +41,7 @@ public class ControladorDataBase
     }
     
     
-    public void InicioSesion(String Nombre, String Contrasena, Ventana_Login Objeto)
+    public void InicioSesion(String Nombre, String Contrasena, Login Objeto)
     {     
         try{
             String Resultado = ConexionDB.getConexionDB().ResultadoString(ConexionDB.getConexionDB().EjecutarConsulta("select Login('"+Nombre+"','"+Contrasena+"');"));

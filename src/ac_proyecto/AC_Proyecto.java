@@ -6,7 +6,7 @@
 package ac_proyecto;
 
 import Controlador.ControladorDataBase;
-import Frontend.Ventana_Login;
+import Frontend.Login;
 import java.sql.SQLException;
 
 /**
@@ -23,8 +23,8 @@ public class AC_Proyecto {
         ControladorDataBase.CrearControlador();
         
         //  Se crea la ventana inicial
-        //Ventana_Login login = new Ventana_Login();
-        //login.setVisible(true); 
+        Login login = new Login();
+        login.setVisible(true); 
         ControladorDataBase.getControlador().LlenarTablaConsulta("Select * From Usuario", null);
     }
     

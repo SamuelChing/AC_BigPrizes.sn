@@ -988,10 +988,10 @@ public class Ventana_Administrador extends javax.swing.JFrame {
 
     private void btn_verificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_verificarActionPerformed
         // TODO add your handling code here:
-       panel_inicio.setVisible(false);
-         panel_verificar.setVisible(true);
-         panel_estadisticas.setVisible(false);
-         panel_admi.setVisible(false);
+        panel_inicio.setVisible(false);
+        panel_verificar.setVisible(true);
+        panel_estadisticas.setVisible(false);
+        panel_admi.setVisible(false);
     }//GEN-LAST:event_btn_verificarActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -1012,7 +1012,7 @@ public class Ventana_Administrador extends javax.swing.JFrame {
 
     private void btn_CerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarSesionActionPerformed
         // TODO add your handling code here:
-        Ventana_Login login = new Ventana_Login();
+        Login login = new Login();
         login.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_CerrarSesionActionPerformed

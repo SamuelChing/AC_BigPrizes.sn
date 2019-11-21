@@ -685,7 +685,7 @@ public class Ventana_Cliente extends javax.swing.JFrame {
 
     private void btn_CerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarSesionActionPerformed
         // TODO add your handling code here:
-        Ventana_Login login = new Ventana_Login();
+        Login login = new Login();
         login.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_CerrarSesionActionPerformed

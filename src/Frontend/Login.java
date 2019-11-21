@@ -6,22 +6,20 @@
 package Frontend;
 
 import Controlador.ControladorDataBase;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author Samuel
+ * @author Nahum
  */
-public class Ventana_Login extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame {
 
     /**
-     * Creates new form Ventana_Login
+     * Creates new form Login
      */
-    public Ventana_Login() {
+    public Login() {
         initComponents();
-        setLocationRelativeTo(null);        
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -33,48 +31,46 @@ public class Ventana_Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        PanelLogin = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         user_input = new javax.swing.JTextField();
         btn_iniciar = new javax.swing.JButton();
         password_input = new javax.swing.JPasswordField();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        Label_Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("BigPrizes.sn inicio de sesion");
-        setPreferredSize(new java.awt.Dimension(1200, 750));
-        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(39, 33, 60));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1200, 800));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 71)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("BigPrizes.sn");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 430, 80));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        PanelLogin.setBackground(new java.awt.Color(255, 255, 255));
+        PanelLogin.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        PanelLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(26, 128, 224));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 46)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 153, 51));
         jLabel1.setText("Inicio de sesión");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
+        PanelLogin.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 30, 340, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Contraseña");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
+        PanelLogin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("Usuario");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
+        jLabel3.setText("ShaumEnterprise ® 2019");
+        PanelLogin.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, 330, -1));
 
         user_input.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         user_input.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel2.add(user_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 330, 30));
+        PanelLogin.add(user_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 330, 30));
 
         btn_iniciar.setBackground(new java.awt.Color(255, 153, 0));
         btn_iniciar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -86,23 +82,21 @@ public class Ventana_Login extends javax.swing.JFrame {
                 btn_iniciarActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, 80, 30));
+        PanelLogin.add(btn_iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 320, 80, 30));
 
         password_input.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         password_input.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jPanel2.add(password_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 330, 30));
+        PanelLogin.add(password_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 330, 30));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 430, 350));
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setText("Usuario");
+        PanelLogin.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 72)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("BigPrizes.sn");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, -1, -1));
+        getContentPane().add(PanelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 100, 430, 480));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/lottery.png"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 1200, 810));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        Label_Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/lottery.png"))); // NOI18N
+        Label_Fondo.setText("LB_ImagenFondo");
+        getContentPane().add(Label_Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1160, 660));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -112,7 +106,7 @@ public class Ventana_Login extends javax.swing.JFrame {
         if(user_input.getText().trim().isBlank() || password_input.getText().trim().isBlank()){
             JOptionPane.showMessageDialog(null, "Espacios vacíos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
         }
-        else{  
+        else{
             ControladorDataBase.getControlador().InicioSesion(user_input.getText(), password_input.getText().trim(),this);
         }
     }//GEN-LAST:event_btn_iniciarActionPerformed
@@ -134,33 +128,34 @@ public class Ventana_Login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Ventana_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Ventana_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Ventana_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Ventana_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ventana_Login().setVisible(true);
+                new Login().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Label_Fondo;
+    private javax.swing.JPanel PanelLogin;
     private javax.swing.JButton btn_iniciar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField password_input;
     private javax.swing.JTextField user_input;
     // End of variables declaration//GEN-END:variables
