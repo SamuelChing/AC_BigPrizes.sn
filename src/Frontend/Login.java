@@ -5,7 +5,7 @@
  */
 package Frontend;
 
-import Controlador.ControladorDataBase;
+import Controlador.ControladorDB;
 import javax.swing.JOptionPane;
 
 /**
@@ -48,7 +48,7 @@ public class Login extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 71)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("BigPrizes.sn");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 430, 80));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 430, 100));
 
         PanelLogin.setBackground(new java.awt.Color(255, 255, 255));
         PanelLogin.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -82,7 +82,7 @@ public class Login extends javax.swing.JFrame {
                 btn_iniciarActionPerformed(evt);
             }
         });
-        PanelLogin.add(btn_iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 320, 80, 30));
+        PanelLogin.add(btn_iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 130, 30));
 
         password_input.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         password_input.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -107,7 +107,7 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Espacios vacíos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
         }
         else{
-            ControladorDataBase.getControlador().InicioSesion(user_input.getText(), password_input.getText().trim(),this);
+            ControladorDB.getControlador().InicioSesion(user_input.getText(), password_input.getText().trim(),this);
         }
     }//GEN-LAST:event_btn_iniciarActionPerformed
 

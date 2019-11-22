@@ -6,7 +6,7 @@
 package Controlador;
 
 import Frontend.Login;
-import Frontend.Ventana_Administrador;
+import Frontend.VAdministrador;
 import Modelo.ConexionDB;
 import com.mysql.jdbc.ResultSetMetaData;
 import java.sql.ResultSet;
@@ -19,11 +19,11 @@ import javax.swing.table.DefaultTableModel;
  * Clase Contralador que permite hacer una solicitud a a base de datos
  * @author Nahum
  */
-public class ControladorDataBase 
+public class ControladorDB 
 {    
-    private static ControladorDataBase Controlador = null;    
+    private static ControladorDB Controlador = null;    
 
-    public ControladorDataBase() throws ClassNotFoundException, SQLException {
+    public ControladorDB() throws ClassNotFoundException, SQLException {
         ConexionDB.CrearConexionDB();
     }
     
@@ -31,12 +31,12 @@ public class ControladorDataBase
     public static void CrearControlador() throws ClassNotFoundException, SQLException 
     {
         if(Controlador == null){
-            Controlador = new ControladorDataBase();
+            Controlador = new ControladorDB();
         }
     }
     
     //  Método que retorna el objeto singletón
-    public static ControladorDataBase getControlador(){
+    public static ControladorDB getControlador(){
         return Controlador;
     }
     
@@ -48,7 +48,7 @@ public class ControladorDataBase
             switch(Resultado)
             {
                 case "0":// Usuario Administrador
-                    Ventana_Administrador Ventana = new Ventana_Administrador();
+                    VAdministrador Ventana = new VAdministrador();
                     Ventana.setVisible(true);
                     break;
                 case "1":// Usuario Cliente
