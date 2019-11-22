@@ -5,6 +5,9 @@
  */
 package Frontend;
 
+import Controlador.ControladorDB;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Nahum
@@ -53,6 +56,7 @@ public class VAdministrador extends javax.swing.JFrame {
         jLabel79 = new javax.swing.JLabel();
         Campo_Precio_Sorteo = new javax.swing.JTextField();
         btn_agregar_sorteo = new javax.swing.JButton();
+        Chooser_Date_Sorteo = new datechooser.beans.DateChooserCombo();
         btn_editar_sorteo = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         Tabla_Sorteos = new javax.swing.JTable();
@@ -241,13 +245,13 @@ public class VAdministrador extends javax.swing.JFrame {
                 .addComponent(Btn_verificar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Btn_Salir)
-                .addGap(315, 315, 315)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
                 .addComponent(LB_Titulo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(33, 33, 33))
         );
         HeaderLayout.setVerticalGroup(
             HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(LB_Titulo)
+            .addComponent(LB_Titulo, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(HeaderLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,6 +283,7 @@ public class VAdministrador extends javax.swing.JFrame {
         Campo_Leyenda_Sorteo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         Campo_Fracciones_Sorteo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Campo_Fracciones_Sorteo.setModel(new javax.swing.SpinnerNumberModel(1, 1, 40, 1));
 
         jLabel76.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel76.setText("Leyenda");
@@ -302,6 +307,11 @@ public class VAdministrador extends javax.swing.JFrame {
         btn_agregar_sorteo.setForeground(new java.awt.Color(255, 255, 255));
         btn_agregar_sorteo.setText("Agregar");
         btn_agregar_sorteo.setBorder(null);
+        btn_agregar_sorteo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_agregar_sorteoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout Panel_Contenedor_Datos_SorteoLayout = new javax.swing.GroupLayout(Panel_Contenedor_Datos_Sorteo);
         Panel_Contenedor_Datos_Sorteo.setLayout(Panel_Contenedor_Datos_SorteoLayout);
@@ -310,16 +320,18 @@ public class VAdministrador extends javax.swing.JFrame {
             .addGroup(Panel_Contenedor_Datos_SorteoLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(Panel_Contenedor_Datos_SorteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Campo_Leyenda_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel76)))
-            .addGroup(Panel_Contenedor_Datos_SorteoLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel77))
+                    .addComponent(jLabel76)
+                    .addComponent(Campo_Leyenda_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(Panel_Contenedor_Datos_SorteoLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(Panel_Contenedor_Datos_SorteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Campo_Fracciones_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel78)))
+                    .addComponent(jLabel77)
+                    .addComponent(Chooser_Date_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(Panel_Contenedor_Datos_SorteoLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(Panel_Contenedor_Datos_SorteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel78)
+                    .addComponent(Campo_Fracciones_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(Panel_Contenedor_Datos_SorteoLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(Panel_Contenedor_Datos_SorteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,17 +351,21 @@ public class VAdministrador extends javax.swing.JFrame {
             .addGroup(Panel_Contenedor_Datos_SorteoLayout.createSequentialGroup()
                 .addGap(4, 4, 4)
                 .addGroup(Panel_Contenedor_Datos_SorteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel76, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(Panel_Contenedor_Datos_SorteoLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(Campo_Leyenda_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel76, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jLabel77, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                        .addComponent(Campo_Leyenda_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(Panel_Contenedor_Datos_SorteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel77, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(Panel_Contenedor_Datos_SorteoLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(Campo_Fracciones_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel78, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Chooser_Date_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10)
+                .addGroup(Panel_Contenedor_Datos_SorteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel78, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(Panel_Contenedor_Datos_SorteoLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(Campo_Fracciones_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(8, 8, 8)
                 .addGroup(Panel_Contenedor_Datos_SorteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(Panel_Contenedor_Datos_SorteoLayout.createSequentialGroup()
@@ -1248,6 +1264,30 @@ public class VAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_buscar_exportarActionPerformed
 
+    private void btn_agregar_sorteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregar_sorteoActionPerformed
+        // TODO add your handling code here:        
+            String Leyenda = Campo_Leyenda_Sorteo.getText().toString();
+            String Fecha = Chooser_Date_Sorteo.getText().toString();
+            String Fracciones = Campo_Fracciones_Sorteo.getValue().toString();
+            String Tipo = CB_Tipo_Sorteo.getSelectedItem().toString();
+            String Precio = Campo_Precio_Sorteo.getText().toString();
+            
+            if(Leyenda.trim().isBlank() || Fecha.trim().isBlank() || Tipo.trim().isBlank() || Precio.trim().isBlank()){
+                JOptionPane.showMessageDialog(null, "Error, espacios vacíos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+            }                    
+            else{
+                try
+                {
+                    ControladorDB.CrearControlador();
+                    ControladorDB.getControlador().ManejoSorteo(1, Leyenda, Fecha, Integer.parseInt(Fracciones), Fracciones, Integer.parseInt(Precio), 0);
+                }
+                catch(Exception ex){
+                    System.out.println(ex);
+                    JOptionPane.showMessageDialog(null, "Error, el dato ingresado como precio es incorrecto", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+                }
+            }       
+    }//GEN-LAST:event_btn_agregar_sorteoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1307,6 +1347,7 @@ public class VAdministrador extends javax.swing.JFrame {
     private javax.swing.JTextField Campo_Numero_Sorteo_Ganador;
     private javax.swing.JTextField Campo_Precio_Sorteo;
     private javax.swing.JTextField Campo_Serie_Ganador;
+    private datechooser.beans.DateChooserCombo Chooser_Date_Sorteo;
     private javax.swing.JPanel Header;
     private javax.swing.JLabel LB_Contenido_Resultado;
     private javax.swing.JLabel LB_Etiqueta;

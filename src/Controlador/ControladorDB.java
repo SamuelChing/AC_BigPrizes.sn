@@ -7,6 +7,7 @@ package Controlador;
 
 import Frontend.Login;
 import Frontend.VAdministrador;
+import Frontend.VClientes;
 import Modelo.ConexionDB;
 import com.mysql.jdbc.ResultSetMetaData;
 import java.sql.ResultSet;
@@ -40,7 +41,12 @@ public class ControladorDB
         return Controlador;
     }
     
-    
+    /**
+     * Método que valida el acceso de un usuario a la aplicación
+     * @param Nombre String Nombre del usuario
+     * @param Contrasena String Contrseña del usuario
+     * @param Objeto Instancia de la ventana Login
+     */
     public void InicioSesion(String Nombre, String Contrasena, Login Objeto)
     {     
         try{
@@ -48,10 +54,12 @@ public class ControladorDB
             switch(Resultado)
             {
                 case "0":// Usuario Administrador
-                    VAdministrador Ventana = new VAdministrador();
-                    Ventana.setVisible(true);
+                    VAdministrador VentanaA = new VAdministrador();
+                    VentanaA.setVisible(true);
                     break;
                 case "1":// Usuario Cliente
+                    VClientes VentanaC = new VClientes();
+                    VentanaC.setVisible(true);
                     break;
                 default://  No existe el usuario
                     JOptionPane.showMessageDialog(null, "Usuario no existe", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
@@ -63,12 +71,17 @@ public class ControladorDB
         }
     }    
     
+    /**
+     * Método que realiza una consulta y la despliega en una tabla
+     * @param Consulta String de consulta
+     * @param Tabla Objeto Jtable
+     */
     public void LlenarTablaConsulta(String Consulta, JTable Tabla)
     {
         try{
             //  Se setea el modelo de la tabla
-            //DefaultTableModel modeloTabla = new DefaultTableModel();
-            //Tabla.setModel(modeloTabla);             
+            DefaultTableModel modeloTabla = new DefaultTableModel();
+            Tabla.setModel(modeloTabla);             
             //  Se ejecuta la consulta y se guarda la tabla resultado
             ResultSet TablaResultado = ConexionDB.getConexionDB().EjecutarConsulta(Consulta);            
             //  Se toma la fila del encabezado
@@ -78,22 +91,19 @@ public class ControladorDB
             for (int i = 1; i <= ColumnasEncabezado; i++) 
             {
                 //  Obtiene el valor de la etiqueta del encabezado y la setea a la tabla
-                //modeloTabla.addColumn(FilaEncabezado.getColumnLabel(i));
+                modeloTabla.addColumn(FilaEncabezado.getColumnLabel(i));
             }            
             //  Se lena la tabla con la información de la tabla resultado de la consulta
             while (TablaResultado.next())// Recorre fila por fila la consulta
-            {
-                String Filita = "";
+            {                
                 Object[] fila = new Object[ColumnasEncabezado];//   Crea un arreglo para setear la fila
                 for (int i = 1; i < ColumnasEncabezado; i++)//  Setea columna por columna la fila actual
                 {
                   //    Toma el valor de la columna y lo inserta en el arreglo fila
-                    fila[i] = TablaResultado.getObject(i).toString();
-                    Filita += TablaResultado.getObject(i).toString()+"  ";
+                    fila[i] = TablaResultado.getObject(i).toString();                    
                 }
                 //  Setea la fila en el modelo de la tabla de muestra
-                //modeloTabla.addRow(fila);               
-                System.out.println(Filita);
+                modeloTabla.addRow(fila);                
             }
             //  Se cierra la consulta
             TablaResultado.close();                                    
@@ -101,4 +111,9 @@ public class ControladorDB
             JOptionPane.showMessageDialog(null, "Ocurrió un error al conectarse a la base de datos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    public void ManejoSorteo(int Cmd, String Leyenda, String Fecha, int Tipo, String CantFraciones, int PrecioBillete, int Identificador)
+    {
+        
+    }    
 }
