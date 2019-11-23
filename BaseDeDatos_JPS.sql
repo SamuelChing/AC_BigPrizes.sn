@@ -47,7 +47,7 @@ Create Table Sorteo
     Tipo varchar(256) not null,
     CantidadFracciones int not null,
     PrecioBillete int not null,
-    Estado int default 0
+    Estado varchar(256) default 'Sin jugar'
 );
 #Tabla para el manejo de planes de premios
 Create Table PlanPremios
@@ -86,7 +86,7 @@ Returns int
 BEGIN
 	Declare Resultado int;        
 	if Cmd = 1 then # Insertar un sorteo
-		INSERT INTO Sorteo(leyenda,fecha,tipo,cantidad_fracciones,precio_billete)
+		INSERT INTO Sorteo(Leyenda,Fecha,Tipo,CantidadFracciones,PrecioBillete)
         VALUES(PLeyenda,PFecha,PTipo,PCantidad_fracciones,PPrecio_billete);
         return 1;
     end if;		
@@ -103,7 +103,7 @@ BEGIN
         end if;		        
     end if;        
     if cmd = 3 then # CAMBIAR ESTADO A SORTEO JUGADO		
-		update Sorteo set Sorteo.Estado = 1 where (Sorteo.Numero = Pidentificador);
+		update Sorteo set Sorteo.Estado = 'Jugado' where (Sorteo.Numero = Pidentificador);
         return 3;
     End if;
 END ;
@@ -112,3 +112,10 @@ DELIMITER ;
 
 #SELECT ManejoSorteo(1,'Leyenda','2019-02-12','Loteria',20,2000,1,2);
 #**********************************************************************************************************************
+#Vista para Sorteos
+Create View Sorteos 
+As
+Select Numero as 'Número', Leyenda, Fecha, Tipo, CantidadFracciones as 'Fracciones',PrecioBillete as 'Precio', Estado
+From Sorteo;
+
+

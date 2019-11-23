@@ -6,6 +6,8 @@
 package Frontend;
 
 import Controlador.ControladorDB;
+import Controlador.ControladorGUI;
+import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,12 +20,13 @@ public class VAdministrador extends javax.swing.JFrame {
      * Creates new form VClientes
      */
     public VAdministrador() {
-        initComponents();        
+        initComponents();
         Body_Inicio.setVisible(true);
         Body_Ganador.setVisible(false);
         Body_Estadísticas.setVisible(false);
         Body_Administrativo.setVisible(false);
         this.setLocationRelativeTo(null);
+        ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos", Tabla_Sorteos);
     }
 
     /**
@@ -292,7 +295,7 @@ public class VAdministrador extends javax.swing.JFrame {
         jLabel77.setText("Fecha");
 
         CB_Tipo_Sorteo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        CB_Tipo_Sorteo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chances", "Lotería", " " }));
+        CB_Tipo_Sorteo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lotería", "Chances" }));
 
         jLabel78.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel78.setText("Cantidad de fracciones");
@@ -318,33 +321,24 @@ public class VAdministrador extends javax.swing.JFrame {
         Panel_Contenedor_Datos_SorteoLayout.setHorizontalGroup(
             Panel_Contenedor_Datos_SorteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Panel_Contenedor_Datos_SorteoLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
                 .addGroup(Panel_Contenedor_Datos_SorteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel76)
-                    .addComponent(Campo_Leyenda_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(Panel_Contenedor_Datos_SorteoLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(Panel_Contenedor_Datos_SorteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel77)
-                    .addComponent(Chooser_Date_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(Panel_Contenedor_Datos_SorteoLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(Panel_Contenedor_Datos_SorteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel78)
-                    .addComponent(Campo_Fracciones_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(Panel_Contenedor_Datos_SorteoLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(Panel_Contenedor_Datos_SorteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CB_Tipo_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel75, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(Panel_Contenedor_Datos_SorteoLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(Panel_Contenedor_Datos_SorteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Campo_Precio_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel79, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(Panel_Contenedor_Datos_SorteoLayout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(btn_agregar_sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(Panel_Contenedor_Datos_SorteoLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(Panel_Contenedor_Datos_SorteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel76)
+                            .addComponent(Campo_Leyenda_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel77)
+                            .addComponent(Chooser_Date_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel78)
+                            .addComponent(Campo_Fracciones_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CB_Tipo_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel75, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Campo_Precio_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel79, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(Panel_Contenedor_Datos_SorteoLayout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(btn_agregar_sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(65, 65, 65))
         );
         Panel_Contenedor_Datos_SorteoLayout.setVerticalGroup(
             Panel_Contenedor_Datos_SorteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -378,8 +372,9 @@ public class VAdministrador extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(Campo_Precio_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel79, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70)
-                .addComponent(btn_agregar_sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addComponent(btn_agregar_sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
 
         Panel_Sorteo.add(Panel_Contenedor_Datos_Sorteo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 350, 430));
@@ -389,6 +384,11 @@ public class VAdministrador extends javax.swing.JFrame {
         btn_editar_sorteo.setForeground(new java.awt.Color(255, 255, 255));
         btn_editar_sorteo.setText("Editar");
         btn_editar_sorteo.setBorder(null);
+        btn_editar_sorteo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editar_sorteoActionPerformed(evt);
+            }
+        });
         Panel_Sorteo.add(btn_editar_sorteo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 410, 200, 40));
 
         Tabla_Sorteos.setModel(new javax.swing.table.DefaultTableModel(
@@ -399,6 +399,14 @@ public class VAdministrador extends javax.swing.JFrame {
 
             }
         ));
+        Tabla_Sorteos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Tabla_SorteosMouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                Tabla_SorteosMouseReleased(evt);
+            }
+        });
         jScrollPane5.setViewportView(Tabla_Sorteos);
 
         Panel_Sorteo.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 620, 360));
@@ -1270,23 +1278,43 @@ public class VAdministrador extends javax.swing.JFrame {
             String Fecha = Chooser_Date_Sorteo.getText().toString();
             String Fracciones = Campo_Fracciones_Sorteo.getValue().toString();
             String Tipo = CB_Tipo_Sorteo.getSelectedItem().toString();
-            String Precio = Campo_Precio_Sorteo.getText().toString();
-            
+            String Precio = Campo_Precio_Sorteo.getText().toString();            
             if(Leyenda.trim().isBlank() || Fecha.trim().isBlank() || Tipo.trim().isBlank() || Precio.trim().isBlank()){
                 JOptionPane.showMessageDialog(null, "Error, espacios vacíos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
-            }                    
+            }
             else{
-                try
-                {
-                    ControladorDB.CrearControlador();
-                    ControladorDB.getControlador().ManejoSorteo(1, Leyenda, Fecha, Integer.parseInt(Fracciones), Fracciones, Integer.parseInt(Precio), 0);
+                try{                    
+                    ControladorDB.getControlador().ManejoSorteo(1, Leyenda, Fecha, Tipo, Integer.parseInt(Fracciones), Integer.parseInt(Precio), 0);
+                    ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos", Tabla_Sorteos);
                 }
-                catch(Exception ex){
-                    System.out.println(ex);
+                catch(Exception ex){                    
                     JOptionPane.showMessageDialog(null, "Error, el dato ingresado como precio es incorrecto", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
                 }
             }       
     }//GEN-LAST:event_btn_agregar_sorteoActionPerformed
+
+    private void Tabla_SorteosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabla_SorteosMouseReleased
+        // TODO add your handling code here:        
+        int Fila = Tabla_Sorteos.getSelectedRow();
+        if(Fila>=0)
+        {
+            String Identificador = Tabla_Sorteos.getValueAt(Fila, 0).toString();
+            String[] row = ControladorGUI.getControlador().getRowToArray("Select * From Sorteo where Numero = "+Identificador);
+            Campo_Leyenda_Sorteo.setText(row[1]);
+            Chooser_Date_Sorteo.setText(row[2]);
+            Campo_Fracciones_Sorteo.setValue(Integer.valueOf(row[4]));
+            CB_Tipo_Sorteo.setSelectedItem(row[3]);
+            Campo_Precio_Sorteo.setText(row[5]);
+        }
+    }//GEN-LAST:event_Tabla_SorteosMouseReleased
+
+    private void Tabla_SorteosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabla_SorteosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Tabla_SorteosMouseClicked
+
+    private void btn_editar_sorteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_sorteoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_editar_sorteoActionPerformed
 
     /**
      * @param args the command line arguments

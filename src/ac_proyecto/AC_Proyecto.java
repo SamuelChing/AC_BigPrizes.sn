@@ -6,7 +6,9 @@
 package ac_proyecto;
 
 import Controlador.ControladorDB;
+import Controlador.ControladorGUI;
 import Frontend.Login;
+import Frontend.VAdministrador;
 import java.sql.SQLException;
 
 /**
@@ -21,11 +23,13 @@ public class AC_Proyecto {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         //  Se crea los objetos Singleton
         ControladorDB.CrearControlador();
+        ControladorGUI.CrearControlador();
         
         //  Se crea la ventana inicial
-        Login login = new Login();
-        login.setVisible(true); 
-        ControladorDB.getControlador().LlenarTablaConsulta("Select * From Usuario", null);
+        //Login login = new Login();
+        //login.setVisible(true); 
+        VAdministrador V1 = new VAdministrador();
+        V1.setVisible(true);
     }
     
 }
