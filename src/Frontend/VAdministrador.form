@@ -213,7 +213,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="60" y="70" width="1080" height="510"/>
+              <AbsoluteConstraints x="30" y="30" width="1140" height="570"/>
             </Constraint>
           </Constraints>
 
@@ -227,8 +227,8 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Sorteo">
-                    <Property name="tabTitle" type="java.lang.String" value="Sorteo"/>
+                  <JTabbedPaneConstraints tabName="Sorteos">
+                    <Property name="tabTitle" type="java.lang.String" value="Sorteos"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -250,7 +250,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="30" y="20" width="350" height="430"/>
+                      <AbsoluteConstraints x="30" y="20" width="350" height="470"/>
                     </Constraint>
                   </Constraints>
 
@@ -275,11 +275,11 @@
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                                       <Component id="btn_agregar_sorteo" min="-2" pref="210" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -294,40 +294,41 @@
                                       <Component id="Campo_Leyenda_Sorteo" min="-2" pref="30" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel77" min="-2" pref="26" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
                                       <Component id="Chooser_Date_Sorteo" min="-2" pref="30" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                              <EmptySpace pref="17" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel78" min="-2" pref="26" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
                                       <Component id="Campo_Fracciones_Sorteo" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
                                       <Component id="CB_Tipo_Sorteo" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jLabel75" min="-2" pref="26" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
                                       <Component id="Campo_Precio_Sorteo" min="-2" pref="30" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jLabel79" min="-2" pref="26" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="59" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                               <Component id="btn_agregar_sorteo" min="-2" pref="40" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -458,7 +459,7 @@
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="420" y="410" width="190" height="40"/>
+                      <AbsoluteConstraints x="460" y="450" width="190" height="40"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -468,7 +469,7 @@
                   </AuxValues>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="420" y="30" width="620" height="360"/>
+                      <AbsoluteConstraints x="460" y="30" width="640" height="400"/>
                     </Constraint>
                   </Constraints>
 
@@ -513,7 +514,7 @@
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="650" y="410" width="180" height="40"/>
+                      <AbsoluteConstraints x="690" y="450" width="180" height="40"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -527,8 +528,8 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Plan de premio">
-                    <Property name="tabTitle" type="java.lang.String" value="Plan de premio"/>
+                  <JTabbedPaneConstraints tabName="Plan de premios">
+                    <Property name="tabTitle" type="java.lang.String" value="Plan de premios"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -555,7 +556,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="830" y="410" width="210" height="40"/>
+                      <AbsoluteConstraints x="870" y="460" width="210" height="40"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -577,7 +578,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="550" y="410" width="210" height="40"/>
+                      <AbsoluteConstraints x="570" y="460" width="210" height="40"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -592,7 +593,7 @@
                   </AuxValues>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="550" y="30" width="490" height="370"/>
+                      <AbsoluteConstraints x="570" y="30" width="510" height="410"/>
                     </Constraint>
                   </Constraints>
 
@@ -629,7 +630,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="30" y="20" width="480" height="430"/>
+                      <AbsoluteConstraints x="30" y="20" width="480" height="480"/>
                     </Constraint>
                   </Constraints>
 
@@ -638,27 +639,32 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
-                              <Component id="jScrollPane8" min="-2" pref="430" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel81" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Campo_Monto_Premio" min="-2" pref="90" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane8" min="-2" pref="430" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="Campo_Monto_Premio" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <Component id="jLabel81" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="Campo_Cantidad_Premio" min="-2" pref="90" max="-2" attributes="0"/>
+                                          <Component id="jLabel83" min="-2" pref="50" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
+                                      <Component id="btn_agregar_premio" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
+                                      <Component id="btn_eliminar_premio" min="-2" pref="90" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="btn_generar_plan" min="-2" pref="200" max="-2" attributes="0"/>
+                                      <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel80" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jComboBox1" min="-2" pref="190" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="Campo_Cantidad_Premio" min="-2" pref="90" max="-2" attributes="0"/>
-                                  <Component id="jLabel83" min="-2" pref="50" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
-                              <Component id="btn_agregar_premio" min="-2" pref="90" max="-2" attributes="0"/>
-                              <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                              <Component id="btn_eliminar_premio" min="-2" pref="90" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="124" pref="124" max="-2" attributes="0"/>
-                              <Component id="btn_generar_plan" min="-2" pref="200" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -666,13 +672,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
-                              <Component id="jScrollPane8" min="-2" pref="270" max="-2" attributes="0"/>
+                              <Component id="jScrollPane8" min="-2" pref="300" max="-2" attributes="0"/>
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel81" min="-2" pref="26" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
                                       <Component id="Campo_Monto_Premio" min="-2" pref="30" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jLabel81" min="-2" pref="26" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
                                       <Component id="Campo_Cantidad_Premio" min="-2" pref="30" max="-2" attributes="0"/>
@@ -687,8 +694,18 @@
                                       <Component id="btn_eliminar_premio" min="-2" pref="40" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                              <Component id="btn_generar_plan" min="-2" pref="40" max="-2" attributes="0"/>
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                      <Component id="btn_generar_plan" min="-2" pref="40" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel80" min="-2" pref="20" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                      <Component id="jComboBox1" min="-2" pref="30" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -805,6 +822,24 @@
                         </Property>
                       </Properties>
                     </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel80">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="12" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="N&#xfa;mero de sorteo"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="jComboBox1">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="0"/>
+                        </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
+                    </Component>
                   </SubComponents>
                 </Container>
               </SubComponents>
@@ -817,8 +852,8 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Sorteo">
-                    <Property name="tabTitle" type="java.lang.String" value="Sorteo"/>
+                  <JTabbedPaneConstraints tabName="Reportes y Loter&#xed;a">
+                    <Property name="tabTitle" type="java.lang.String" value="Reportes y Loter&#xed;a"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -855,7 +890,7 @@
                   </AuxValues>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="30" y="20" width="620" height="370"/>
+                      <AbsoluteConstraints x="30" y="20" width="480" height="370"/>
                     </Constraint>
                   </Constraints>
 
@@ -900,7 +935,7 @@
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="230" y="410" width="180" height="40"/>
+                      <AbsoluteConstraints x="330" y="410" width="180" height="40"/>
                     </Constraint>
                   </Constraints>
                 </Component>

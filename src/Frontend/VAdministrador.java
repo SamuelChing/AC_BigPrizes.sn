@@ -90,6 +90,8 @@ public class VAdministrador extends javax.swing.JFrame {
         Tabla_Premios = new javax.swing.JTable();
         btn_agregar_premio = new javax.swing.JButton();
         btn_eliminar_premio = new javax.swing.JButton();
+        jLabel80 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         Panel_Reporte = new javax.swing.JPanel();
         btn_ver_reporte = new javax.swing.JButton();
         jScrollPane9 = new javax.swing.JScrollPane();
@@ -352,9 +354,9 @@ public class VAdministrador extends javax.swing.JFrame {
                             .addComponent(Campo_Precio_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel79, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(Panel_Contenedor_Datos_SorteoLayout.createSequentialGroup()
-                        .addGap(63, 63, 63)
+                        .addGap(60, 60, 60)
                         .addComponent(btn_agregar_sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(65, 65, 65))
+                .addGap(68, 68, 68))
         );
         Panel_Contenedor_Datos_SorteoLayout.setVerticalGroup(
             Panel_Contenedor_Datos_SorteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,35 +367,36 @@ public class VAdministrador extends javax.swing.JFrame {
                     .addGroup(Panel_Contenedor_Datos_SorteoLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(Campo_Leyenda_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(Panel_Contenedor_Datos_SorteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel77, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(Panel_Contenedor_Datos_SorteoLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(Chooser_Date_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(Panel_Contenedor_Datos_SorteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel78, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(Panel_Contenedor_Datos_SorteoLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(Campo_Fracciones_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(8, 8, 8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(Panel_Contenedor_Datos_SorteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(Panel_Contenedor_Datos_SorteoLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(CB_Tipo_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel75, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
+                .addGap(18, 18, 18)
                 .addGroup(Panel_Contenedor_Datos_SorteoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(Panel_Contenedor_Datos_SorteoLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(Campo_Precio_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel79, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addGap(66, 66, 66)
                 .addComponent(btn_agregar_sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addGap(33, 33, 33))
         );
 
-        Panel_Sorteo.add(Panel_Contenedor_Datos_Sorteo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 350, 430));
+        Panel_Sorteo.add(Panel_Contenedor_Datos_Sorteo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 350, 470));
 
         btn_editar_sorteo.setBackground(new java.awt.Color(51, 102, 255));
         btn_editar_sorteo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -405,7 +408,7 @@ public class VAdministrador extends javax.swing.JFrame {
                 btn_editar_sorteoActionPerformed(evt);
             }
         });
-        Panel_Sorteo.add(btn_editar_sorteo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 410, 190, 40));
+        Panel_Sorteo.add(btn_editar_sorteo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 450, 190, 40));
 
         Tabla_Sorteos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -422,7 +425,7 @@ public class VAdministrador extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(Tabla_Sorteos);
 
-        Panel_Sorteo.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 620, 360));
+        Panel_Sorteo.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, 640, 400));
 
         btn_eliminar_sorteo.setBackground(new java.awt.Color(204, 51, 0));
         btn_eliminar_sorteo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -434,9 +437,9 @@ public class VAdministrador extends javax.swing.JFrame {
                 btn_eliminar_sorteoActionPerformed(evt);
             }
         });
-        Panel_Sorteo.add(btn_eliminar_sorteo, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 410, 180, 40));
+        Panel_Sorteo.add(btn_eliminar_sorteo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 450, 180, 40));
 
-        Panel_Contenedor_Administrativo.addTab("Sorteo", Panel_Sorteo);
+        Panel_Contenedor_Administrativo.addTab("Sorteos", Panel_Sorteo);
 
         Panel_Plan_Premios.setBackground(new java.awt.Color(255, 255, 255));
         Panel_Plan_Premios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -446,14 +449,14 @@ public class VAdministrador extends javax.swing.JFrame {
         btn_eliminar_plan.setForeground(new java.awt.Color(255, 255, 255));
         btn_eliminar_plan.setText("Eliminar");
         btn_eliminar_plan.setBorder(null);
-        Panel_Plan_Premios.add(btn_eliminar_plan, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 410, 210, 40));
+        Panel_Plan_Premios.add(btn_eliminar_plan, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 460, 210, 40));
 
         btn_editar_plan.setBackground(new java.awt.Color(51, 102, 255));
         btn_editar_plan.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_editar_plan.setForeground(new java.awt.Color(255, 255, 255));
         btn_editar_plan.setText("Editar");
         btn_editar_plan.setBorder(null);
-        Panel_Plan_Premios.add(btn_editar_plan, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 410, 210, 40));
+        Panel_Plan_Premios.add(btn_editar_plan, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 460, 210, 40));
 
         jScrollPane7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -471,7 +474,7 @@ public class VAdministrador extends javax.swing.JFrame {
         ));
         jScrollPane7.setViewportView(Tabla_Plan_Premios);
 
-        Panel_Plan_Premios.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 490, 370));
+        Panel_Plan_Premios.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 30, 510, 410));
 
         Panel_Contenedor_Datos_Premios.setBackground(new java.awt.Color(255, 255, 255));
         Panel_Contenedor_Datos_Premios.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de los premios"));
@@ -520,40 +523,47 @@ public class VAdministrador extends javax.swing.JFrame {
         btn_eliminar_premio.setText("Eliminar");
         btn_eliminar_premio.setBorder(null);
 
+        jLabel80.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel80.setText("Número de sorteo");
+
         javax.swing.GroupLayout Panel_Contenedor_Datos_PremiosLayout = new javax.swing.GroupLayout(Panel_Contenedor_Datos_Premios);
         Panel_Contenedor_Datos_Premios.setLayout(Panel_Contenedor_Datos_PremiosLayout);
         Panel_Contenedor_Datos_PremiosLayout.setHorizontalGroup(
             Panel_Contenedor_Datos_PremiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Panel_Contenedor_Datos_PremiosLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(Panel_Contenedor_Datos_PremiosLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
                 .addGroup(Panel_Contenedor_Datos_PremiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel81)
-                    .addComponent(Campo_Monto_Premio, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(Panel_Contenedor_Datos_PremiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Campo_Cantidad_Premio, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel83, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(btn_agregar_premio, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(btn_eliminar_premio, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(Panel_Contenedor_Datos_PremiosLayout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addComponent(btn_generar_plan, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(Panel_Contenedor_Datos_PremiosLayout.createSequentialGroup()
+                        .addGroup(Panel_Contenedor_Datos_PremiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Campo_Monto_Premio, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel81))
+                        .addGap(20, 20, 20)
+                        .addGroup(Panel_Contenedor_Datos_PremiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Campo_Cantidad_Premio, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel83, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addComponent(btn_agregar_premio, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(btn_eliminar_premio, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(Panel_Contenedor_Datos_PremiosLayout.createSequentialGroup()
+                        .addComponent(btn_generar_plan, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addGroup(Panel_Contenedor_Datos_PremiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel80)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
         Panel_Contenedor_Datos_PremiosLayout.setVerticalGroup(
             Panel_Contenedor_Datos_PremiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Panel_Contenedor_Datos_PremiosLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
                 .addGroup(Panel_Contenedor_Datos_PremiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel81, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(Panel_Contenedor_Datos_PremiosLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(Campo_Monto_Premio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel81, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(Panel_Contenedor_Datos_PremiosLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(Campo_Cantidad_Premio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -564,13 +574,20 @@ public class VAdministrador extends javax.swing.JFrame {
                     .addGroup(Panel_Contenedor_Datos_PremiosLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(btn_eliminar_premio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20)
-                .addComponent(btn_generar_plan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(Panel_Contenedor_Datos_PremiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Panel_Contenedor_Datos_PremiosLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(btn_generar_plan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(Panel_Contenedor_Datos_PremiosLayout.createSequentialGroup()
+                        .addComponent(jLabel80, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
-        Panel_Plan_Premios.add(Panel_Contenedor_Datos_Premios, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 480, 430));
+        Panel_Plan_Premios.add(Panel_Contenedor_Datos_Premios, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 480, 480));
 
-        Panel_Contenedor_Administrativo.addTab("Plan de premio", Panel_Plan_Premios);
+        Panel_Contenedor_Administrativo.addTab("Plan de premios", Panel_Plan_Premios);
 
         Panel_Reporte.setBackground(new java.awt.Color(255, 255, 255));
         Panel_Reporte.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -597,7 +614,7 @@ public class VAdministrador extends javax.swing.JFrame {
         });
         jScrollPane9.setViewportView(Tabla_Sorteos_Reporte);
 
-        Panel_Reporte.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 620, 370));
+        Panel_Reporte.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 480, 370));
 
         btn_jugar.setBackground(new java.awt.Color(255, 153, 0));
         btn_jugar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -609,11 +626,11 @@ public class VAdministrador extends javax.swing.JFrame {
                 btn_jugarActionPerformed(evt);
             }
         });
-        Panel_Reporte.add(btn_jugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 180, 40));
+        Panel_Reporte.add(btn_jugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 410, 180, 40));
 
-        Panel_Contenedor_Administrativo.addTab("Sorteo", Panel_Reporte);
+        Panel_Contenedor_Administrativo.addTab("Reportes y Lotería", Panel_Reporte);
 
-        Body_Administrativo.add(Panel_Contenedor_Administrativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 1080, 510));
+        Body_Administrativo.add(Panel_Contenedor_Administrativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 1140, 570));
 
         Lb_FondoA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/lottery.png"))); // NOI18N
         Body_Administrativo.add(Lb_FondoA, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 640));
@@ -1575,6 +1592,7 @@ public class VAdministrador extends javax.swing.JFrame {
     private javax.swing.JButton btn_generar_plan;
     private javax.swing.JButton btn_jugar;
     private javax.swing.JButton btn_ver_reporte;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1607,6 +1625,7 @@ public class VAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel78;
     private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel80;
     private javax.swing.JLabel jLabel81;
     private javax.swing.JLabel jLabel83;
     private javax.swing.JLabel jLabel9;
