@@ -104,7 +104,12 @@ BEGIN
     end if;        
     if cmd = 3 then # CAMBIAR ESTADO A SORTEO JUGADO		
 		update Sorteo set Sorteo.Estado = 'Jugado' where (Sorteo.Numero = Pidentificador);
-        return 3;
+        return 3;        
+    End if;
+    if cmd = 4 then
+		update Sorteo set Leyenda=PLeyenda,Fecha=PFecha,Tipo=PTipo,CantidadFracciones=PCantidad_fracciones,PrecioBillete=PPrecio_billete
+        where (Sorteo.Numero = Pidentificador);
+        return 4;
     End if;
 END ;
 //

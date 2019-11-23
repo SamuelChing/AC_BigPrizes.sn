@@ -29,6 +29,13 @@ public class VAdministrador extends javax.swing.JFrame {
         ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos", Tabla_Sorteos);
     }
 
+    public void LimpiarEspacios()
+    {
+        Campo_Leyenda_Sorteo.setText("");        
+        Campo_Fracciones_Sorteo.setValue(Integer.valueOf(1));
+        CB_Tipo_Sorteo.setSelectedItem("Lotería");
+        Campo_Precio_Sorteo.setText("");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,6 +71,7 @@ public class VAdministrador extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         Tabla_Sorteos = new javax.swing.JTable();
         btn_eliminar_sorteo = new javax.swing.JButton();
+        btn_jugar = new javax.swing.JButton();
         Panel_Plan_Premios = new javax.swing.JPanel();
         btn_eliminar_plan = new javax.swing.JButton();
         btn_editar_plan = new javax.swing.JButton();
@@ -389,7 +397,7 @@ public class VAdministrador extends javax.swing.JFrame {
                 btn_editar_sorteoActionPerformed(evt);
             }
         });
-        Panel_Sorteo.add(btn_editar_sorteo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 410, 200, 40));
+        Panel_Sorteo.add(btn_editar_sorteo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 410, 190, 40));
 
         Tabla_Sorteos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -400,9 +408,6 @@ public class VAdministrador extends javax.swing.JFrame {
             }
         ));
         Tabla_Sorteos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Tabla_SorteosMouseClicked(evt);
-            }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 Tabla_SorteosMouseReleased(evt);
             }
@@ -416,7 +421,24 @@ public class VAdministrador extends javax.swing.JFrame {
         btn_eliminar_sorteo.setForeground(new java.awt.Color(255, 255, 255));
         btn_eliminar_sorteo.setText("Eliminar");
         btn_eliminar_sorteo.setBorder(null);
-        Panel_Sorteo.add(btn_eliminar_sorteo, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 410, 200, 40));
+        btn_eliminar_sorteo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminar_sorteoActionPerformed(evt);
+            }
+        });
+        Panel_Sorteo.add(btn_eliminar_sorteo, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 410, 180, 40));
+
+        btn_jugar.setBackground(new java.awt.Color(255, 153, 0));
+        btn_jugar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_jugar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_jugar.setText("Jugar");
+        btn_jugar.setBorder(null);
+        btn_jugar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_jugarActionPerformed(evt);
+            }
+        });
+        Panel_Sorteo.add(btn_jugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 410, 160, 40));
 
         Panel_Contenedor_Administrativo.addTab("Sorteo", Panel_Sorteo);
 
@@ -1260,7 +1282,6 @@ public class VAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_SalirActionPerformed
 
     private void btn_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarActionPerformed
-        // TODO add your handling code here:
 
     }//GEN-LAST:event_btn_BuscarActionPerformed
 
@@ -1274,27 +1295,28 @@ public class VAdministrador extends javax.swing.JFrame {
 
     private void btn_agregar_sorteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregar_sorteoActionPerformed
         // TODO add your handling code here:        
-            String Leyenda = Campo_Leyenda_Sorteo.getText().toString();
-            String Fecha = Chooser_Date_Sorteo.getText().toString();
-            String Fracciones = Campo_Fracciones_Sorteo.getValue().toString();
-            String Tipo = CB_Tipo_Sorteo.getSelectedItem().toString();
-            String Precio = Campo_Precio_Sorteo.getText().toString();            
-            if(Leyenda.trim().isBlank() || Fecha.trim().isBlank() || Tipo.trim().isBlank() || Precio.trim().isBlank()){
-                JOptionPane.showMessageDialog(null, "Error, espacios vacíos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+        String Leyenda = Campo_Leyenda_Sorteo.getText().toString();
+        String Fecha = Chooser_Date_Sorteo.getText().toString();
+        String Fracciones = Campo_Fracciones_Sorteo.getValue().toString();
+        String Tipo = CB_Tipo_Sorteo.getSelectedItem().toString();
+        String Precio = Campo_Precio_Sorteo.getText().toString();            
+        if(Leyenda.trim().isBlank() || Fecha.trim().isBlank() || Tipo.trim().isBlank() || Precio.trim().isBlank()){
+            JOptionPane.showMessageDialog(null, "Error, espacios vacíos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            try{                    
+                ControladorDB.getControlador().ManejoSorteo(1, Leyenda, Fecha, Tipo, Integer.parseInt(Fracciones), Integer.parseInt(Precio), 0);
+                ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos", Tabla_Sorteos);
+                LimpiarEspacios();
             }
-            else{
-                try{                    
-                    ControladorDB.getControlador().ManejoSorteo(1, Leyenda, Fecha, Tipo, Integer.parseInt(Fracciones), Integer.parseInt(Precio), 0);
-                    ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos", Tabla_Sorteos);
-                }
-                catch(Exception ex){                    
-                    JOptionPane.showMessageDialog(null, "Error, el dato ingresado como precio es incorrecto", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
-                }
-            }       
+            catch(Exception ex){                    
+                JOptionPane.showMessageDialog(null, "Error, el dato ingresado como precio es incorrecto", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+            }
+        }       
     }//GEN-LAST:event_btn_agregar_sorteoActionPerformed
 
     private void Tabla_SorteosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabla_SorteosMouseReleased
-        // TODO add your handling code here:        
+        // TODO add your handling code here:
         int Fila = Tabla_Sorteos.getSelectedRow();
         if(Fila>=0)
         {
@@ -1308,13 +1330,78 @@ public class VAdministrador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Tabla_SorteosMouseReleased
 
-    private void Tabla_SorteosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabla_SorteosMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Tabla_SorteosMouseClicked
-
     private void btn_editar_sorteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_sorteoActionPerformed
         // TODO add your handling code here:
+        String Leyenda = Campo_Leyenda_Sorteo.getText().toString();
+        String Fecha = Chooser_Date_Sorteo.getText().toString();
+        String Fracciones = Campo_Fracciones_Sorteo.getValue().toString();
+        String Tipo = CB_Tipo_Sorteo.getSelectedItem().toString();
+        String Precio = Campo_Precio_Sorteo.getText().toString();
+        int Fila = Tabla_Sorteos.getSelectedRow();
+        if(Fila>=0)
+        {
+            String Identificador = Tabla_Sorteos.getValueAt(Fila, 0).toString();
+            if(Leyenda.trim().isBlank() || Fecha.trim().isBlank() || Tipo.trim().isBlank() || Precio.trim().isBlank()){
+                JOptionPane.showMessageDialog(null, "Error, espacios vacíos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+            }
+            else{
+                try{
+                    ControladorDB.getControlador().ManejoSorteo(4, Leyenda, Fecha, Tipo, Integer.parseInt(Fracciones), Integer.parseInt(Precio), Integer.parseInt(Identificador));
+                    ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos", Tabla_Sorteos);
+                    LimpiarEspacios();
+                }
+                catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "Error, el dato ingresado como precio es incorrecto", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Error, debe seleccionar un sorteo", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btn_editar_sorteoActionPerformed
+
+    private void btn_eliminar_sorteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminar_sorteoActionPerformed
+        // TODO add your handling code here:
+        int Fila = Tabla_Sorteos.getSelectedRow();
+        if(Fila>=0)
+        {
+            String Identificador = Tabla_Sorteos.getValueAt(Fila, 0).toString();
+            try{
+                ControladorDB.getControlador().ManejoSorteo(2, "", "12/10/15", "", 0, 0, Integer.parseInt(Identificador));
+                ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos", Tabla_Sorteos);
+                LimpiarEspacios();
+            }
+            catch(Exception ex){
+                JOptionPane.showMessageDialog(null, "Error, no se pudo conectar a la base de datos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Error, debe seleccionar un sorteo", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_eliminar_sorteoActionPerformed
+
+    private void btn_jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_jugarActionPerformed
+        // TODO add your handling code here:  
+        int Fila = Tabla_Sorteos.getSelectedRow();
+        if(Fila>=0)
+        {
+            String Identificador = Tabla_Sorteos.getValueAt(Fila, 0).toString();
+            try{
+                ControladorDB.getControlador().ManejoSorteo(3, "", "12/10/15", "", 0, 0, Integer.parseInt(Identificador));
+                ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos", Tabla_Sorteos);
+                LimpiarEspacios();
+            }
+            catch(Exception ex){
+                JOptionPane.showMessageDialog(null, "Error, no se pudo conectar a la base de datos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Error, debe seleccionar un sorteo", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_jugarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1443,6 +1530,7 @@ public class VAdministrador extends javax.swing.JFrame {
     private javax.swing.JButton btn_eliminar_sorteo;
     private javax.swing.JButton btn_exportar;
     private javax.swing.JButton btn_generar_plan;
+    private javax.swing.JButton btn_jugar;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
