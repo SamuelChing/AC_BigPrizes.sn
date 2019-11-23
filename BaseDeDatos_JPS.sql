@@ -122,5 +122,6 @@ Create View Sorteos
 As
 Select Numero as 'Número', Leyenda, Fecha, Tipo, CantidadFracciones as 'Fracciones',PrecioBillete as 'Precio', Estado
 From Sorteo;
+Select * From Sorteos where Estado = 'Sin jugar'
 
 
