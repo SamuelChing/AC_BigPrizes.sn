@@ -49,52 +49,60 @@ public class ControladorDB
      * @param Objeto Instancia de la ventana Login
      */
     public void InicioSesion(String Nombre, String Contrasena, Login Objeto)
-    {     
-        try{
-            String Resultado = ConexionDB.getConexionDB().ResultadoString(ConexionDB.getConexionDB().EjecutarConsulta("select Login('"+Nombre+"','"+Contrasena+"');"));
-            switch(Resultado)
-            {
-                case "0":// Usuario Administrador
-                    VAdministrador VentanaA = new VAdministrador();
-                    VentanaA.setVisible(true);
-                    break;
-                case "1":// Usuario Cliente
-                    VClientes VentanaC = new VClientes();
-                    VentanaC.setVisible(true);
-                    break;
-                default://  No existe el usuario
-                    JOptionPane.showMessageDialog(null, "Usuario no existe", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
-                    return;
-            }                                        
-            Objeto.dispose();// Cierra la ventana login
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Ocurrió un error al conectarse a la base de datos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
-        }
+    {             
+        String Resultado = ConexionDB.getConexionDB().ResultadoString(ConexionDB.getConexionDB().EjecutarConsulta("select Login('"+Nombre+"','"+Contrasena+"');"));
+        switch(Resultado)
+        {
+            case "0":// Usuario Administrador
+                VAdministrador VentanaA = new VAdministrador();
+                VentanaA.setVisible(true);
+                break;
+            case "1":// Usuario Cliente
+                VClientes VentanaC = new VClientes();
+                VentanaC.setVisible(true);
+                break;
+            default://  No existe el usuario
+                JOptionPane.showMessageDialog(null, "Usuario no existe", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+                return;
+        }                                        
+        Objeto.dispose();// Cierra la ventana login        
     }            
     
     public void ManejoSorteo(int Cmd, String Leyenda, String Fecha, String Tipo, int CantFraciones, int PrecioBillete, int Identificador)
     {        
-        String Consulta = "SELECT ManejoSorteo("+Cmd+",'"+Leyenda+"','"+Fecha+"','"+Tipo+"',"+CantFraciones+","+PrecioBillete+","+Identificador+");";
-        try{
-            String Resultado = ConexionDB.getConexionDB().ResultadoString(ConexionDB.getConexionDB().EjecutarConsulta(Consulta));
-            switch(Resultado)
-            {
-                case "1":
-                    JOptionPane.showMessageDialog(null, "Sorteo agregado con éxito", "Mensaje de éxito", JOptionPane.INFORMATION_MESSAGE);                    
-                    break;
-                case "2":
-                    JOptionPane.showMessageDialog(null, "Sorteo eliminado con éxito", "Mensaje de éxito", JOptionPane.INFORMATION_MESSAGE);                    
-                    break;
-                case "3":
-                    break;
-                case "4":
-                    JOptionPane.showMessageDialog(null, "Sorteo actualizado con éxito", "Mensaje de éxito", JOptionPane.INFORMATION_MESSAGE);                    
-                    break;
-                
-            }
-        }catch(Exception ex){
-            System.out.println(ex);
-            JOptionPane.showMessageDialog(null, "Ocurrió un error al conectarse a la base de datos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+        String Consulta = "SELECT ManejoSorteo("+Cmd+",'"+Leyenda+"','"+Fecha+"','"+Tipo+"',"+CantFraciones+","+PrecioBillete+","+Identificador+");";        
+        String Resultado = ConexionDB.getConexionDB().ResultadoString(ConexionDB.getConexionDB().EjecutarConsulta(Consulta));
+        switch(Resultado)
+        {
+            case "1":
+                JOptionPane.showMessageDialog(null, "Sorteo agregado con éxito", "Mensaje de éxito", JOptionPane.INFORMATION_MESSAGE);                    
+                break;
+            case "2":
+                JOptionPane.showMessageDialog(null, "Sorteo eliminado con éxito", "Mensaje de éxito", JOptionPane.INFORMATION_MESSAGE);                    
+                break;
+            case "3":
+                break;
+            case "4":
+                JOptionPane.showMessageDialog(null, "Sorteo actualizado con éxito", "Mensaje de éxito", JOptionPane.INFORMATION_MESSAGE);                    
+                break;
+        }        
+    }  
+    
+    public boolean ManejoPlanPremios(int Cmd, int Monto,int Cantidad, int Identificador)
+    {
+        String Consulta = "Select ManejoPlanDePremio("+Cmd+","+Monto+","+Cantidad+","+Identificador+");";
+        String Resultado = ConexionDB.getConexionDB().ResultadoString(ConexionDB.getConexionDB().EjecutarConsulta(Consulta));
+        switch(Resultado)
+        {
+            case "1":
+                return true;                
+            case "2":
+                return true;
+            case "3":
+                return true;
+            case "4":
+                return true;
         }
-    }            
+        return false;
+    }
 }

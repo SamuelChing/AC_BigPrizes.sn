@@ -55,7 +55,7 @@ Create Table PlanPremios
 	Identificador int Primary Key AUTO_INCREMENT,
     Sorteo int not null,
     
-    CONSTRAINT C_Sorteo FOREIGN KEY (Sorteo) REFERENCES Sorteo(Numero)
+    FOREIGN KEY (Sorteo) REFERENCES Sorteo(Numero)
 );
 #Tabla para el manejo de premios
 Create Table Premio
@@ -65,7 +65,7 @@ Create Table Premio
     Cantidad int not null,    
     PlanPremios int not null,
     
-    CONSTRAINT C_Premio FOREIGN KEY (PlanPremios) REFERENCES PlanPremios(Identificador)    
+    FOREIGN KEY (PlanPremios) REFERENCES PlanPremios(Identificador)    
 );
 #Funcion para el manejo de Sorteos
 #Para agregar un sorteo Cmd = 1, enviamos los datos en orden y Pidentificador no importa
@@ -96,7 +96,7 @@ BEGIN
 			delete from Sorteo where (Sorteo.Numero = Pidentificador);
 			return 2;
         else
-			delete from Premios where (Premios.PlanPremios = Resultado);
+			delete from Premio where (Premio.PlanPremios = Resultado);
 			delete from PlanPremios where (PlanPremios.Identificador = Resultado);
 			delete from Sorteo where (Sorteo.Numero = Pidentificador);
             return 2;
@@ -114,14 +114,72 @@ BEGIN
 END ;
 //
 DELIMITER ;
-
-#SELECT ManejoSorteo(1,'Leyenda','2019-02-12','Loteria',20,2000,1,2);
+#**********************************************************************************************************************
+DELIMITER //
+CREATE Function ManejoPlanDePremio
+(
+	Cmd int,    
+    PMonto int,
+    PCantidad int,
+    PIdentificador int
+)
+Returns int
+BEGIN
+	Declare Resultado int;        
+	if Cmd = 1 then # Insertar un plan de premios
+		INSERT INTO PlanPremios(Sorteo)
+        VALUES(PIdentificador);
+        return 1;
+    End if;
+    if(Cmd = 2)	then # Insertar un premio de un plan de premios		
+        Insert Into Premio(Monto,Cantidad,PlanPremios)
+        Values(PMonto,PCantidad,PIdentificador);
+        return 2;
+	End if;
+	if(Cmd = 3) then # Eliminar un plan de premios completo		
+        delete from Premio where (Premio.PlanPremios = PIdentificador);
+		delete from PlanPremios where (PlanPremios.Identificador = PIdentificador);
+		return 3;
+    End if;
+    if(Cmd = 4) then # Eliminar los premios de un plan		
+        delete from Premio where (Premio.PlanPremios = PIdentificador);
+        return 4;
+    End if;
+END ;
+//
+DELIMITER ;
 #**********************************************************************************************************************
 #Vista para Sorteos
 Create View Sorteos 
 As
 Select Numero as 'Número', Leyenda, Fecha, Tipo, CantidadFracciones as 'Fracciones',PrecioBillete as 'Precio', Estado
 From Sorteo;
-Select * From Sorteos where Estado = 'Sin jugar'
+
+#**********************************************************************************************************************
+#Vista para los planes de premios
+Create View Planes
+As
+SELECT Identificador,S.Leyenda as 'Sorteo', 
+(Select Count(Identificador) as Cantidad FROM Premio where PlanPremios = PP.Identificador) as 'Cantidad de premios',
+(Select SUM(Monto*Cantidad) FROM Premio where PlanPremios = PP.Identificador) as 'Monto Total'
+FROM PlanPremios as PP
+Inner Join Sorteo as S
+On S.Numero = PP.Sorteo;
+
+
+#**********************************************************************************************************************
+#Vista para sorteos que no tengan plan de premios
+Create View SorteosSinPlan
+As
+Select Numero
+From Sorteo as S
+Where Numero NOT IN(
+SELECT Sorteo  FROM PlanPremios);
+
+#**********************************************************************************************************************
+#Vista para el reporte de un sorteo
+Create View Reporte
+As
+Select 
 
 

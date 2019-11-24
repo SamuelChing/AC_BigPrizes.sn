@@ -9,6 +9,7 @@ import Modelo.ConexionDB;
 import com.mysql.jdbc.ResultSetMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -74,22 +75,18 @@ public class ControladorGUI {
             }
             //  Se cierra la consulta
             TablaResultado.close();                                    
-        }catch(Exception ex){
-            System.out.println(ex);
+        }catch(Exception ex){            
             JOptionPane.showMessageDialog(null, "Ocurrió un error al conectarse a la base de datos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
     public String[] getRowToArray(String Consulta)
     {
-        try
-        {
+        try{
             ResultSet TablaResultado = ConexionDB.getConexionDB().EjecutarConsulta(Consulta);            
             //  Se toma la fila del encabezado
             ResultSetMetaData FilaEncabezado = (ResultSetMetaData) TablaResultado.getMetaData();
-            int ColumnasEncabezado = FilaEncabezado.getColumnCount();            
-            //  Se define el temaño del array de retorno
-            String[] Resultado = new String[ColumnasEncabezado];
+            int ColumnasEncabezado = FilaEncabezado.getColumnCount();                        
             //  Se posiciona en la fila resultado de la consulta
             TablaResultado.next();
             
@@ -100,12 +97,36 @@ public class ControladorGUI {
                 fila[i-1] = TablaResultado.getObject(i).toString();                    
             }
             return fila;
-        }   
-        catch(Exception ex)
-        {
-            System.out.println(ex);
+        }catch(Exception ex){            
             JOptionPane.showMessageDialog(null, "Ocurrió un error al conectarse a la base de datos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
-        }  
-        return null;
+            return null;
+        }          
+    }
+    
+    public void LlenarCombobox(String Consulta, JComboBox CB_Temporal)
+    {
+        try{               
+            //  Se ejecuta la consulta y se guarda la tabla resultado
+            ResultSet TablaResultado = ConexionDB.getConexionDB().EjecutarConsulta(Consulta);            
+            //  Se toma la fila del encabezado
+            ResultSetMetaData FilaEncabezado = (ResultSetMetaData) TablaResultado.getMetaData();                                               
+            //  Se limpia primero el Combobox
+            CB_Temporal.removeAllItems();
+            //  Se llena el combobox con los resultado de la consulta
+            while (TablaResultado.next())// Recorre fila por fila la consulta
+            {                                
+                CB_Temporal.addItem(TablaResultado.getObject(1).toString());
+            }
+            //  Se cierra la consulta
+            TablaResultado.close();                                    
+        }catch(Exception ex){            
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al conectarse a la base de datos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public String getDatoCosnulta(String Consulta)
+    {
+        String Resultado = ConexionDB.getConexionDB().ResultadoString(ConexionDB.getConexionDB().EjecutarConsulta(Consulta));
+        return Resultado;
     }
 }

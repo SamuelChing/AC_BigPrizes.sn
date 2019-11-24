@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  * @author Nahum Blanco Rojas
@@ -51,13 +52,19 @@ public class ConexionDB
      * @return  Un entero resultado de la consulta
      * @throws SQLException 
      */
-    public String ResultadoString(ResultSet Resultado) throws SQLException
+    public String ResultadoString(ResultSet Resultado) 
     {
-        ResultSetMetaData rsMd = Resultado.getMetaData();
-        Resultado.next();                                
-        String ResultadoFin = Resultado.getObject(1).toString();
-        Resultado.close();         
-        return ResultadoFin;
+        try{
+            ResultSetMetaData rsMd = Resultado.getMetaData();
+            Resultado.next();                                
+            String ResultadoFin = Resultado.getObject(1).toString();
+            Resultado.close();         
+            return ResultadoFin;
+        }catch(Exception ex){
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al conectarse a la base de datos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
     }
     /**
      * 
@@ -66,11 +73,17 @@ public class ConexionDB
      * @throws ClassNotFoundException
      * @throws SQLException 
      */
-    public ResultSet EjecutarConsulta(String Consulta) throws ClassNotFoundException, SQLException
-    {                
-        Statement Statement = DataBase.createStatement();
-        ResultSet Resultado = Statement.executeQuery(Consulta);
-        
-        return Resultado;
+    public ResultSet EjecutarConsulta(String Consulta) 
+    {              
+        try{
+            Statement Statement = DataBase.createStatement();
+            ResultSet Resultado = Statement.executeQuery(Consulta);
+
+            return Resultado;           
+        }catch(Exception ex){
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al conectarse a la base de datos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
     }    
 }

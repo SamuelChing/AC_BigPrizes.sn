@@ -9,6 +9,7 @@ import Controlador.ControladorDB;
 import Controlador.ControladorGUI;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -26,8 +27,7 @@ public class VAdministrador extends javax.swing.JFrame {
         Body_Estadísticas.setVisible(false);
         Body_Administrativo.setVisible(false);
         this.setLocationRelativeTo(null);
-        ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos;", Tabla_Sorteos);
-        ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos where Estado = 'Sin jugar';", Tabla_Sorteos_Reporte);
+        Recargar();
     }
 
     public void Recargar()
@@ -37,8 +37,13 @@ public class VAdministrador extends javax.swing.JFrame {
         CB_Tipo_Sorteo.setSelectedItem("Lotería");
         Campo_Precio_Sorteo.setText("");
         
+        ControladorGUI.getControlador().LlenarCombobox("Select * From SorteosSinPlan;", CB_Numero_Sorteo);
         ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos;", Tabla_Sorteos);
-        ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos where Estado = 'Sin jugar';", Tabla_Sorteos_Reporte);
+        ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos where Estado = 'Sin jugar';", Tabla_Sorteos_Jugar);        
+        ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Planes;", Tabla_Plan_Premios);
+        ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos where Estado = 'Sin Jugar';", Tabla_Sorteos_Reporte);
+        DefaultTableModel model = (DefaultTableModel)Tabla_Premios.getModel();
+        model.setRowCount(0);                
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,11 +96,20 @@ public class VAdministrador extends javax.swing.JFrame {
         btn_agregar_premio = new javax.swing.JButton();
         btn_eliminar_premio = new javax.swing.JButton();
         jLabel80 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        CB_Numero_Sorteo = new javax.swing.JComboBox<>();
         Panel_Reporte = new javax.swing.JPanel();
         btn_ver_reporte = new javax.swing.JButton();
         jScrollPane9 = new javax.swing.JScrollPane();
         Tabla_Sorteos_Reporte = new javax.swing.JTable();
+        Panel_Reporte_Plan = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        Tabla_Plan_Reporte = new javax.swing.JTable();
+        Panal_Reporte_Ganadores = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Tabla_Ganadores_Reporte = new javax.swing.JTable();
+        Panel_Jugar = new javax.swing.JPanel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        Tabla_Sorteos_Jugar = new javax.swing.JTable();
         btn_jugar = new javax.swing.JButton();
         Lb_FondoA = new javax.swing.JLabel();
         Body_Ganador = new javax.swing.JPanel();
@@ -449,6 +463,11 @@ public class VAdministrador extends javax.swing.JFrame {
         btn_eliminar_plan.setForeground(new java.awt.Color(255, 255, 255));
         btn_eliminar_plan.setText("Eliminar");
         btn_eliminar_plan.setBorder(null);
+        btn_eliminar_plan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminar_planActionPerformed(evt);
+            }
+        });
         Panel_Plan_Premios.add(btn_eliminar_plan, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 460, 210, 40));
 
         btn_editar_plan.setBackground(new java.awt.Color(51, 102, 255));
@@ -456,11 +475,16 @@ public class VAdministrador extends javax.swing.JFrame {
         btn_editar_plan.setForeground(new java.awt.Color(255, 255, 255));
         btn_editar_plan.setText("Editar");
         btn_editar_plan.setBorder(null);
+        btn_editar_plan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editar_planActionPerformed(evt);
+            }
+        });
         Panel_Plan_Premios.add(btn_editar_plan, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 460, 210, 40));
 
         jScrollPane7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        Tabla_Plan_Premios.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Tabla_Plan_Premios.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         Tabla_Plan_Premios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -472,6 +496,11 @@ public class VAdministrador extends javax.swing.JFrame {
 
             }
         ));
+        Tabla_Plan_Premios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                Tabla_Plan_PremiosMouseReleased(evt);
+            }
+        });
         jScrollPane7.setViewportView(Tabla_Plan_Premios);
 
         Panel_Plan_Premios.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 30, 510, 410));
@@ -479,9 +508,10 @@ public class VAdministrador extends javax.swing.JFrame {
         Panel_Contenedor_Datos_Premios.setBackground(new java.awt.Color(255, 255, 255));
         Panel_Contenedor_Datos_Premios.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de los premios"));
 
-        Campo_Monto_Premio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Campo_Monto_Premio.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
 
-        Campo_Cantidad_Premio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Campo_Cantidad_Premio.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        Campo_Cantidad_Premio.setModel(new javax.swing.SpinnerNumberModel(1, 1, 20, 1));
 
         jLabel81.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel81.setText("Monto");
@@ -494,21 +524,31 @@ public class VAdministrador extends javax.swing.JFrame {
         btn_generar_plan.setForeground(new java.awt.Color(255, 255, 255));
         btn_generar_plan.setText("Generar plan");
         btn_generar_plan.setBorder(null);
+        btn_generar_plan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_generar_planActionPerformed(evt);
+            }
+        });
 
         jScrollPane8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        Tabla_Premios.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Tabla_Premios.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         Tabla_Premios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
-
+                "Monto", "Cantidad"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane8.setViewportView(Tabla_Premios);
 
         btn_agregar_premio.setBackground(new java.awt.Color(51, 102, 255));
@@ -516,12 +556,22 @@ public class VAdministrador extends javax.swing.JFrame {
         btn_agregar_premio.setForeground(new java.awt.Color(255, 255, 255));
         btn_agregar_premio.setText("Agregar");
         btn_agregar_premio.setBorder(null);
+        btn_agregar_premio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_agregar_premioActionPerformed(evt);
+            }
+        });
 
         btn_eliminar_premio.setBackground(new java.awt.Color(204, 51, 0));
         btn_eliminar_premio.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_eliminar_premio.setForeground(new java.awt.Color(255, 255, 255));
         btn_eliminar_premio.setText("Eliminar");
         btn_eliminar_premio.setBorder(null);
+        btn_eliminar_premio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminar_premioActionPerformed(evt);
+            }
+        });
 
         jLabel80.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jLabel80.setText("Número de sorteo");
@@ -532,8 +582,7 @@ public class VAdministrador extends javax.swing.JFrame {
             Panel_Contenedor_Datos_PremiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Panel_Contenedor_Datos_PremiosLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(Panel_Contenedor_Datos_PremiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(Panel_Contenedor_Datos_PremiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(Panel_Contenedor_Datos_PremiosLayout.createSequentialGroup()
                         .addGroup(Panel_Contenedor_Datos_PremiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Campo_Monto_Premio, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -551,7 +600,8 @@ public class VAdministrador extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addGroup(Panel_Contenedor_Datos_PremiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel80)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(CB_Numero_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
         );
         Panel_Contenedor_Datos_PremiosLayout.setVerticalGroup(
             Panel_Contenedor_Datos_PremiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -582,7 +632,7 @@ public class VAdministrador extends javax.swing.JFrame {
                     .addGroup(Panel_Contenedor_Datos_PremiosLayout.createSequentialGroup()
                         .addComponent(jLabel80, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(CB_Numero_Sorteo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         Panel_Plan_Premios.add(Panel_Contenedor_Datos_Premios, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 480, 480));
@@ -597,7 +647,12 @@ public class VAdministrador extends javax.swing.JFrame {
         btn_ver_reporte.setForeground(new java.awt.Color(255, 255, 255));
         btn_ver_reporte.setText("Ver reporte");
         btn_ver_reporte.setBorder(null);
-        Panel_Reporte.add(btn_ver_reporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 180, 40));
+        btn_ver_reporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ver_reporteActionPerformed(evt);
+            }
+        });
+        Panel_Reporte.add(btn_ver_reporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 180, 40));
 
         Tabla_Sorteos_Reporte.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -614,7 +669,92 @@ public class VAdministrador extends javax.swing.JFrame {
         });
         jScrollPane9.setViewportView(Tabla_Sorteos_Reporte);
 
-        Panel_Reporte.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 480, 370));
+        Panel_Reporte.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 480, 180));
+
+        Panel_Reporte_Plan.setBorder(javax.swing.BorderFactory.createTitledBorder("Reporte del plan de premio"));
+
+        Tabla_Plan_Reporte.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane3.setViewportView(Tabla_Plan_Reporte);
+
+        javax.swing.GroupLayout Panel_Reporte_PlanLayout = new javax.swing.GroupLayout(Panel_Reporte_Plan);
+        Panel_Reporte_Plan.setLayout(Panel_Reporte_PlanLayout);
+        Panel_Reporte_PlanLayout.setHorizontalGroup(
+            Panel_Reporte_PlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel_Reporte_PlanLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        Panel_Reporte_PlanLayout.setVerticalGroup(
+            Panel_Reporte_PlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel_Reporte_PlanLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        Panel_Reporte.add(Panel_Reporte_Plan, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 520, 480));
+
+        Panal_Reporte_Ganadores.setBorder(javax.swing.BorderFactory.createTitledBorder("Reporte de ganadores"));
+
+        Tabla_Ganadores_Reporte.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(Tabla_Ganadores_Reporte);
+
+        javax.swing.GroupLayout Panal_Reporte_GanadoresLayout = new javax.swing.GroupLayout(Panal_Reporte_Ganadores);
+        Panal_Reporte_Ganadores.setLayout(Panal_Reporte_GanadoresLayout);
+        Panal_Reporte_GanadoresLayout.setHorizontalGroup(
+            Panal_Reporte_GanadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panal_Reporte_GanadoresLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+        Panal_Reporte_GanadoresLayout.setVerticalGroup(
+            Panal_Reporte_GanadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panal_Reporte_GanadoresLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        Panel_Reporte.add(Panal_Reporte_Ganadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 480, 230));
+
+        Panel_Contenedor_Administrativo.addTab("Reportes", Panel_Reporte);
+
+        Panel_Jugar.setBackground(new java.awt.Color(255, 255, 255));
+        Panel_Jugar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Tabla_Sorteos_Jugar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane10.setViewportView(Tabla_Sorteos_Jugar);
+
+        Panel_Jugar.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 480, 180));
 
         btn_jugar.setBackground(new java.awt.Color(255, 153, 0));
         btn_jugar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -626,9 +766,9 @@ public class VAdministrador extends javax.swing.JFrame {
                 btn_jugarActionPerformed(evt);
             }
         });
-        Panel_Reporte.add(btn_jugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 410, 180, 40));
+        Panel_Jugar.add(btn_jugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 180, 40));
 
-        Panel_Contenedor_Administrativo.addTab("Reportes y Lotería", Panel_Reporte);
+        Panel_Contenedor_Administrativo.addTab("Jugar un sorteo", Panel_Jugar);
 
         Body_Administrativo.add(Panel_Contenedor_Administrativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 1140, 570));
 
@@ -1359,8 +1499,7 @@ public class VAdministrador extends javax.swing.JFrame {
         }
         else{
             try{                    
-                ControladorDB.getControlador().ManejoSorteo(1, Leyenda, Fecha, Tipo, Integer.parseInt(Fracciones), Integer.parseInt(Precio), 0);
-                ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos", Tabla_Sorteos);
+                ControladorDB.getControlador().ManejoSorteo(1, Leyenda, Fecha, Tipo, Integer.parseInt(Fracciones), Integer.parseInt(Precio), 0);                
                 Recargar();
             }
             catch(Exception ex){                    
@@ -1400,8 +1539,7 @@ public class VAdministrador extends javax.swing.JFrame {
             }
             else{
                 try{
-                    ControladorDB.getControlador().ManejoSorteo(4, Leyenda, Fecha, Tipo, Integer.parseInt(Fracciones), Integer.parseInt(Precio), Integer.parseInt(Identificador));
-                    ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos", Tabla_Sorteos);
+                    ControladorDB.getControlador().ManejoSorteo(4, Leyenda, Fecha, Tipo, Integer.parseInt(Fracciones), Integer.parseInt(Precio), Integer.parseInt(Identificador));                    
                     Recargar();
                 }
                 catch(Exception ex){
@@ -1422,8 +1560,7 @@ public class VAdministrador extends javax.swing.JFrame {
         {
             String Identificador = Tabla_Sorteos.getValueAt(Fila, 0).toString();
             try{
-                ControladorDB.getControlador().ManejoSorteo(2, "", "12/10/15", "", 0, 0, Integer.parseInt(Identificador));
-                ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos", Tabla_Sorteos);
+                ControladorDB.getControlador().ManejoSorteo(2, "", "12/10/15", "", 0, 0, Integer.parseInt(Identificador));                
                 Recargar();
             }
             catch(Exception ex){
@@ -1438,13 +1575,12 @@ public class VAdministrador extends javax.swing.JFrame {
 
     private void btn_jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_jugarActionPerformed
         // TODO add your handling code here:  
-        int Fila = Tabla_Sorteos_Reporte.getSelectedRow();
+        int Fila = Tabla_Sorteos_Jugar.getSelectedRow();
         if(Fila>=0)
         {
-            String Identificador = Tabla_Sorteos_Reporte.getValueAt(Fila, 0).toString();
+            String Identificador = Tabla_Sorteos_Jugar.getValueAt(Fila, 0).toString();
             try{
-                ControladorDB.getControlador().ManejoSorteo(3, "", "12/10/15", "", 0, 0, Integer.parseInt(Identificador));
-                ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos where Estado = 'Sin jugar';", Tabla_Sorteos_Reporte);
+                ControladorDB.getControlador().ManejoSorteo(3, "", "12/10/15", "", 0, 0, Integer.parseInt(Identificador));                
                 Recargar();
             }
             catch(Exception ex){
@@ -1460,6 +1596,121 @@ public class VAdministrador extends javax.swing.JFrame {
     private void Tabla_Sorteos_ReporteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabla_Sorteos_ReporteMouseReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_Tabla_Sorteos_ReporteMouseReleased
+
+    private void btn_ver_reporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ver_reporteActionPerformed
+        // TODO add your handling code here:
+        int Fila = Tabla_Sorteos_Reporte.getSelectedRow();
+        if(Fila >= 0){
+            String Identificador = Tabla_Sorteos_Reporte.getValueAt(Fila, 0).toString();
+            //ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Planes where Identificador = "+Identificador+";", jTable1);
+        }else{
+            JOptionPane.showMessageDialog(null, "Error, debe seleccionar sorteo", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_ver_reporteActionPerformed
+
+    private void btn_generar_planActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_generar_planActionPerformed
+        // TODO add your handling code here:
+        if(Tabla_Premios.getRowCount()>2){            
+            if(CB_Numero_Sorteo.getItemCount()>0){
+                String IdentificadorSorteo = CB_Numero_Sorteo.getSelectedItem().toString();                
+                if(ControladorDB.getControlador().ManejoPlanPremios(1,0,0,Integer.parseInt(IdentificadorSorteo))){
+                    String Identificador = ControladorGUI.getControlador().getDatoCosnulta("Select * From PlanPremios Where PlanPremios.Sorteo = "+IdentificadorSorteo+";");
+                    //  Se procede a hacer un inser en cascada del plan de premios
+                    for(int Fila = 0; Fila<Tabla_Premios.getRowCount();Fila++){
+                        int Monto = Integer.parseInt(Tabla_Premios.getValueAt(Fila, 0).toString());
+                        int Cantidad = Integer.parseInt(Tabla_Premios.getValueAt(Fila, 1).toString());
+                        if(ControladorDB.getControlador().ManejoPlanPremios(2,Monto,Cantidad,Integer.parseInt(Identificador))){
+                            //  En esta sección se debería hacer un registro de bitácora
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Error, no se pudo agregar el plan de premios", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                    JOptionPane.showMessageDialog(null, "Plan de premios agregado con éxito", "Mensaje de éxito", JOptionPane.INFORMATION_MESSAGE);
+                    Recargar();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Error, no se pudo agregar el plan de premios", "Mensaje de error", JOptionPane.ERROR_MESSAGE);}
+            }else{
+                JOptionPane.showMessageDialog(null, "Error, no existe sorteo sin plan de premios", "Mensaje de error", JOptionPane.ERROR_MESSAGE);}
+        }else{
+            JOptionPane.showMessageDialog(null, "Error, debe agregar al menos 3 premios al plan", "Mensaje de error", JOptionPane.ERROR_MESSAGE);}
+    }//GEN-LAST:event_btn_generar_planActionPerformed
+
+    private void btn_agregar_premioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregar_premioActionPerformed
+        // TODO add your handling code here:        
+        try{
+            int Monto = Integer.parseInt(Campo_Monto_Premio.getText().toString());
+            int Cantidad = Integer.parseInt(Campo_Cantidad_Premio.getValue().toString());            
+            if(Monto>0){
+                DefaultTableModel model = (DefaultTableModel)Tabla_Premios.getModel();
+                String[] row = new String[]{""+Monto,""+Cantidad,"Nuevo"};
+                model.addRow(row);                
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Error, el monto debe ser entero positivo", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error, datos númericos inválidos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_agregar_premioActionPerformed
+
+    private void btn_eliminar_premioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminar_premioActionPerformed
+        // TODO add your handling code here:
+        int Fila = Tabla_Premios.getSelectedRow();
+        if(Fila >= 0){
+            DefaultTableModel model = (DefaultTableModel)Tabla_Premios.getModel();
+            model.removeRow(Fila);
+        }else{
+            JOptionPane.showMessageDialog(null, "Error, debe seleccionar un premio", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_eliminar_premioActionPerformed
+
+    private void btn_editar_planActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar_planActionPerformed
+        // TODO add your handling code here:
+        int Fila = Tabla_Plan_Premios.getSelectedRow();
+        if(Fila >= 0){
+            String Identificador = Tabla_Plan_Premios.getValueAt(Fila, 0).toString();
+            if(ControladorDB.getControlador().ManejoPlanPremios(4,0,0,Integer.parseInt(Identificador))){                    
+                //  Se procede a hacer un inser en cascada del plan de premios
+                for(int FilaPremios = 0; FilaPremios<Tabla_Premios.getRowCount();FilaPremios++){
+                    int Monto = Integer.parseInt(Tabla_Premios.getValueAt(FilaPremios, 0).toString());
+                    int Cantidad = Integer.parseInt(Tabla_Premios.getValueAt(FilaPremios, 1).toString());
+                    if(ControladorDB.getControlador().ManejoPlanPremios(2,Monto,Cantidad,Integer.parseInt(Identificador))){
+                        //  En esta sección se debería hacer un registro de bitácora
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Error, no se pudo actualizar el plan de premios", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+                JOptionPane.showMessageDialog(null, "Plan de premios actualizado con éxito", "Mensaje de éxito", JOptionPane.INFORMATION_MESSAGE);
+                Recargar();
+            }else{
+                JOptionPane.showMessageDialog(null, "Error, el plan de premios pertenece a sorteo ya jugado", "Mensaje de error", JOptionPane.ERROR_MESSAGE);}
+        }else{
+            JOptionPane.showMessageDialog(null, "Error, debe seleccionar un plan de premios", "Mensaje de error", JOptionPane.ERROR_MESSAGE);}
+    }//GEN-LAST:event_btn_editar_planActionPerformed
+
+    private void Tabla_Plan_PremiosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabla_Plan_PremiosMouseReleased
+        // TODO add your handling code here:
+        int Fila = Tabla_Plan_Premios.getSelectedRow();
+        if(Fila >= 0){
+            String Identificador = Tabla_Plan_Premios.getValueAt(Fila, 0).toString();
+            ControladorGUI.getControlador().LlenarTablaConsulta("Select Monto,Cantidad,PlanPremios as 'Plan de premio' From Premio where PlanPremios = "+Identificador+";", Tabla_Premios);
+        }
+    }//GEN-LAST:event_Tabla_Plan_PremiosMouseReleased
+
+    private void btn_eliminar_planActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminar_planActionPerformed
+        // TODO add your handling code here:
+        int Fila = Tabla_Plan_Premios.getSelectedRow();
+        if(Fila >= 0){
+            String Identificador = Tabla_Plan_Premios.getValueAt(Fila, 0).toString();
+            if(ControladorDB.getControlador().ManejoPlanPremios(3, 0, 0, Integer.parseInt(Identificador))){
+                JOptionPane.showMessageDialog(null, "Plan de premios eliminado con éxito", "Mensaje de éxito", JOptionPane.INFORMATION_MESSAGE);
+                Recargar();
+            }else{
+                JOptionPane.showMessageDialog(null, "Erro, el plan de premios pertenece a sorteo ya jugado", "Mensaje de error", JOptionPane.ERROR_MESSAGE);}
+        }else{
+            JOptionPane.showMessageDialog(null, "Error, debe seleccionar un plan de premios", "Mensaje de error", JOptionPane.ERROR_MESSAGE);}
+    }//GEN-LAST:event_btn_eliminar_planActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1508,6 +1759,7 @@ public class VAdministrador extends javax.swing.JFrame {
     private javax.swing.JButton Btn_verificar;
     private javax.swing.JComboBox<String> CB_Consulta_estadistica;
     private javax.swing.JComboBox<String> CB_Filtro_estadistica;
+    private javax.swing.JComboBox<String> CB_Numero_Sorteo;
     private javax.swing.JComboBox<String> CB_Tipo_Exportar;
     private javax.swing.JComboBox<String> CB_Tipo_Sorteo;
     private javax.swing.JComboBox<String> CB_Tipo_Sorteo_Ganador;
@@ -1558,6 +1810,7 @@ public class VAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel Lb_FondoG;
     private javax.swing.JLabel Lb_FondoG1;
     private javax.swing.JLabel Lb_FondoI;
+    private javax.swing.JPanel Panal_Reporte_Ganadores;
     private javax.swing.JTabbedPane Panel_Contenedor_Administrativo;
     private javax.swing.JPanel Panel_Contenedor_Datos_Premios;
     private javax.swing.JPanel Panel_Contenedor_Datos_Sorteo;
@@ -1568,14 +1821,19 @@ public class VAdministrador extends javax.swing.JFrame {
     private javax.swing.JPanel Panel_Inicio_Chances;
     private javax.swing.JPanel Panel_Inicio_Loteria;
     private javax.swing.JPanel Panel_Input_Ganador;
+    private javax.swing.JPanel Panel_Jugar;
     private javax.swing.JPanel Panel_Plan_Premios;
     private javax.swing.JPanel Panel_Reporte;
+    private javax.swing.JPanel Panel_Reporte_Plan;
     private javax.swing.JPanel Panel_Sorteo;
     private javax.swing.JTable Tabla_Estadisticas;
     private javax.swing.JTable Tabla_Exportar;
+    private javax.swing.JTable Tabla_Ganadores_Reporte;
     private javax.swing.JTable Tabla_Plan_Premios;
+    private javax.swing.JTable Tabla_Plan_Reporte;
     private javax.swing.JTable Tabla_Premios;
     private javax.swing.JTable Tabla_Sorteos;
+    private javax.swing.JTable Tabla_Sorteos_Jugar;
     private javax.swing.JTable Tabla_Sorteos_Reporte;
     private javax.swing.JButton btn_Buscar;
     private javax.swing.JButton btn_Sorteos_Planes;
@@ -1592,7 +1850,6 @@ public class VAdministrador extends javax.swing.JFrame {
     private javax.swing.JButton btn_generar_plan;
     private javax.swing.JButton btn_jugar;
     private javax.swing.JButton btn_ver_reporte;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1629,7 +1886,10 @@ public class VAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel81;
     private javax.swing.JLabel jLabel83;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
