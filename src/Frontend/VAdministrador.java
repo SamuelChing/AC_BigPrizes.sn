@@ -1727,9 +1727,7 @@ public class VAdministrador extends javax.swing.JFrame {
             try{                
                 Sorteo TempSorteo = ControladorGUI.getControlador().MapeoSorte(Identificador);
                 BloqueraVentan();
-                ReproductorAnimacion RA = new ReproductorAnimacion("Loteria.mp3", Label_Bolitas, Label_Numero_Ganador, Label_Serie_Ganador, Label_Premio_Ganador,TempSorteo,this,Tabla_Resultado_Jugar);
-                //ControladorDB.getControlador().ManejoSorteo(3, "", "12/10/15", "", 0, 0, Integer.parseInt(Identificador));
-                //Recargar();               
+                ReproductorAnimacion RA = new ReproductorAnimacion("Loteria.mp3", Label_Bolitas, Label_Numero_Ganador, Label_Serie_Ganador, Label_Premio_Ganador,TempSorteo,this,Tabla_Resultado_Jugar);                
             }
             catch(Exception ex){                
                 JOptionPane.showMessageDialog(null, "Error, no se pudo conectar a la base de datos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);

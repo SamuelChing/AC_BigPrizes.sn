@@ -81,7 +81,8 @@ public class ReproductorAnimacion extends Thread{
             TempArray = Sorteo.GirarTombola();
         }
         Imagen.setVisible(false);
-        Imagen.update(Imagen.getGraphics());        
+        Imagen.update(Imagen.getGraphics());  
+        ControladorDB.getControlador().ManejoSorteo(3, "", "12/10/15", "", 0, 0, Sorteo.getNumero());            
         ventana.Recargar();
     }    
     public void Sonido(String Sonido)
