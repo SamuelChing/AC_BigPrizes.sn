@@ -103,7 +103,9 @@ public class VAdministrador extends javax.swing.JFrame {
         Tabla_Sorteos_Reporte = new javax.swing.JTable();
         Panel_Reporte_Plan = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        Tabla_Plan_Reporte = new javax.swing.JTable();
+        Tabla_Encabezado_Reporte = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        Tabla_Premios_Reporte = new javax.swing.JTable();
         Panal_Reporte_Ganadores = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla_Ganadores_Reporte = new javax.swing.JTable();
@@ -672,8 +674,9 @@ public class VAdministrador extends javax.swing.JFrame {
         Panel_Reporte.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 480, 180));
 
         Panel_Reporte_Plan.setBorder(javax.swing.BorderFactory.createTitledBorder("Reporte del plan de premio"));
+        Panel_Reporte_Plan.setLayout(null);
 
-        Tabla_Plan_Reporte.setModel(new javax.swing.table.DefaultTableModel(
+        Tabla_Encabezado_Reporte.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -684,24 +687,26 @@ public class VAdministrador extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane3.setViewportView(Tabla_Plan_Reporte);
+        jScrollPane3.setViewportView(Tabla_Encabezado_Reporte);
 
-        javax.swing.GroupLayout Panel_Reporte_PlanLayout = new javax.swing.GroupLayout(Panel_Reporte_Plan);
-        Panel_Reporte_Plan.setLayout(Panel_Reporte_PlanLayout);
-        Panel_Reporte_PlanLayout.setHorizontalGroup(
-            Panel_Reporte_PlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Panel_Reporte_PlanLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        Panel_Reporte_PlanLayout.setVerticalGroup(
-            Panel_Reporte_PlanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Panel_Reporte_PlanLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        Panel_Reporte_Plan.add(jScrollPane3);
+        jScrollPane3.setBounds(20, 30, 480, 60);
+
+        Tabla_Premios_Reporte.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane4.setViewportView(Tabla_Premios_Reporte);
+
+        Panel_Reporte_Plan.add(jScrollPane4);
+        jScrollPane4.setBounds(20, 110, 480, 350);
 
         Panel_Reporte.add(Panel_Reporte_Plan, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 520, 480));
 
@@ -1601,8 +1606,11 @@ public class VAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:
         int Fila = Tabla_Sorteos_Reporte.getSelectedRow();
         if(Fila >= 0){
-            String Identificador = Tabla_Sorteos_Reporte.getValueAt(Fila, 0).toString();
-            //ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Planes where Identificador = "+Identificador+";", jTable1);
+            String IdentificadorSorteo = Tabla_Sorteos_Reporte.getValueAt(Fila, 0).toString();
+            String Identificador = ControladorGUI.getControlador().getDatoCosnulta("Select * From PlanPremios Where PlanPremios.Sorteo = "+IdentificadorSorteo+";");
+            
+            ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Planes where Identificador = "+Identificador+";", Tabla_Encabezado_Reporte);            
+            ControladorGUI.getControlador().LlenarTablaConsulta("Select Monto,Cantidad,PlanPremios as 'Plan de premio' From Premio where PlanPremios = "+Identificador+";", Tabla_Premios_Reporte);
         }else{
             JOptionPane.showMessageDialog(null, "Error, debe seleccionar sorteo", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
         }
@@ -1826,12 +1834,13 @@ public class VAdministrador extends javax.swing.JFrame {
     private javax.swing.JPanel Panel_Reporte;
     private javax.swing.JPanel Panel_Reporte_Plan;
     private javax.swing.JPanel Panel_Sorteo;
+    private javax.swing.JTable Tabla_Encabezado_Reporte;
     private javax.swing.JTable Tabla_Estadisticas;
     private javax.swing.JTable Tabla_Exportar;
     private javax.swing.JTable Tabla_Ganadores_Reporte;
     private javax.swing.JTable Tabla_Plan_Premios;
-    private javax.swing.JTable Tabla_Plan_Reporte;
     private javax.swing.JTable Tabla_Premios;
+    private javax.swing.JTable Tabla_Premios_Reporte;
     private javax.swing.JTable Tabla_Sorteos;
     private javax.swing.JTable Tabla_Sorteos_Jugar;
     private javax.swing.JTable Tabla_Sorteos_Reporte;
@@ -1890,6 +1899,7 @@ public class VAdministrador extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;

@@ -166,7 +166,7 @@ FROM PlanPremios as PP
 Inner Join Sorteo as S
 On S.Numero = PP.Sorteo;
 
-
+Select * From Planes 
 #**********************************************************************************************************************
 #Vista para sorteos que no tengan plan de premios
 Create View SorteosSinPlan
