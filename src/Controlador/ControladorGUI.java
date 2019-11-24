@@ -106,8 +106,7 @@ public class ControladorGUI {
                 fila[i-1] = TablaResultado.getObject(i).toString();                    
             }
             return fila;
-        }catch(Exception ex){            
-            JOptionPane.showMessageDialog(null, "Ocurrió un error al conectarse a la base de datos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+        }catch(Exception ex){                        
             return null;
         }          
     }

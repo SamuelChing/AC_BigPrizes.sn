@@ -7,7 +7,7 @@ package ac_proyecto;
 
 import Controlador.ControladorDB;
 import Controlador.ControladorGUI;
-import Frontend.VAdministrador;
+import Frontend.Ventana;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -31,10 +31,10 @@ public class ReproductorAnimacion extends Thread{
     private JLabel Serie;
     private JLabel Premio;
     private Sorteo Sorteo;
-    private VAdministrador ventana;    
+    private Ventana ventana;    
     private JTable TablaUpdate;
 
-    public ReproductorAnimacion(String Sonido, JLabel Imagen, JLabel Numero, JLabel Serie, JLabel Premio, Sorteo Sorteo, VAdministrador ventana, JTable TablaUpdate) {
+    public ReproductorAnimacion(String Sonido, JLabel Imagen, JLabel Numero, JLabel Serie, JLabel Premio, Sorteo Sorteo, Ventana ventana, JTable TablaUpdate) {
         this.Sonido = Sonido;
         this.Imagen = Imagen;
         this.Numero = Numero;
@@ -42,16 +42,8 @@ public class ReproductorAnimacion extends Thread{
         this.Premio = Premio;
         this.Sorteo = Sorteo;
         this.ventana = ventana;
-        this.TablaUpdate = TablaUpdate;
-        this.start();
+        this.TablaUpdate = TablaUpdate;        
     }
-
-    
-
-    
-    
-
-    
     
     @Override
     public void run()
@@ -76,7 +68,7 @@ public class ReproductorAnimacion extends Thread{
             Sonido("Premio.mp3");
             //  Se guardan los datos del ganador            
             ControladorDB.getControlador().ManejoGanadores(1,Sorteo.getNumero(),Sorteo.getTipo(),Integer.parseInt(TempArray[0]),Integer.parseInt(TempArray[1]),Integer.parseInt(TempArray[2]));
-            ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Ganador Where Sorteo = "+Sorteo.getNumero(), TablaUpdate);
+            ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Ganador Where NumeroSorteo = "+Sorteo.getNumero(), TablaUpdate);
             //  Se continúa con el siguiente premio
             TempArray = Sorteo.GirarTombola();
         }

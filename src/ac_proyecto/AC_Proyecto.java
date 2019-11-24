@@ -8,7 +8,7 @@ package ac_proyecto;
 import Controlador.ControladorDB;
 import Controlador.ControladorGUI;
 import Frontend.Login;
-import Frontend.VAdministrador;
+import Frontend.Ventana;
 import java.sql.SQLException;
 
 /**
@@ -28,7 +28,7 @@ public class AC_Proyecto {
         //  Se crea la ventana inicial
         //Login login = new Login();
         //login.setVisible(true); 
-        VAdministrador V1 = new VAdministrador();
+        Ventana V1 = new Ventana();
         V1.setVisible(true);
     }
     

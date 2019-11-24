@@ -18,12 +18,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Nahum
  */
-public class VAdministrador extends javax.swing.JFrame {
+public class Ventana extends javax.swing.JFrame {
     
     /**
      * Creates new form VClientes
      */
-    public VAdministrador() {        
+    public Ventana() {        
         initComponents();
         Body_Inicio.setVisible(true);
         Body_Ganador.setVisible(false);
@@ -47,11 +47,13 @@ public class VAdministrador extends javax.swing.JFrame {
         ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos;", Tabla_Sorteos);
         ControladorGUI.getControlador().LlenarTablaConsulta("Select * From SorteosParaJugar", Tabla_Sorteos_Jugar);        
         ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Planes;", Tabla_Plan_Premios);
-        ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos where Estado = 'Sin Jugar';", Tabla_Sorteos_Reporte);
+        ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos where Estado = 'Jugado';", Tabla_Sorteos_Reporte);                
+        
         DefaultTableModel model = (DefaultTableModel)Tabla_Premios.getModel();
         model.setRowCount(0);           
                 
         Label_Bolitas.setVisible(false);
+        LB_Imagen_Triste.setVisible(false);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -145,9 +147,10 @@ public class VAdministrador extends javax.swing.JFrame {
         CB_Tipo_Sorteo_Ganador = new javax.swing.JComboBox<>();
         btn_Buscar = new javax.swing.JButton();
         LB_Titulo_Resultado = new javax.swing.JLabel();
-        LB_Contenido_Resultado = new javax.swing.JLabel();
+        LB_Imagen_Triste = new javax.swing.JLabel();
         LB_Etiqueta3 = new javax.swing.JLabel();
         Campo_Numero_Sorteo_Ganador = new javax.swing.JTextField();
+        LB_Contenido_Resultado = new javax.swing.JLabel();
         Lb_FondoG = new javax.swing.JLabel();
         Body_Inicio = new javax.swing.JPanel();
         Panel_Inicio_Loteria = new javax.swing.JPanel();
@@ -904,10 +907,11 @@ public class VAdministrador extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(Label_Bolitas, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addGroup(Panel_Animacion_JugarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Label_Serie_Ganador, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Label_Numero_Ganador, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Label_Premio_Ganador, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(Panel_Animacion_JugarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Label_Serie_Ganador, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(Panel_Animacion_JugarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Label_Numero_Ganador, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Label_Premio_Ganador, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(26, 26, 26))
         );
 
@@ -954,68 +958,85 @@ public class VAdministrador extends javax.swing.JFrame {
             }
         });
 
-        LB_Titulo_Resultado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        LB_Titulo_Resultado.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         LB_Titulo_Resultado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LB_Titulo_Resultado.setToolTipText("");
 
-        LB_Contenido_Resultado.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        LB_Imagen_Triste.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        LB_Imagen_Triste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Perdedor.gif"))); // NOI18N
 
         LB_Etiqueta3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         LB_Etiqueta3.setText("Numero de sorteo");
+
+        LB_Contenido_Resultado.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        LB_Contenido_Resultado.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LB_Contenido_Resultado.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout Panel_Input_GanadorLayout = new javax.swing.GroupLayout(Panel_Input_Ganador);
         Panel_Input_Ganador.setLayout(Panel_Input_GanadorLayout);
         Panel_Input_GanadorLayout.setHorizontalGroup(
             Panel_Input_GanadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Panel_Input_GanadorLayout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addGroup(Panel_Input_GanadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Campo_Serie_Ganador)
-                    .addComponent(Campo_Numero_Ganador)
-                    .addComponent(LB_Etiqueta)
-                    .addComponent(LB_Etiqueta2)
-                    .addComponent(LB_Etiqueta1)
-                    .addComponent(CB_Tipo_Sorteo_Ganador, 0, 219, Short.MAX_VALUE)
-                    .addComponent(LB_Etiqueta3)
-                    .addComponent(Campo_Numero_Sorteo_Ganador))
+                .addGroup(Panel_Input_GanadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Panel_Input_GanadorLayout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addGroup(Panel_Input_GanadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Campo_Serie_Ganador)
+                            .addComponent(Campo_Numero_Ganador)
+                            .addComponent(LB_Etiqueta)
+                            .addComponent(LB_Etiqueta2)
+                            .addComponent(LB_Etiqueta1)
+                            .addComponent(CB_Tipo_Sorteo_Ganador, 0, 219, Short.MAX_VALUE)
+                            .addComponent(LB_Etiqueta3)
+                            .addComponent(Campo_Numero_Sorteo_Ganador)))
+                    .addGroup(Panel_Input_GanadorLayout.createSequentialGroup()
+                        .addGap(116, 116, 116)
+                        .addComponent(btn_Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
                 .addGroup(Panel_Input_GanadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LB_Titulo_Resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LB_Contenido_Resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(LB_Imagen_Triste, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(78, 78, 78))
-            .addGroup(Panel_Input_GanadorLayout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addComponent(btn_Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(Panel_Input_GanadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Panel_Input_GanadorLayout.createSequentialGroup()
+                    .addContainerGap(457, Short.MAX_VALUE)
+                    .addComponent(LB_Contenido_Resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(83, 83, 83)))
         );
         Panel_Input_GanadorLayout.setVerticalGroup(
             Panel_Input_GanadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Panel_Input_GanadorLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(LB_Titulo_Resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(LB_Contenido_Resultado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(85, 85, 85))
-            .addGroup(Panel_Input_GanadorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(LB_Etiqueta)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CB_Tipo_Sorteo_Ganador, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(LB_Etiqueta2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Campo_Numero_Ganador, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(LB_Etiqueta1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Campo_Serie_Ganador, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(LB_Etiqueta3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Campo_Numero_Sorteo_Ganador, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(btn_Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(Panel_Input_GanadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Panel_Input_GanadorLayout.createSequentialGroup()
+                        .addComponent(LB_Titulo_Resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LB_Imagen_Triste, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(94, 94, 94))
+                    .addGroup(Panel_Input_GanadorLayout.createSequentialGroup()
+                        .addComponent(LB_Etiqueta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CB_Tipo_Sorteo_Ganador, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(LB_Etiqueta2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Campo_Numero_Ganador, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(LB_Etiqueta1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Campo_Serie_Ganador, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(LB_Etiqueta3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Campo_Numero_Sorteo_Ganador, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(btn_Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(Panel_Input_GanadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(Panel_Input_GanadorLayout.createSequentialGroup()
+                    .addGap(52, 52, 52)
+                    .addComponent(LB_Contenido_Resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(89, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout Panel_GanadorLayout = new javax.swing.GroupLayout(Panel_Ganador);
@@ -1035,11 +1056,11 @@ public class VAdministrador extends javax.swing.JFrame {
         Panel_GanadorLayout.setVerticalGroup(
             Panel_GanadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Panel_GanadorLayout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(LabelTitulo2)
                 .addGap(18, 18, 18)
-                .addComponent(Panel_Input_Ganador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addComponent(Panel_Input_Ganador, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         Body_Ganador.add(Panel_Ganador, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 78, 960, 470));
@@ -1621,7 +1642,37 @@ public class VAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_SalirActionPerformed
 
     private void btn_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarActionPerformed
+        String Tipo = CB_Tipo_Sorteo_Ganador.getSelectedItem().toString();                        
+        try{
+            int NumeroInt = Integer.parseInt(Campo_Numero_Ganador.getText().toString());
+            int SerieInt = Integer.parseInt(Campo_Serie_Ganador.getText().toString());
+            int SorteoInt = Integer.parseInt(Campo_Numero_Sorteo_Ganador.getText().toString());            
+            if(NumeroInt>0 && SerieInt>0 && SorteoInt>0){
+                String[] Resultado = ControladorGUI.getControlador().getRowToArray("Select * From Ganadores Where NumeroSorteo = "+SorteoInt+" and TipoSorteo = '"+Tipo+"' and NumeroGanador = "+NumeroInt+" and SerieGanadora = "+SerieInt+";");                
+                if(Resultado != null){
+                    LB_Imagen_Triste.setVisible(false);
+                    LB_Titulo_Resultado.setText("Felicidades!!!");
+                    String ContenidoGanador = "<html><body><br>Sorteo de: "+Resultado[1]+""
+                            + "<br>Sorteo número: "+Resultado[0]+""
+                            + "<br>Número ganador: "+Resultado[2]+""
+                            + "<br>Serie ganadora: "+Resultado[3]+""
+                            + "<br><br>Monto por entero: ₡"+Resultado[4]+""
+                            + "<br>Monto por fracción: ₡"+(Float.parseFloat(Resultado[3])/Float.parseFloat(Resultado[5]))+"</body></html>";                    
 
+                    LB_Contenido_Resultado.setText(ContenidoGanador);                    
+                    LB_Contenido_Resultado.setVisible(true);
+                }else{
+                    LB_Titulo_Resultado.setText("Billete sin premio");
+                    LB_Imagen_Triste.setVisible(true);
+                    LB_Contenido_Resultado.setVisible(false);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Error, los números deben ser enteros positivos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+            }
+        }catch(Exception ex){                   
+            
+            JOptionPane.showMessageDialog(null, "Error, datos numéricos incorrectos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+        }        
     }//GEN-LAST:event_btn_BuscarActionPerformed
 
     private void btn_buscar_estadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscar_estadisticasActionPerformed
@@ -1728,6 +1779,7 @@ public class VAdministrador extends javax.swing.JFrame {
                 Sorteo TempSorteo = ControladorGUI.getControlador().MapeoSorte(Identificador);
                 BloqueraVentan();
                 ReproductorAnimacion RA = new ReproductorAnimacion("Loteria.mp3", Label_Bolitas, Label_Numero_Ganador, Label_Serie_Ganador, Label_Premio_Ganador,TempSorteo,this,Tabla_Resultado_Jugar);                
+                RA.start();
             }
             catch(Exception ex){                
                 JOptionPane.showMessageDialog(null, "Error, no se pudo conectar a la base de datos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
@@ -1748,6 +1800,7 @@ public class VAdministrador extends javax.swing.JFrame {
             
             ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Planes where Identificador = "+Identificador+";", Tabla_Encabezado_Reporte);            
             ControladorGUI.getControlador().LlenarTablaConsulta("Select Monto,Cantidad,PlanPremios as 'Plan de premio' From Premio where PlanPremios = "+Identificador+";", Tabla_Premios_Reporte);
+            ControladorGUI.getControlador().LlenarTablaConsulta("Select NumeroGanador as 'Número', SerieGanadora as 'Serie', MontoGanado as 'Monto'  From Ganadores Where NumeroSorteo = "+IdentificadorSorteo+";", Tabla_Ganadores_Reporte);
         }else{
             JOptionPane.showMessageDialog(null, "Error, debe seleccionar sorteo", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
         }
@@ -1887,21 +1940,23 @@ public class VAdministrador extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VAdministrador().setVisible(true);
+                new Ventana().setVisible(true);
             }
         });
     }
@@ -1938,6 +1993,7 @@ public class VAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel LB_Etiqueta1;
     private javax.swing.JLabel LB_Etiqueta2;
     private javax.swing.JLabel LB_Etiqueta3;
+    private javax.swing.JLabel LB_Imagen_Triste;
     private javax.swing.JLabel LB_PP_Monto_Chances;
     private javax.swing.JLabel LB_PP_Monto_Loteria;
     private javax.swing.JLabel LB_PP_Numero_Chances;

@@ -79,13 +79,13 @@ Create Table Premio
 Create Table Ganador
 (
 	Identificador int Primary Key AUTO_INCREMENT,
-    Sorteo int not null,
-    Tipo varchar(256) not null,
-    Numero int not null,
-    Serie int not null,
-    Monto int not null,
+    NumeroSorteo int not null,
+    TipoSorteo varchar(256) not null,
+    NumeroGanador int not null,
+    SerieGanadora int not null,
+    MontoGanado int not null,
     
-    FOREIGN KEY (Sorteo) REFERENCES Sorteo(Numero)
+    FOREIGN KEY (NumeroSorteo) REFERENCES Sorteo(Numero)
 );
 
 #**********************************************************************************************************************
@@ -103,7 +103,7 @@ Returns int
 BEGIN
 	Declare Resultado int;        
 	if Cmd = 1 then # Insertar un plan de premios
-		INSERT INTO Ganador(Sorteo,Tipo,Numero,Serie,Monto)
+		INSERT INTO Ganador(NumeroSorteo,TipoSorteo,NumeroGanador,SerieGanadora,MontoGanado)
         VALUES(PIdentificador,PTipo,PNumero,PSerie,PMonto);
         return 1;
     End if;    
@@ -213,7 +213,6 @@ FROM PlanPremios as PP
 Inner Join Sorteo as S
 On S.Numero = PP.Sorteo;
 
-Select * From Planes where Identificador = 3;
 #**********************************************************************************************************************
 #Vista para sorteos que no tengan plan de premios
 Create View SorteosSinPlan
@@ -231,5 +230,15 @@ Select Numero as 'Número', Leyenda, Fecha, Tipo, CantidadFracciones as 'Fraccio
 From Sorteo as S
 Where Numero IN(
 SELECT Sorteo  FROM PlanPremios) and Estado = 'Sin jugar';
+
+#**********************************************************************************************************************
+#Vista para comparar ganador
+Create View Ganadores
+As
+Select NumeroSorteo, TipoSorteo, NumeroGanador, SerieGanadora, MontoGanado, S.CantidadFracciones
+From Ganador
+Inner Join Sorteo as S
+On S.Numero = NumeroSorteo;
+
 
 

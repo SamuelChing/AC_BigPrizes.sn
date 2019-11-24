@@ -6,8 +6,7 @@
 package Controlador;
 
 import Frontend.Login;
-import Frontend.VAdministrador;
-import Frontend.VClientes;
+import Frontend.Ventana;
 import Modelo.ConexionDB;
 import com.mysql.jdbc.ResultSetMetaData;
 import java.sql.ResultSet;
@@ -54,12 +53,12 @@ public class ControladorDB
         switch(Resultado)
         {
             case "0":// Usuario Administrador
-                VAdministrador VentanaA = new VAdministrador();
+                Ventana VentanaA = new Ventana();
                 VentanaA.setVisible(true);
                 break;
             case "1":// Usuario Cliente
-                VClientes VentanaC = new VClientes();
-                VentanaC.setVisible(true);
+                Ventana VentanaB = new Ventana();
+                VentanaB.setVisible(true);
                 break;
             default://  No existe el usuario
                 JOptionPane.showMessageDialog(null, "Usuario no existe", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
@@ -118,5 +117,5 @@ public class ControladorDB
                 return true;            
         }
         return false;
-    }
+    }        
 }

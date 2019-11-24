@@ -1353,10 +1353,12 @@
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                               <Component id="Label_Bolitas" min="-2" pref="340" max="-2" attributes="0"/>
                               <EmptySpace pref="36" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="Label_Serie_Ganador" alignment="1" min="-2" pref="37" max="-2" attributes="0"/>
-                                  <Component id="Label_Numero_Ganador" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
-                                  <Component id="Label_Premio_Ganador" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="Label_Numero_Ganador" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
+                                      <Component id="Label_Premio_Ganador" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           </Group>
@@ -1456,11 +1458,11 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="23" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="LabelTitulo2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="Panel_Input_Ganador" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="34" max="32767" attributes="0"/>
+                      <Component id="Panel_Input_Ganador" min="-2" pref="383" max="-2" attributes="0"/>
+                      <EmptySpace pref="26" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1490,60 +1492,80 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="Campo_Serie_Ganador" alignment="0" max="32767" attributes="0"/>
-                              <Component id="Campo_Numero_Ganador" alignment="0" max="32767" attributes="0"/>
-                              <Component id="LB_Etiqueta" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="LB_Etiqueta2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="LB_Etiqueta1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="CB_Tipo_Sorteo_Ganador" alignment="0" pref="219" max="32767" attributes="0"/>
-                              <Component id="LB_Etiqueta3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Campo_Numero_Sorteo_Ganador" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="Campo_Serie_Ganador" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="Campo_Numero_Ganador" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="LB_Etiqueta" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="LB_Etiqueta2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="LB_Etiqueta1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="CB_Tipo_Sorteo_Ganador" alignment="0" pref="219" max="32767" attributes="0"/>
+                                      <Component id="LB_Etiqueta3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="Campo_Numero_Sorteo_Ganador" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
+                                  <Component id="btn_Buscar" min="-2" pref="130" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace pref="161" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="LB_Titulo_Resultado" alignment="0" min="-2" pref="245" max="-2" attributes="0"/>
-                              <Component id="LB_Contenido_Resultado" alignment="0" min="-2" pref="245" max="-2" attributes="0"/>
+                              <Component id="LB_Imagen_Triste" alignment="0" min="-2" pref="245" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
-                          <Component id="btn_Buscar" min="-2" pref="130" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace pref="457" max="32767" attributes="0"/>
+                              <Component id="LB_Contenido_Resultado" min="-2" pref="240" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="LB_Titulo_Resultado" min="-2" pref="36" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                          <Component id="LB_Contenido_Resultado" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="LB_Titulo_Resultado" min="-2" pref="36" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="LB_Imagen_Triste" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="LB_Etiqueta" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="CB_Tipo_Sorteo_Ganador" min="-2" pref="31" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="LB_Etiqueta2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="Campo_Numero_Ganador" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="LB_Etiqueta1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="Campo_Serie_Ganador" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="LB_Etiqueta3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="Campo_Numero_Sorteo_Ganador" min="-2" pref="32" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="btn_Buscar" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="LB_Etiqueta" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="CB_Tipo_Sorteo_Ganador" min="-2" pref="31" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="LB_Etiqueta2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="Campo_Numero_Ganador" min="-2" pref="30" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="LB_Etiqueta1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="Campo_Serie_Ganador" min="-2" pref="30" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="LB_Etiqueta3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="Campo_Numero_Sorteo_Ganador" min="-2" pref="32" max="-2" attributes="0"/>
-                          <EmptySpace pref="29" max="32767" attributes="0"/>
-                          <Component id="btn_Buscar" min="-2" pref="30" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                              <Component id="LB_Contenido_Resultado" min="-2" pref="262" max="-2" attributes="0"/>
+                              <EmptySpace pref="89" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1613,16 +1635,19 @@
                 <Component class="javax.swing.JLabel" name="LB_Titulo_Resultado">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="18" style="1"/>
+                      <Font name="Segoe UI" size="24" style="1"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="LB_Contenido_Resultado">
+                <Component class="javax.swing.JLabel" name="LB_Imagen_Triste">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="18" style="1"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/assets/Perdedor.gif"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -1635,6 +1660,15 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="Campo_Numero_Sorteo_Ganador">
+                </Component>
+                <Component class="javax.swing.JLabel" name="LB_Contenido_Resultado">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="16" style="1"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="2"/>
+                    <Property name="verticalAlignment" type="int" value="1"/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
