@@ -7,8 +7,11 @@ package Frontend;
 
 import Controlador.ControladorDB;
 import Controlador.ControladorGUI;
+import ac_proyecto.ReproductorAnimacion;
+import ac_proyecto.Sorteo;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,11 +19,11 @@ import javax.swing.table.DefaultTableModel;
  * @author Nahum
  */
 public class VAdministrador extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form VClientes
      */
-    public VAdministrador() {
+    public VAdministrador() {        
         initComponents();
         Body_Inicio.setVisible(true);
         Body_Ganador.setVisible(false);
@@ -28,22 +31,27 @@ public class VAdministrador extends javax.swing.JFrame {
         Body_Administrativo.setVisible(false);
         this.setLocationRelativeTo(null);
         Recargar();
+    }    
+    public void BloqueraVentan()
+    {
+        
     }
-
     public void Recargar()
     {
         Campo_Leyenda_Sorteo.setText("");        
         Campo_Fracciones_Sorteo.setValue(Integer.valueOf(1));
         CB_Tipo_Sorteo.setSelectedItem("Lotería");
-        Campo_Precio_Sorteo.setText("");
+        Campo_Precio_Sorteo.setText("");        
         
         ControladorGUI.getControlador().LlenarCombobox("Select * From SorteosSinPlan;", CB_Numero_Sorteo);
         ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos;", Tabla_Sorteos);
-        ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos where Estado = 'Sin jugar';", Tabla_Sorteos_Jugar);        
+        ControladorGUI.getControlador().LlenarTablaConsulta("Select * From SorteosParaJugar", Tabla_Sorteos_Jugar);        
         ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Planes;", Tabla_Plan_Premios);
         ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos where Estado = 'Sin Jugar';", Tabla_Sorteos_Reporte);
         DefaultTableModel model = (DefaultTableModel)Tabla_Premios.getModel();
-        model.setRowCount(0);                
+        model.setRowCount(0);           
+                
+        Label_Bolitas.setVisible(false);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -110,9 +118,20 @@ public class VAdministrador extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla_Ganadores_Reporte = new javax.swing.JTable();
         Panel_Jugar = new javax.swing.JPanel();
+        Panel_Contenedor_Sorteos_Jugar = new javax.swing.JPanel();
         jScrollPane10 = new javax.swing.JScrollPane();
         Tabla_Sorteos_Jugar = new javax.swing.JTable();
         btn_jugar = new javax.swing.JButton();
+        CB_Tipo_Sorteo_Jugar = new javax.swing.JComboBox<>();
+        btn_Filtrar_Sorteo_Jugar = new javax.swing.JButton();
+        Panel_Resultado_Jugar = new javax.swing.JPanel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        Tabla_Resultado_Jugar = new javax.swing.JTable();
+        Panel_Animacion_Jugar = new javax.swing.JPanel();
+        Label_Bolitas = new javax.swing.JLabel();
+        Label_Numero_Ganador = new javax.swing.JLabel();
+        Label_Serie_Ganador = new javax.swing.JLabel();
+        Label_Premio_Ganador = new javax.swing.JLabel();
         Lb_FondoA = new javax.swing.JLabel();
         Body_Ganador = new javax.swing.JPanel();
         Panel_Ganador = new javax.swing.JPanel();
@@ -664,11 +683,6 @@ public class VAdministrador extends javax.swing.JFrame {
 
             }
         ));
-        Tabla_Sorteos_Reporte.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                Tabla_Sorteos_ReporteMouseReleased(evt);
-            }
-        });
         jScrollPane9.setViewportView(Tabla_Sorteos_Reporte);
 
         Panel_Reporte.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 480, 180));
@@ -749,6 +763,8 @@ public class VAdministrador extends javax.swing.JFrame {
         Panel_Jugar.setBackground(new java.awt.Color(255, 255, 255));
         Panel_Jugar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Panel_Contenedor_Sorteos_Jugar.setBorder(javax.swing.BorderFactory.createTitledBorder("Sorteos que puede jugar"));
+
         Tabla_Sorteos_Jugar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {}
@@ -758,8 +774,6 @@ public class VAdministrador extends javax.swing.JFrame {
             }
         ));
         jScrollPane10.setViewportView(Tabla_Sorteos_Jugar);
-
-        Panel_Jugar.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 480, 180));
 
         btn_jugar.setBackground(new java.awt.Color(255, 153, 0));
         btn_jugar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -771,7 +785,133 @@ public class VAdministrador extends javax.swing.JFrame {
                 btn_jugarActionPerformed(evt);
             }
         });
-        Panel_Jugar.add(btn_jugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 180, 40));
+
+        CB_Tipo_Sorteo_Jugar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        CB_Tipo_Sorteo_Jugar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lotería", "Chances", "Ambos" }));
+
+        btn_Filtrar_Sorteo_Jugar.setBackground(new java.awt.Color(51, 102, 255));
+        btn_Filtrar_Sorteo_Jugar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_Filtrar_Sorteo_Jugar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_Filtrar_Sorteo_Jugar.setText("Filtrar");
+        btn_Filtrar_Sorteo_Jugar.setBorder(null);
+        btn_Filtrar_Sorteo_Jugar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Filtrar_Sorteo_JugarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout Panel_Contenedor_Sorteos_JugarLayout = new javax.swing.GroupLayout(Panel_Contenedor_Sorteos_Jugar);
+        Panel_Contenedor_Sorteos_Jugar.setLayout(Panel_Contenedor_Sorteos_JugarLayout);
+        Panel_Contenedor_Sorteos_JugarLayout.setHorizontalGroup(
+            Panel_Contenedor_Sorteos_JugarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel_Contenedor_Sorteos_JugarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(Panel_Contenedor_Sorteos_JugarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Panel_Contenedor_Sorteos_JugarLayout.createSequentialGroup()
+                        .addComponent(btn_jugar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(btn_Filtrar_Sorteo_Jugar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CB_Tipo_Sorteo_Jugar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        Panel_Contenedor_Sorteos_JugarLayout.setVerticalGroup(
+            Panel_Contenedor_Sorteos_JugarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel_Contenedor_Sorteos_JugarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Panel_Contenedor_Sorteos_JugarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_jugar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CB_Tipo_Sorteo_Jugar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Filtrar_Sorteo_Jugar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        Panel_Jugar.add(Panel_Contenedor_Sorteos_Jugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 510, 270));
+
+        Panel_Resultado_Jugar.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultado de sorteo"));
+
+        Tabla_Resultado_Jugar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Numero", "Serie", "Monto"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane11.setViewportView(Tabla_Resultado_Jugar);
+
+        javax.swing.GroupLayout Panel_Resultado_JugarLayout = new javax.swing.GroupLayout(Panel_Resultado_Jugar);
+        Panel_Resultado_Jugar.setLayout(Panel_Resultado_JugarLayout);
+        Panel_Resultado_JugarLayout.setHorizontalGroup(
+            Panel_Resultado_JugarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel_Resultado_JugarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        Panel_Resultado_JugarLayout.setVerticalGroup(
+            Panel_Resultado_JugarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel_Resultado_JugarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        Panel_Jugar.add(Panel_Resultado_Jugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 510, 200));
+
+        Panel_Animacion_Jugar.setBorder(javax.swing.BorderFactory.createTitledBorder("Jugar sorteo"));
+
+        Label_Bolitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Tombola.gif"))); // NOI18N
+
+        Label_Numero_Ganador.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+
+        Label_Serie_Ganador.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+
+        Label_Premio_Ganador.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+
+        javax.swing.GroupLayout Panel_Animacion_JugarLayout = new javax.swing.GroupLayout(Panel_Animacion_Jugar);
+        Panel_Animacion_Jugar.setLayout(Panel_Animacion_JugarLayout);
+        Panel_Animacion_JugarLayout.setHorizontalGroup(
+            Panel_Animacion_JugarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel_Animacion_JugarLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(Panel_Animacion_JugarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Label_Bolitas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(Panel_Animacion_JugarLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(Label_Numero_Ganador, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(Label_Serie_Ganador, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Label_Premio_Ganador, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 20, Short.MAX_VALUE)))
+                .addGap(30, 30, 30))
+        );
+        Panel_Animacion_JugarLayout.setVerticalGroup(
+            Panel_Animacion_JugarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel_Animacion_JugarLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(Label_Bolitas, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGroup(Panel_Animacion_JugarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Label_Serie_Ganador, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Label_Numero_Ganador, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Label_Premio_Ganador, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26))
+        );
+
+        Panel_Jugar.add(Panel_Animacion_Jugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 20, 540, 490));
 
         Panel_Contenedor_Administrativo.addTab("Jugar un sorteo", Panel_Jugar);
 
@@ -1582,13 +1722,16 @@ public class VAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:  
         int Fila = Tabla_Sorteos_Jugar.getSelectedRow();
         if(Fila>=0)
-        {
+        {                                
             String Identificador = Tabla_Sorteos_Jugar.getValueAt(Fila, 0).toString();
-            try{
-                ControladorDB.getControlador().ManejoSorteo(3, "", "12/10/15", "", 0, 0, Integer.parseInt(Identificador));                
-                Recargar();
+            try{                
+                Sorteo TempSorteo = ControladorGUI.getControlador().MapeoSorte(Identificador);
+                BloqueraVentan();
+                ReproductorAnimacion RA = new ReproductorAnimacion("Loteria.mp3", Label_Bolitas, Label_Numero_Ganador, Label_Serie_Ganador, Label_Premio_Ganador,TempSorteo,this,Tabla_Resultado_Jugar);
+                //ControladorDB.getControlador().ManejoSorteo(3, "", "12/10/15", "", 0, 0, Integer.parseInt(Identificador));
+                //Recargar();               
             }
-            catch(Exception ex){
+            catch(Exception ex){                
                 JOptionPane.showMessageDialog(null, "Error, no se pudo conectar a la base de datos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -1597,10 +1740,6 @@ public class VAdministrador extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error, debe seleccionar un sorteo", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btn_jugarActionPerformed
-
-    private void Tabla_Sorteos_ReporteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabla_Sorteos_ReporteMouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Tabla_Sorteos_ReporteMouseReleased
 
     private void btn_ver_reporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ver_reporteActionPerformed
         // TODO add your handling code here:
@@ -1720,6 +1859,19 @@ public class VAdministrador extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error, debe seleccionar un plan de premios", "Mensaje de error", JOptionPane.ERROR_MESSAGE);}
     }//GEN-LAST:event_btn_eliminar_planActionPerformed
 
+    private void btn_Filtrar_Sorteo_JugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Filtrar_Sorteo_JugarActionPerformed
+        // TODO add your handling code here:
+        String TipoSorteo = CB_Tipo_Sorteo_Jugar.getSelectedItem().toString();
+        if(TipoSorteo.equals("Ambos"))
+        {
+            ControladorGUI.getControlador().LlenarTablaConsulta("Select * From SorteosParaJugar;", Tabla_Sorteos_Jugar);
+        }
+        else
+        {
+            ControladorGUI.getControlador().LlenarTablaConsulta("Select * From SorteosParaJugar where Tipo = '"+TipoSorteo+"';", Tabla_Sorteos_Jugar);
+        }        
+    }//GEN-LAST:event_btn_Filtrar_Sorteo_JugarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1771,6 +1923,7 @@ public class VAdministrador extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> CB_Tipo_Exportar;
     private javax.swing.JComboBox<String> CB_Tipo_Sorteo;
     private javax.swing.JComboBox<String> CB_Tipo_Sorteo_Ganador;
+    private javax.swing.JComboBox<String> CB_Tipo_Sorteo_Jugar;
     private javax.swing.JSpinner Campo_Cantidad_Premio;
     private javax.swing.JSpinner Campo_Fracciones_Sorteo;
     private javax.swing.JTextField Campo_Leyenda_Sorteo;
@@ -1812,17 +1965,23 @@ public class VAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel LabelTitulo;
     private javax.swing.JLabel LabelTitulo1;
     private javax.swing.JLabel LabelTitulo2;
+    private javax.swing.JLabel Label_Bolitas;
     private javax.swing.JLabel Label_Fecha_Chances;
     private javax.swing.JLabel Label_Fecha_Loteria;
+    private javax.swing.JLabel Label_Numero_Ganador;
+    private javax.swing.JLabel Label_Premio_Ganador;
+    private javax.swing.JLabel Label_Serie_Ganador;
     private javax.swing.JLabel Lb_FondoA;
     private javax.swing.JLabel Lb_FondoG;
     private javax.swing.JLabel Lb_FondoG1;
     private javax.swing.JLabel Lb_FondoI;
     private javax.swing.JPanel Panal_Reporte_Ganadores;
+    private javax.swing.JPanel Panel_Animacion_Jugar;
     private javax.swing.JTabbedPane Panel_Contenedor_Administrativo;
     private javax.swing.JPanel Panel_Contenedor_Datos_Premios;
     private javax.swing.JPanel Panel_Contenedor_Datos_Sorteo;
     private javax.swing.JTabbedPane Panel_Contenedor_Estadisticas;
+    private javax.swing.JPanel Panel_Contenedor_Sorteos_Jugar;
     private javax.swing.JPanel Panel_EXportar;
     private javax.swing.JPanel Panel_Estadisticas;
     private javax.swing.JPanel Panel_Ganador;
@@ -1833,6 +1992,7 @@ public class VAdministrador extends javax.swing.JFrame {
     private javax.swing.JPanel Panel_Plan_Premios;
     private javax.swing.JPanel Panel_Reporte;
     private javax.swing.JPanel Panel_Reporte_Plan;
+    private javax.swing.JPanel Panel_Resultado_Jugar;
     private javax.swing.JPanel Panel_Sorteo;
     private javax.swing.JTable Tabla_Encabezado_Reporte;
     private javax.swing.JTable Tabla_Estadisticas;
@@ -1841,10 +2001,12 @@ public class VAdministrador extends javax.swing.JFrame {
     private javax.swing.JTable Tabla_Plan_Premios;
     private javax.swing.JTable Tabla_Premios;
     private javax.swing.JTable Tabla_Premios_Reporte;
+    private javax.swing.JTable Tabla_Resultado_Jugar;
     private javax.swing.JTable Tabla_Sorteos;
     private javax.swing.JTable Tabla_Sorteos_Jugar;
     private javax.swing.JTable Tabla_Sorteos_Reporte;
     private javax.swing.JButton btn_Buscar;
+    private javax.swing.JButton btn_Filtrar_Sorteo_Jugar;
     private javax.swing.JButton btn_Sorteos_Planes;
     private javax.swing.JButton btn_agregar_premio;
     private javax.swing.JButton btn_agregar_sorteo;
@@ -1897,6 +2059,7 @@ public class VAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;

@@ -12,10 +12,11 @@ create table Usuario
     tipo varchar(256) not null
 );
 
+#**********************************************************************************************************************
 #Insert por default de la aplicación
 INSERT INTO Usuario (nombre,contrasena,tipo) VALUES('Nahum',MD5('Nahum123'),'Administrador');
 Insert Into Usuario (nombre,contrasena,tipo) values('Samuel',MD5('Samuel123'),'Cliente');
-
+#**********************************************************************************************************************
 #Funcion para el login de usuarios
 DELIMITER //
 CREATE Function Login
@@ -37,6 +38,7 @@ BEGIN
     end if;	    
 END //
 DELIMITER ;
+
 #**********************************************************************************************************************
 #Tabla para el manejo de Sorteos
 Create Table Sorteo
@@ -49,6 +51,8 @@ Create Table Sorteo
     PrecioBillete int not null,
     Estado varchar(256) default 'Sin jugar'
 );
+
+#**********************************************************************************************************************
 #Tabla para el manejo de planes de premios
 Create Table PlanPremios
 (
@@ -57,6 +61,8 @@ Create Table PlanPremios
     
     FOREIGN KEY (Sorteo) REFERENCES Sorteo(Numero)
 );
+
+#**********************************************************************************************************************
 #Tabla para el manejo de premios
 Create Table Premio
 (
@@ -67,6 +73,45 @@ Create Table Premio
     
     FOREIGN KEY (PlanPremios) REFERENCES PlanPremios(Identificador)    
 );
+
+#**********************************************************************************************************************
+#Tabla para el manejo de ganadores
+Create Table Ganador
+(
+	Identificador int Primary Key AUTO_INCREMENT,
+    Sorteo int not null,
+    Tipo varchar(256) not null,
+    Numero int not null,
+    Serie int not null,
+    Monto int not null,
+    
+    FOREIGN KEY (Sorteo) REFERENCES Sorteo(Numero)
+);
+
+#**********************************************************************************************************************
+DELIMITER //
+CREATE Function ManejoGanadores
+(
+	Cmd int,    
+    PIdentificador int,
+    PTipo varchar(256),
+    PNumero int,
+    PSerie int,
+    PMonto int   
+)
+Returns int
+BEGIN
+	Declare Resultado int;        
+	if Cmd = 1 then # Insertar un plan de premios
+		INSERT INTO Ganador(Sorteo,Tipo,Numero,Serie,Monto)
+        VALUES(PIdentificador,PTipo,PNumero,PSerie,PMonto);
+        return 1;
+    End if;    
+END ;
+//
+DELIMITER ;
+
+#**********************************************************************************************************************
 #Funcion para el manejo de Sorteos
 #Para agregar un sorteo Cmd = 1, enviamos los datos en orden y Pidentificador no importa
 #Para eliminar un sorteo Cmd = 2, Pidentificador = Sorteo que queremos eliminar
@@ -114,6 +159,7 @@ BEGIN
 END ;
 //
 DELIMITER ;
+
 #**********************************************************************************************************************
 DELIMITER //
 CREATE Function ManejoPlanDePremio
@@ -148,6 +194,7 @@ BEGIN
 END ;
 //
 DELIMITER ;
+
 #**********************************************************************************************************************
 #Vista para Sorteos
 Create View Sorteos 
@@ -166,7 +213,7 @@ FROM PlanPremios as PP
 Inner Join Sorteo as S
 On S.Numero = PP.Sorteo;
 
-Select * From Planes 
+Select * From Planes where Identificador = 3;
 #**********************************************************************************************************************
 #Vista para sorteos que no tengan plan de premios
 Create View SorteosSinPlan
@@ -177,9 +224,12 @@ Where Numero NOT IN(
 SELECT Sorteo  FROM PlanPremios);
 
 #**********************************************************************************************************************
-#Vista para el reporte de un sorteo
-Create View Reporte
+#Vista para Sorteos con plan pero sin jugar
+Create View SorteosParaJugar
 As
-Select 
+Select Numero as 'Número', Leyenda, Fecha, Tipo, CantidadFracciones as 'Fracciones',PrecioBillete as 'Precio', Estado
+From Sorteo as S
+Where Numero IN(
+SELECT Sorteo  FROM PlanPremios) and Estado = 'Sin jugar';
 
 

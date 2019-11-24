@@ -6,9 +6,13 @@
 package Controlador;
 
 import Modelo.ConexionDB;
+import ac_proyecto.PlanPremios;
+import ac_proyecto.Premio;
+import ac_proyecto.Sorteo;
 import com.mysql.jdbc.ResultSetMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -80,6 +84,11 @@ public class ControladorGUI {
         }
     }
     
+    /**
+     * Método que maprea una fila referente a la consulta
+     * @param Consulta
+     * @return un array de string con los datos en orden como en la tabla
+     */
     public String[] getRowToArray(String Consulta)
     {
         try{
@@ -103,6 +112,11 @@ public class ControladorGUI {
         }          
     }
     
+    /**
+     * Método que llena un elemento JCombobox con los datos de una consula pero solo de una columna
+     * @param Consulta
+     * @param CB_Temporal 
+     */
     public void LlenarCombobox(String Consulta, JComboBox CB_Temporal)
     {
         try{               
@@ -124,9 +138,61 @@ public class ControladorGUI {
         }
     }
     
+    /**
+     * Método que retorna un string con el resultado de una consulta de una columna
+     * @param Consulta
+     * @return String con la respuesta de la consulta
+     */
     public String getDatoCosnulta(String Consulta)
     {
         String Resultado = ConexionDB.getConexionDB().ResultadoString(ConexionDB.getConexionDB().EjecutarConsulta(Consulta));
         return Resultado;
+    }
+    
+    /**
+     * Método que mapea un objeto sorteo de la base de datos
+     * @param IdentificadorSorteo
+     * @return Un objeto sorteo
+     */
+    public Sorteo MapeoSorte(String IdentificadorSorteo)
+    {
+        //  Lo primero es encontrar el identificador del plan de premios de ese sorteo
+        String IdentificadorPlan = getDatoCosnulta("Select Identificador From PlanPremios Where Sorteo = "+IdentificadorSorteo+";");                
+        //  Se mapean los premios asociado al plan de premios
+        ArrayList<Premio> ListaPremios = MapeoPremio("Select * From Premio Where PlanPremios = "+IdentificadorPlan);
+        //  Se genera el objeto plan
+        PlanPremios Plan = new PlanPremios(ListaPremios);        
+        //  Se mapea el objeto Sorteo
+        String[] DataSorteo = getRowToArray("Select * From Sorteo Where Numero = "+IdentificadorSorteo);
+        Sorteo NuevoSorteo = new Sorteo(Integer.parseInt(DataSorteo[0]), DataSorteo[1], DataSorteo[2], DataSorteo[3], Integer.parseInt(DataSorteo[4]), Integer.parseInt(DataSorteo[5]), DataSorteo[6], Plan);               
+        //  Se retorna el objeto sorteo
+        return NuevoSorteo;
+    }
+    
+    /**
+     * Método que mapea una tabla completa de premios
+     * @param Consulta tabla asociada a un plan de premios
+     * @return una lista de premios
+     */
+    public ArrayList<Premio> MapeoPremio(String Consulta)
+    {
+        try{
+            ResultSet TablaResultado = ConexionDB.getConexionDB().EjecutarConsulta(Consulta);                                    
+            ArrayList<Premio> Lista = new ArrayList<Premio>();
+            //  Se posiciona en la fila resultado de la consulta
+            while (TablaResultado.next())// Recorre fila por fila la consulta
+            {         
+                int Identificador = Integer.parseInt(TablaResultado.getObject(1).toString());
+                int Monto = Integer.parseInt(TablaResultado.getObject(2).toString());
+                int Cantidad = Integer.parseInt(TablaResultado.getObject(3).toString());
+                Premio Nuevo = new Premio(Identificador,Monto,Cantidad);                
+                //  Setea la fila en el modelo de la tabla de muestra                              
+                Lista.add(Nuevo);
+            }            
+            return Lista;
+        }catch(Exception ex){            
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al conectarse a la base de datos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }          
     }
 }

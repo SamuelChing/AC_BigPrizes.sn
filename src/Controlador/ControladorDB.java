@@ -105,4 +105,18 @@ public class ControladorDB
         }
         return false;
     }
+    
+    public boolean ManejoGanadores(int Cmd, int Sorteo, String Tipo, int Numero, int Serie, int Monto)
+    {
+        String Consulta = "Select ManejoGanadores("+Cmd+","+Sorteo+",'"+Tipo+"',"+Numero+","+Serie+","+Monto+");";
+        String Resultado = ConexionDB.getConexionDB().ResultadoString(ConexionDB.getConexionDB().EjecutarConsulta(Consulta));
+        switch(Resultado)
+        {
+            case "1":
+                return true;                
+            case "2":
+                return true;            
+        }
+        return false;
+    }
 }
