@@ -32,9 +32,9 @@ public class Ventana extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         Recargar();
     }    
-    public void BloqueraVentan()
+    public void BloqueraCliente()
     {
-        
+        btn_Sorteos_Planes.setVisible(false);
     }
     public void Recargar()
     {
@@ -90,6 +90,8 @@ public class Ventana extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         Tabla_Sorteos = new javax.swing.JTable();
         btn_eliminar_sorteo = new javax.swing.JButton();
+        Campo_Numero_Sorteo = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         Panel_Plan_Premios = new javax.swing.JPanel();
         btn_eliminar_plan = new javax.swing.JButton();
         btn_editar_plan = new javax.swing.JButton();
@@ -107,6 +109,8 @@ public class Ventana extends javax.swing.JFrame {
         btn_eliminar_premio = new javax.swing.JButton();
         jLabel80 = new javax.swing.JLabel();
         CB_Numero_Sorteo = new javax.swing.JComboBox<>();
+        Campo_Numero_Plan = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         Panel_Reporte = new javax.swing.JPanel();
         btn_ver_reporte = new javax.swing.JButton();
         jScrollPane9 = new javax.swing.JScrollPane();
@@ -437,7 +441,7 @@ public class Ventana extends javax.swing.JFrame {
                 btn_editar_sorteoActionPerformed(evt);
             }
         });
-        Panel_Sorteo.add(btn_editar_sorteo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 450, 190, 40));
+        Panel_Sorteo.add(btn_editar_sorteo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 450, 130, 40));
 
         Tabla_Sorteos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -466,7 +470,18 @@ public class Ventana extends javax.swing.JFrame {
                 btn_eliminar_sorteoActionPerformed(evt);
             }
         });
-        Panel_Sorteo.add(btn_eliminar_sorteo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 450, 180, 40));
+        Panel_Sorteo.add(btn_eliminar_sorteo, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 450, 130, 40));
+
+        Campo_Numero_Sorteo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Campo_Numero_Sorteo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Campo_Numero_SorteoKeyReleased(evt);
+            }
+        });
+        Panel_Sorteo.add(Campo_Numero_Sorteo, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 450, 140, 40));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/search.png"))); // NOI18N
+        Panel_Sorteo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 460, 20, 20));
 
         Panel_Contenedor_Administrativo.addTab("Sorteos", Panel_Sorteo);
 
@@ -483,7 +498,7 @@ public class Ventana extends javax.swing.JFrame {
                 btn_eliminar_planActionPerformed(evt);
             }
         });
-        Panel_Plan_Premios.add(btn_eliminar_plan, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 460, 210, 40));
+        Panel_Plan_Premios.add(btn_eliminar_plan, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 460, 140, 40));
 
         btn_editar_plan.setBackground(new java.awt.Color(51, 102, 255));
         btn_editar_plan.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -495,7 +510,7 @@ public class Ventana extends javax.swing.JFrame {
                 btn_editar_planActionPerformed(evt);
             }
         });
-        Panel_Plan_Premios.add(btn_editar_plan, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 460, 210, 40));
+        Panel_Plan_Premios.add(btn_editar_plan, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 460, 140, 40));
 
         jScrollPane7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -651,6 +666,17 @@ public class Ventana extends javax.swing.JFrame {
         );
 
         Panel_Plan_Premios.add(Panel_Contenedor_Datos_Premios, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 480, 480));
+
+        Campo_Numero_Plan.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Campo_Numero_Plan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Campo_Numero_PlanKeyReleased(evt);
+            }
+        });
+        Panel_Plan_Premios.add(Campo_Numero_Plan, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 460, 140, 40));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/search.png"))); // NOI18N
+        Panel_Plan_Premios.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 470, 20, 20));
 
         Panel_Contenedor_Administrativo.addTab("Plan de premios", Panel_Plan_Premios);
 
@@ -1749,8 +1775,7 @@ public class Ventana extends javax.swing.JFrame {
         {                                
             String Identificador = Tabla_Sorteos_Jugar.getValueAt(Fila, 0).toString();
             try{                
-                Sorteo TempSorteo = ControladorGUI.getControlador().MapeoSorte(Identificador);
-                BloqueraVentan();
+                Sorteo TempSorteo = ControladorGUI.getControlador().MapeoSorte(Identificador);                
                 ReproductorAnimacion RA = new ReproductorAnimacion("Loteria.mp3", Label_Bolitas, Label_Numero_Ganador, Label_Serie_Ganador, Label_Premio_Ganador,TempSorteo,this,Tabla_Resultado_Jugar);                
                 RA.start();
             }
@@ -1896,6 +1921,34 @@ public class Ventana extends javax.swing.JFrame {
         }        
     }//GEN-LAST:event_btn_Filtrar_Sorteo_JugarActionPerformed
 
+    private void Campo_Numero_SorteoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Campo_Numero_SorteoKeyReleased
+        // TODO add your handling code here:
+        try{
+            int Identificador = Integer.parseInt(Campo_Numero_Sorteo.getText().toString());
+            if(Identificador>0){
+                ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos Where Numero = "+Identificador+";", Tabla_Sorteos);
+            }
+        }catch(Exception ex){
+            if(Campo_Numero_Sorteo.getText().toString().length()==0){
+                ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos;", Tabla_Sorteos);
+            }               
+        }
+    }//GEN-LAST:event_Campo_Numero_SorteoKeyReleased
+
+    private void Campo_Numero_PlanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Campo_Numero_PlanKeyReleased
+        // TODO add your handling code here:
+        try{
+            int Identificador = Integer.parseInt(Campo_Numero_Plan.getText().toString());
+            if(Identificador>0){
+                ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Planes Where Identificador = "+Identificador+";", Tabla_Plan_Premios);
+            }
+        }catch(Exception ex){
+            if(Campo_Numero_Sorteo.getText().toString().length()==0){
+                ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Planes;", Tabla_Plan_Premios);
+            }               
+        }
+    }//GEN-LAST:event_Campo_Numero_PlanKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -1954,6 +2007,8 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JTextField Campo_Leyenda_Sorteo;
     private javax.swing.JTextField Campo_Monto_Premio;
     private javax.swing.JTextField Campo_Numero_Ganador;
+    private javax.swing.JTextField Campo_Numero_Plan;
+    private javax.swing.JTextField Campo_Numero_Sorteo;
     private javax.swing.JTextField Campo_Numero_Sorteo_Ganador;
     private javax.swing.JTextField Campo_Precio_Sorteo;
     private javax.swing.JTextField Campo_Serie_Ganador;
@@ -2042,6 +2097,7 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JButton btn_generar_plan;
     private javax.swing.JButton btn_jugar;
     private javax.swing.JButton btn_ver_reporte;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -2052,6 +2108,7 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;

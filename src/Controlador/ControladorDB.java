@@ -58,7 +58,8 @@ public class ControladorDB
                 break;
             case "1":// Usuario Cliente
                 Ventana VentanaB = new Ventana();
-                VentanaB.setVisible(true);
+                VentanaB.BloqueraCliente();
+                VentanaB.setVisible(true);                
                 break;
             default://  No existe el usuario
                 JOptionPane.showMessageDialog(null, "Usuario no existe", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
