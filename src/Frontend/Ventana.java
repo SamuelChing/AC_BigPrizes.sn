@@ -214,15 +214,6 @@ public class Ventana extends javax.swing.JFrame {
         jLabel65 = new javax.swing.JLabel();
         CB_Consulta_estadistica = new javax.swing.JComboBox<>();
         btn_buscar_estadisticas = new javax.swing.JButton();
-        Panel_EXportar = new javax.swing.JPanel();
-        btn_exportar = new javax.swing.JButton();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        Tabla_Exportar = new javax.swing.JTable();
-        jLabel66 = new javax.swing.JLabel();
-        CB_Tipo_Exportar = new javax.swing.JComboBox<>();
-        jLabel67 = new javax.swing.JLabel();
-        Campo_Numero_Exportar = new javax.swing.JTextField();
-        btn_buscar_exportar = new javax.swing.JButton();
         Lb_FondoG1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1491,11 +1482,11 @@ public class Ventana extends javax.swing.JFrame {
 
         jLabel64.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel64.setText("Filtrar por ");
-        Panel_Estadisticas.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 360, -1, -1));
+        Panel_Estadisticas.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 360, -1, -1));
 
         CB_Filtro_estadistica.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        CB_Filtro_estadistica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lotería", "Chances" }));
-        Panel_Estadisticas.add(CB_Filtro_estadistica, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, 140, 30));
+        CB_Filtro_estadistica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lotería", "Chances", "Ambos" }));
+        Panel_Estadisticas.add(CB_Filtro_estadistica, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 380, 150, 30));
 
         Tabla_Estadisticas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Tabla_Estadisticas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -1520,8 +1511,8 @@ public class Ventana extends javax.swing.JFrame {
         Panel_Estadisticas.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, -1, -1));
 
         CB_Consulta_estadistica.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        CB_Consulta_estadistica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Top 5 número más jugados", "Top 5 más ganadores", "Probabilidad de números", "Top 5 más premiados" }));
-        Panel_Estadisticas.add(CB_Consulta_estadistica, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, 170, 30));
+        CB_Consulta_estadistica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Top 10 número más jugados", "Top 5 más ganadores", "Probabilidad de números", "Top 5 más premiados" }));
+        Panel_Estadisticas.add(CB_Consulta_estadistica, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, 200, 30));
 
         btn_buscar_estadisticas.setBackground(new java.awt.Color(255, 153, 0));
         btn_buscar_estadisticas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -1533,64 +1524,9 @@ public class Ventana extends javax.swing.JFrame {
                 btn_buscar_estadisticasActionPerformed(evt);
             }
         });
-        Panel_Estadisticas.add(btn_buscar_estadisticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 380, 150, 30));
+        Panel_Estadisticas.add(btn_buscar_estadisticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 380, 150, 30));
 
         Panel_Contenedor_Estadisticas.addTab("Estadísticas", Panel_Estadisticas);
-
-        Panel_EXportar.setBackground(new java.awt.Color(255, 255, 255));
-        Panel_EXportar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btn_exportar.setBackground(new java.awt.Color(0, 0, 255));
-        btn_exportar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_exportar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_exportar.setText("Exportar a PDF");
-        btn_exportar.setBorder(null);
-        Panel_EXportar.add(btn_exportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 380, 120, 30));
-
-        Tabla_Exportar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Tabla_Exportar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        Tabla_Exportar.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane6.setViewportView(Tabla_Exportar);
-
-        Panel_EXportar.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 760, 270));
-
-        jLabel66.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel66.setText("Tipo");
-        Panel_EXportar.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, -1, -1));
-
-        CB_Tipo_Exportar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        CB_Tipo_Exportar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Plan de premios", "Sorteos" }));
-        Panel_EXportar.add(CB_Tipo_Exportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, 140, 30));
-
-        jLabel67.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel67.setText("Filtrar por número");
-        Panel_EXportar.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 360, -1, -1));
-        Panel_EXportar.add(Campo_Numero_Exportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, 150, 30));
-
-        btn_buscar_exportar.setBackground(new java.awt.Color(255, 153, 0));
-        btn_buscar_exportar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_buscar_exportar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_buscar_exportar.setText("Buscar");
-        btn_buscar_exportar.setBorder(null);
-        btn_buscar_exportar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_buscar_exportarActionPerformed(evt);
-            }
-        });
-        Panel_EXportar.add(btn_buscar_exportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 380, 130, 30));
-
-        Panel_Contenedor_Estadisticas.addTab("Exportar", Panel_EXportar);
 
         Body_Estadísticas.add(Panel_Contenedor_Estadisticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 1080, 500));
 
@@ -1678,29 +1614,40 @@ public class Ventana extends javax.swing.JFrame {
     private void btn_buscar_estadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscar_estadisticasActionPerformed
         // TODO add your handling code here:
         int Consulta = CB_Consulta_estadistica.getSelectedIndex();
-        int Filtro = CB_Filtro_estadistica.getSelectedIndex();
-        
+        int Filtro = CB_Filtro_estadistica.getSelectedIndex();        
         switch(Consulta)
         {
             case 0:
                 if(Filtro == 0){
-                    ControladorGUI.getControlador().LlenarTablaConsulta("Select NumeroGanador as 'Número', Cantidad as 'Veces que jugó' From Top5MasJugadosLoteria;", Tabla_Estadisticas);
-                }else{
-                    ControladorGUI.getControlador().LlenarTablaConsulta("Select NumeroGanador as 'Número', Cantidad as 'Veces que jugó' From Top5MasJugadosChances;", Tabla_Estadisticas);
+                    ControladorGUI.getControlador().LlenarTablaConsulta("Select NumeroGanador as 'Número', Cantidad as 'Veces que jugó' From Top10MasJugadosLoteria;", Tabla_Estadisticas);
+                }if(Filtro == 1){
+                    ControladorGUI.getControlador().LlenarTablaConsulta("Select NumeroGanador as 'Número', Cantidad as 'Veces que jugó' From Top10MasJugadosChances;", Tabla_Estadisticas);
+                }if(Filtro == 2){
+                    ControladorGUI.getControlador().LlenarTablaConsulta("Select NumeroGanador as 'Número', Cantidad as 'Veces que jugó' From Top10MasJugadosTodos;", Tabla_Estadisticas);
                 }
                 break;
             case 1:
+                if(Filtro == 0){
+                    ControladorGUI.getControlador().LlenarTablaConsulta("Select NumeroGanador as 'Número', Cantidad as 'Veces que jugó' From Top5MasGanadoresLoteria;", Tabla_Estadisticas);
+                }if(Filtro == 1){
+                    ControladorGUI.getControlador().LlenarTablaConsulta("Select NumeroGanador as 'Número', Cantidad as 'Veces que jugó' From Top5MasGanadoresChances;", Tabla_Estadisticas);
+                }if(Filtro == 2){
+                    ControladorGUI.getControlador().LlenarTablaConsulta("Select NumeroGanador as 'Número', Cantidad as 'Veces que jugó' From Top5MasGanadoresTodos;", Tabla_Estadisticas);
+                }
                 break;
             case 2:
                 break;
             case 3:
+                if(Filtro == 0){
+                    ControladorGUI.getControlador().LlenarTablaConsulta("Select NumeroGanador as 'Número', MontoTotal as 'Monto total' From Top5MasPremiadosLoteria;", Tabla_Estadisticas);
+                }if(Filtro == 1){
+                    ControladorGUI.getControlador().LlenarTablaConsulta("Select NumeroGanador as 'Número', MontoTotal as 'Monto total' From Top5MasPremiadosChances;", Tabla_Estadisticas);
+                }if(Filtro == 2){
+                    ControladorGUI.getControlador().LlenarTablaConsulta("Select NumeroGanador as 'Número', MontoTotal as 'Monto total' From Top5MasPremiadosTodos;", Tabla_Estadisticas);
+                } 
                 break;
         }
     }//GEN-LAST:event_btn_buscar_estadisticasActionPerformed
-
-    private void btn_buscar_exportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscar_exportarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_buscar_exportarActionPerformed
 
     private void btn_agregar_sorteoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregar_sorteoActionPerformed
         // TODO add your handling code here:        
@@ -1992,7 +1939,6 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> CB_Consulta_estadistica;
     private javax.swing.JComboBox<String> CB_Filtro_estadistica;
     private javax.swing.JComboBox<String> CB_Numero_Sorteo;
-    private javax.swing.JComboBox<String> CB_Tipo_Exportar;
     private javax.swing.JComboBox<String> CB_Tipo_Sorteo;
     private javax.swing.JComboBox<String> CB_Tipo_Sorteo_Ganador;
     private javax.swing.JComboBox<String> CB_Tipo_Sorteo_Jugar;
@@ -2000,7 +1946,6 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JSpinner Campo_Fracciones_Sorteo;
     private javax.swing.JTextField Campo_Leyenda_Sorteo;
     private javax.swing.JTextField Campo_Monto_Premio;
-    private javax.swing.JTextField Campo_Numero_Exportar;
     private javax.swing.JTextField Campo_Numero_Ganador;
     private javax.swing.JTextField Campo_Numero_Sorteo_Ganador;
     private javax.swing.JTextField Campo_Precio_Sorteo;
@@ -2055,7 +2000,6 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JPanel Panel_Contenedor_Datos_Sorteo;
     private javax.swing.JTabbedPane Panel_Contenedor_Estadisticas;
     private javax.swing.JPanel Panel_Contenedor_Sorteos_Jugar;
-    private javax.swing.JPanel Panel_EXportar;
     private javax.swing.JPanel Panel_Estadisticas;
     private javax.swing.JPanel Panel_Ganador;
     private javax.swing.JPanel Panel_Inicio_Chances;
@@ -2069,7 +2013,6 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JPanel Panel_Sorteo;
     private javax.swing.JTable Tabla_Encabezado_Reporte;
     private javax.swing.JTable Tabla_Estadisticas;
-    private javax.swing.JTable Tabla_Exportar;
     private javax.swing.JTable Tabla_Ganadores_Reporte;
     private javax.swing.JTable Tabla_Plan_Premios;
     private javax.swing.JTable Tabla_Premios;
@@ -2084,13 +2027,11 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JButton btn_agregar_premio;
     private javax.swing.JButton btn_agregar_sorteo;
     private javax.swing.JButton btn_buscar_estadisticas;
-    private javax.swing.JButton btn_buscar_exportar;
     private javax.swing.JButton btn_editar_plan;
     private javax.swing.JButton btn_editar_sorteo;
     private javax.swing.JButton btn_eliminar_plan;
     private javax.swing.JButton btn_eliminar_premio;
     private javax.swing.JButton btn_eliminar_sorteo;
-    private javax.swing.JButton btn_exportar;
     private javax.swing.JButton btn_generar_plan;
     private javax.swing.JButton btn_jugar;
     private javax.swing.JButton btn_ver_reporte;
@@ -2118,8 +2059,6 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
-    private javax.swing.JLabel jLabel66;
-    private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel75;
     private javax.swing.JLabel jLabel76;
     private javax.swing.JLabel jLabel77;
@@ -2137,7 +2076,6 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;

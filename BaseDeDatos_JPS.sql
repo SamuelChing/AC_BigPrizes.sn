@@ -74,6 +74,9 @@ Create Table Premio
     FOREIGN KEY (PlanPremios) REFERENCES PlanPremios(Identificador)    
 );
 
+Select * From PlanPremios;
+Select * From Sorteo;
+Select * From Premio;
 #**********************************************************************************************************************
 #Tabla para el manejo de ganadores
 Create Table Ganador
@@ -240,24 +243,126 @@ Inner Join Sorteo as S
 On S.Numero = NumeroSorteo;
 
 #**********************************************************************************************************************
-#Vista Top 5 Para NUMEROS más jugados para lotería
-Create View Top5MasJugadosLoteria
+#Vista Top 10 Para NUMEROS más jugados para lotería
+Create View Top10MasJugadosLoteria
 As
 SELECT NumeroGanador, Count(NumeroGanador) as Cantidad
 FROM Ganador as G
 Where TipoSorteo = 'Lotería'
 Group by G.NumeroGanador
 ORDER BY Cantidad DESC
-LIMIT 5;
+LIMIT 10;
 
 #**********************************************************************************************************************
-#Vista Top 5 Para NUMEROS más jugados para chances
-Create View Top5MasJugadosChances
+#Vista Top 10 Para NUMEROS más jugados para chances
+Create View Top10MasJugadosChances
 As
 SELECT NumeroGanador , Count(NumeroGanador) as Cantidad
 FROM Ganador as G
 Where TipoSorteo = 'Chances'
 Group by G.NumeroGanador
 ORDER BY Cantidad DESC
+LIMIT 10;
+
+#**********************************************************************************************************************
+#Vista Top 10 Para NUMEROS más jugados para todos
+Create View Top10MasJugadosTodos
+As
+SELECT NumeroGanador , Count(NumeroGanador) as Cantidad
+FROM Ganador as G
+Group by G.NumeroGanador
+ORDER BY Cantidad DESC
+LIMIT 10;
+
+#**********************************************************************************************************************
+#Vista Top 5 Para NUMEROS más premiados para lotería
+Create View Top5MasPremiadosLoteria
+As
+SELECT NumeroGanador , Sum(MontoGanado) as MontoTotal
+FROM Ganador as G
+Where TipoSorteo = 'Lotería'
+Group by G.NumeroGanador
+ORDER BY MontoTotal DESC
 LIMIT 5;
 
+#**********************************************************************************************************************
+#Vista Top 5 Para NUMEROS más premiados para chances
+Create View Top5MasPremiadosChances
+As
+SELECT NumeroGanador , Sum(MontoGanado) as MontoTotal
+FROM Ganador as G
+Where TipoSorteo = 'Chances'
+Group by G.NumeroGanador
+ORDER BY MontoTotal DESC
+LIMIT 5;
+
+#**********************************************************************************************************************
+#Vista Top 5 Para NUMEROS más premiados para todos
+Create View Top5MasPremiadosTodos
+As
+SELECT NumeroGanador , Sum(MontoGanado) as MontoTotal
+FROM Ganador as G
+Group by G.NumeroGanador
+ORDER BY MontoTotal DESC
+LIMIT 5;
+
+#**********************************************************************************************************************
+#Vista que muestra el primer premio por sorteo asoiciado a su plan
+Create View PrimerPremioPorSorteo
+As
+Select Sorteo, Max(Monto) as PrimerPremio
+From PlanPremios as PP
+Inner Join Premio as P
+ON P.PlanPremios = PP.Identificador
+Group by Sorteo;
+
+#**********************************************************************************************************************
+#Vista para Top 5 más ganadores lotería
+Create View Top5MasGanadoresLoteria
+As
+SELECT NumeroGanador, Count(NumeroGanador) as Cantidad
+FROM Ganador as G
+Inner Join PrimerPremioPorSorteo AS PPS
+On PPS.Sorteo = G.NumeroSorteo and PPS.PrimerPremio = G.MontoGanado
+Where G.TipoSorteo = 'Lotería'
+Group by G.NumeroGanador
+ORDER BY Cantidad DESC
+LIMIT 5;
+
+#**********************************************************************************************************************
+#Vista para Top 5 más ganadores Chances
+Create View Top5MasGanadoresChances
+As
+SELECT NumeroGanador, Count(NumeroGanador) as Cantidad
+FROM Ganador as G
+Inner Join PrimerPremioPorSorteo AS PPS
+On PPS.Sorteo = G.NumeroSorteo and PPS.PrimerPremio = G.MontoGanado
+Where G.TipoSorteo = 'Chances'
+Group by G.NumeroGanador
+ORDER BY Cantidad DESC
+LIMIT 5;
+
+#**********************************************************************************************************************
+#Vista para Top 5 más ganadores todos
+Create View Top5MasGanadoresTodos
+As
+SELECT NumeroGanador, Count(NumeroGanador) as Cantidad
+FROM Ganador as G
+Inner Join PrimerPremioPorSorteo AS PPS
+On PPS.Sorteo = G.NumeroSorteo and PPS.PrimerPremio = G.MontoGanado
+Group by G.NumeroGanador
+ORDER BY Cantidad DESC
+LIMIT 5;
+
+#**********************************************************************************************************************
+Create View TotalPremiosLoteria
+as
+Select Count(Identificador) as Cantidad
+From Ganador as G
+Where G.TipoSorteo = 'Lotería'
+
+#**********************************************************************************************************************
+#Vista para probabilidad de un numero
+Create View ProbabilidadLoteria
+As
+Select 
