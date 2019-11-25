@@ -38,7 +38,6 @@ BEGIN
     end if;	    
 END //
 DELIMITER ;
-
 #**********************************************************************************************************************
 #Tabla para el manejo de Sorteos
 Create Table Sorteo

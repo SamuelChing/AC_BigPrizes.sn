@@ -26,10 +26,10 @@ public class AC_Proyecto {
         ControladorGUI.CrearControlador();
         
         //  Se crea la ventana inicial
-        Login login = new Login();
-        login.setVisible(true); 
-        //Ventana V1 = new Ventana();
-        //V1.setVisible(true);
+        //Login login = new Login();
+        //login.setVisible(true); 
+        Ventana V1 = new Ventana();
+        V1.setVisible(true);
     }
     
 }

@@ -47,7 +47,7 @@ public class Ventana extends javax.swing.JFrame {
         ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos;", Tabla_Sorteos);
         ControladorGUI.getControlador().LlenarTablaConsulta("Select * From SorteosParaJugar", Tabla_Sorteos_Jugar);        
         ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Planes;", Tabla_Plan_Premios);
-        ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos where Estado = 'Jugado';", Tabla_Sorteos_Reporte);                
+        ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteo where Estado = 'Jugado';", Tabla_Sorteos_Reporte);                
         
         DefaultTableModel model = (DefaultTableModel)Tabla_Premios.getModel();
         model.setRowCount(0);           
@@ -123,6 +123,7 @@ public class Ventana extends javax.swing.JFrame {
         Panal_Reporte_Ganadores = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla_Ganadores_Reporte = new javax.swing.JTable();
+        btn_exportar = new javax.swing.JButton();
         Panel_Jugar = new javax.swing.JPanel();
         Panel_Contenedor_Sorteos_Jugar = new javax.swing.JPanel();
         jScrollPane10 = new javax.swing.JScrollPane();
@@ -712,10 +713,7 @@ public class Ventana extends javax.swing.JFrame {
 
         Tabla_Encabezado_Reporte.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
 
@@ -728,10 +726,7 @@ public class Ventana extends javax.swing.JFrame {
 
         Tabla_Premios_Reporte.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
 
@@ -748,10 +743,7 @@ public class Ventana extends javax.swing.JFrame {
 
         Tabla_Ganadores_Reporte.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
 
@@ -777,6 +769,18 @@ public class Ventana extends javax.swing.JFrame {
         );
 
         Panel_Reporte.add(Panal_Reporte_Ganadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 480, 230));
+
+        btn_exportar.setBackground(new java.awt.Color(51, 102, 255));
+        btn_exportar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_exportar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_exportar.setText("Exportar");
+        btn_exportar.setBorder(null);
+        btn_exportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_exportarActionPerformed(evt);
+            }
+        });
+        Panel_Reporte.add(btn_exportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, 170, 40));
 
         Panel_Contenedor_Administrativo.addTab("Reportes", Panel_Reporte);
 
@@ -1949,6 +1953,18 @@ public class Ventana extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Campo_Numero_PlanKeyReleased
 
+    private void btn_exportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exportarActionPerformed
+        // TODO add your handling code here:
+        try
+        {
+            String Largo = Tabla_Encabezado_Reporte.getValueAt(0, 0).toString();
+            
+            
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error, debe generar el reporte primero", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_exportarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2094,6 +2110,7 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JButton btn_eliminar_plan;
     private javax.swing.JButton btn_eliminar_premio;
     private javax.swing.JButton btn_eliminar_sorteo;
+    private javax.swing.JButton btn_exportar;
     private javax.swing.JButton btn_generar_plan;
     private javax.swing.JButton btn_jugar;
     private javax.swing.JButton btn_ver_reporte;
