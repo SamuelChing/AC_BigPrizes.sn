@@ -2587,10 +2587,11 @@
                       <Font name="Segoe UI" size="14" style="0"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
-                        <StringItem index="0" value="Top 5 m&#xe1;s ganadores"/>
-                        <StringItem index="1" value="Probabilidad de n&#xfa;meros"/>
-                        <StringItem index="2" value="Top 5 m&#xe1;s premiados"/>
+                      <StringArray count="4">
+                        <StringItem index="0" value="Top 5 n&#xfa;mero m&#xe1;s jugados"/>
+                        <StringItem index="1" value="Top 5 m&#xe1;s ganadores"/>
+                        <StringItem index="2" value="Probabilidad de n&#xfa;meros"/>
+                        <StringItem index="3" value="Top 5 m&#xe1;s premiados"/>
                       </StringArray>
                     </Property>
                   </Properties>

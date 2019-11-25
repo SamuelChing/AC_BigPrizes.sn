@@ -55,7 +55,7 @@ public class ReproductorAnimacion extends Thread{
         while(TempArray != null)
         {               
             //  Se da play al efecto
-            //Sonido("Loteria.mp3");
+            Sonido("Loteria.mp3");
             //  Se muestran los números            
             Numero.setText("Número: "+TempArray[0]);
             Serie.setText("Serie: "+TempArray[1]);

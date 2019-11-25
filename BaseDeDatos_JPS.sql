@@ -87,7 +87,6 @@ Create Table Ganador
     
     FOREIGN KEY (NumeroSorteo) REFERENCES Sorteo(Numero)
 );
-
 #**********************************************************************************************************************
 DELIMITER //
 CREATE Function ManejoGanadores
@@ -240,5 +239,25 @@ From Ganador
 Inner Join Sorteo as S
 On S.Numero = NumeroSorteo;
 
+#**********************************************************************************************************************
+#Vista Top 5 Para NUMEROS más jugados para lotería
+Create View Top5MasJugadosLoteria
+As
+SELECT NumeroGanador, Count(NumeroGanador) as Cantidad
+FROM Ganador as G
+Where TipoSorteo = 'Lotería'
+Group by G.NumeroGanador
+ORDER BY Cantidad DESC
+LIMIT 5;
 
+#**********************************************************************************************************************
+#Vista Top 5 Para NUMEROS más jugados para chances
+Create View Top5MasJugadosChances
+As
+SELECT NumeroGanador , Count(NumeroGanador) as Cantidad
+FROM Ganador as G
+Where TipoSorteo = 'Chances'
+Group by G.NumeroGanador
+ORDER BY Cantidad DESC
+LIMIT 5;
 

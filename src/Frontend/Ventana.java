@@ -1520,7 +1520,7 @@ public class Ventana extends javax.swing.JFrame {
         Panel_Estadisticas.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, -1, -1));
 
         CB_Consulta_estadistica.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        CB_Consulta_estadistica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Top 5 más ganadores", "Probabilidad de números", "Top 5 más premiados" }));
+        CB_Consulta_estadistica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Top 5 número más jugados", "Top 5 más ganadores", "Probabilidad de números", "Top 5 más premiados" }));
         Panel_Estadisticas.add(CB_Consulta_estadistica, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, 170, 30));
 
         btn_buscar_estadisticas.setBackground(new java.awt.Color(255, 153, 0));
@@ -1677,6 +1677,25 @@ public class Ventana extends javax.swing.JFrame {
 
     private void btn_buscar_estadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscar_estadisticasActionPerformed
         // TODO add your handling code here:
+        int Consulta = CB_Consulta_estadistica.getSelectedIndex();
+        int Filtro = CB_Filtro_estadistica.getSelectedIndex();
+        
+        switch(Consulta)
+        {
+            case 0:
+                if(Filtro == 0){
+                    ControladorGUI.getControlador().LlenarTablaConsulta("Select NumeroGanador as 'Número', Cantidad as 'Veces que jugó' From Top5MasJugadosLoteria;", Tabla_Estadisticas);
+                }else{
+                    ControladorGUI.getControlador().LlenarTablaConsulta("Select NumeroGanador as 'Número', Cantidad as 'Veces que jugó' From Top5MasJugadosChances;", Tabla_Estadisticas);
+                }
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
     }//GEN-LAST:event_btn_buscar_estadisticasActionPerformed
 
     private void btn_buscar_exportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscar_exportarActionPerformed
