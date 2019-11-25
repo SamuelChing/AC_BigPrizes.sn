@@ -74,9 +74,6 @@ Create Table Premio
     FOREIGN KEY (PlanPremios) REFERENCES PlanPremios(Identificador)    
 );
 
-Select * From PlanPremios;
-Select * From Sorteo;
-Select * From Premio;
 #**********************************************************************************************************************
 #Tabla para el manejo de ganadores
 Create Table Ganador
@@ -355,14 +352,74 @@ ORDER BY Cantidad DESC
 LIMIT 5;
 
 #**********************************************************************************************************************
-Create View TotalPremiosLoteria
+#Vista para ver la cantidad de Ganadores totales de lotería
+Create View TotalGanadoresLoteria
 as
 Select Count(Identificador) as Cantidad
 From Ganador as G
-Where G.TipoSorteo = 'Lotería'
+Where G.TipoSorteo = 'Lotería';
 
 #**********************************************************************************************************************
-#Vista para probabilidad de un numero
-Create View ProbabilidadLoteria
+#Vista para ver la cantidad de Ganadores totales de lotería
+Create View TotalGanadoresChances
+as
+Select Count(Identificador) as Cantidad
+From Ganador as G
+Where G.TipoSorteo = 'Chances';
+
+#**********************************************************************************************************************
+#Vista para ver la cantidad de Ganadores totales
+Create View TotalGanadoresTodos
+as
+Select Count(Identificador) as Cantidad
+From Ganador as G;
+
+#**********************************************************************************************************************
+Create View VecesSalidoLoteria
 As
-Select 
+SELECT NumeroGanador , Count(NumeroGanador) as Cantidad
+FROM Ganador as G
+Where G.TipoSorteo = 'Lotería'
+Group by G.NumeroGanador;
+
+#**********************************************************************************************************************
+Create View VecesSalidoChances
+As
+SELECT NumeroGanador , Count(NumeroGanador) as Cantidad
+FROM Ganador as G
+Where G.TipoSorteo = 'Chances'
+Group by G.NumeroGanador;
+
+#**********************************************************************************************************************
+Create View VecesSalidoTodos
+As
+SELECT NumeroGanador , Count(NumeroGanador) as Cantidad
+FROM Ganador as G
+Group by G.NumeroGanador;
+
+#**********************************************************************************************************************
+#Vista para probabilidad de un numero en lotería
+Create View ProbabilidadLoteria
+As 
+Select NumeroGanador, (VL.Cantidad/TG.Cantidad) as Probabilidad
+From VecesSalidoLoteria as VL
+Inner Join TotalGanadoresLoteria as TG;
+
+#**********************************************************************************************************************
+#Vista para probabilidad de un numero en chances
+Create View ProbabilidadChances
+As 
+Select NumeroGanador, (VL.Cantidad/TG.Cantidad) as Probabilidad
+From VecesSalidoChances as VL
+Inner Join TotalGanadoresChances as TG;
+
+#**********************************************************************************************************************
+#Vista para probabilidad de un numero en todos los sorteos
+Create View ProbabilidadTodos
+As 
+Select NumeroGanador, (VL.Cantidad/TG.Cantidad) as Probabilidad
+From VecesSalidoTodos as VL
+Inner Join TotalGanadoresTodos as TG;
+
+
+

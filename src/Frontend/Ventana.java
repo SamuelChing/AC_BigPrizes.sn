@@ -1636,6 +1636,13 @@ public class Ventana extends javax.swing.JFrame {
                 }
                 break;
             case 2:
+                if(Filtro == 0){
+                    ControladorGUI.getControlador().LlenarTablaConsulta("Select NumeroGanador as 'Número', Probabilidad as 'Probabilidad de jugar' From ProbabilidadLoteria;", Tabla_Estadisticas);
+                }if(Filtro == 1){
+                    ControladorGUI.getControlador().LlenarTablaConsulta("Select NumeroGanador as 'Número', Probabilidad as 'Probabilidad de jugar' From ProbabilidadChances;", Tabla_Estadisticas);
+                }if(Filtro == 2){
+                    ControladorGUI.getControlador().LlenarTablaConsulta("Select NumeroGanador as 'Número', Probabilidad as 'Probabilidad de jugar' From ProbabilidadTodos;", Tabla_Estadisticas);
+                }
                 break;
             case 3:
                 if(Filtro == 0){
