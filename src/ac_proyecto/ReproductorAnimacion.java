@@ -62,7 +62,7 @@ public class ReproductorAnimacion extends Thread{
             String[] TempArray = Sorteo.GirarTombola();
             while(TempArray != null)
             {                               
-                //Sonido("Loteria.mp3");
+                Sonido("Loteria.mp3");
                 Numero.setText("");
                 Serie.setText("");
                 Premio.setText("");
