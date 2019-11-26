@@ -128,6 +128,8 @@ public class Ventana extends javax.swing.JFrame {
         Panal_Reporte_Ganadores = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla_Ganadores_Reporte = new javax.swing.JTable();
+        btn_Filtrar_Sorteo_Reporte = new javax.swing.JButton();
+        CB_Tipo_Sorteo_Reporte = new javax.swing.JComboBox<>();
         btn_exportar = new javax.swing.JButton();
         Panel_Jugar = new javax.swing.JPanel();
         Panel_Contenedor_Sorteos_Jugar = new javax.swing.JPanel();
@@ -699,7 +701,7 @@ public class Ventana extends javax.swing.JFrame {
                 btn_ver_reporteActionPerformed(evt);
             }
         });
-        Panel_Reporte.add(btn_ver_reporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 180, 40));
+        Panel_Reporte.add(btn_ver_reporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 110, 40));
 
         Tabla_Sorteos_Reporte.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -775,7 +777,23 @@ public class Ventana extends javax.swing.JFrame {
 
         Panel_Reporte.add(Panal_Reporte_Ganadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 480, 230));
 
-        btn_exportar.setBackground(new java.awt.Color(51, 102, 255));
+        btn_Filtrar_Sorteo_Reporte.setBackground(new java.awt.Color(51, 102, 255));
+        btn_Filtrar_Sorteo_Reporte.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_Filtrar_Sorteo_Reporte.setForeground(new java.awt.Color(255, 255, 255));
+        btn_Filtrar_Sorteo_Reporte.setText("Filtrar");
+        btn_Filtrar_Sorteo_Reporte.setBorder(null);
+        btn_Filtrar_Sorteo_Reporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Filtrar_Sorteo_ReporteActionPerformed(evt);
+            }
+        });
+        Panel_Reporte.add(btn_Filtrar_Sorteo_Reporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 120, 40));
+
+        CB_Tipo_Sorteo_Reporte.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        CB_Tipo_Sorteo_Reporte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lotería", "Chances", "Ambos" }));
+        Panel_Reporte.add(CB_Tipo_Sorteo_Reporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 100, 40));
+
+        btn_exportar.setBackground(new java.awt.Color(255, 153, 0));
         btn_exportar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btn_exportar.setForeground(new java.awt.Color(255, 255, 255));
         btn_exportar.setText("Exportar");
@@ -785,7 +803,7 @@ public class Ventana extends javax.swing.JFrame {
                 btn_exportarActionPerformed(evt);
             }
         });
-        Panel_Reporte.add(btn_exportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, 170, 40));
+        Panel_Reporte.add(btn_exportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 120, 40));
 
         Panel_Contenedor_Administrativo.addTab("Reportes", Panel_Reporte);
 
@@ -1970,15 +1988,22 @@ public class Ventana extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Campo_Numero_PlanKeyReleased
 
+    private void btn_Filtrar_Sorteo_ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Filtrar_Sorteo_ReporteActionPerformed
+        // TODO add your handling code here:
+                // TODO add your handling code here:
+        String TipoSorteo = CB_Tipo_Sorteo_Reporte.getSelectedItem().toString();
+        if(TipoSorteo.equals("Ambos"))
+        {
+            ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteo where Estado = 'Jugado';", Tabla_Sorteos_Reporte);                
+        }
+        else
+        {
+            ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteo where Estado = 'Jugado' and Tipo = '"+TipoSorteo+"';", Tabla_Sorteos_Reporte);                
+        }        
+    }//GEN-LAST:event_btn_Filtrar_Sorteo_ReporteActionPerformed
+
     private void btn_exportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exportarActionPerformed
         // TODO add your handling code here:
-        try
-        {
-            String Largo = Tabla_Encabezado_Reporte.getValueAt(0, 0).toString();
-            
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Error, debe generar el reporte primero", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
-        }
     }//GEN-LAST:event_btn_exportarActionPerformed
 
     /**
@@ -2034,6 +2059,7 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> CB_Tipo_Sorteo;
     private javax.swing.JComboBox<String> CB_Tipo_Sorteo_Ganador;
     private javax.swing.JComboBox<String> CB_Tipo_Sorteo_Jugar;
+    private javax.swing.JComboBox<String> CB_Tipo_Sorteo_Reporte;
     private javax.swing.JSpinner Campo_Cantidad_Premio;
     private javax.swing.JSpinner Campo_Fracciones_Sorteo;
     private javax.swing.JTextField Campo_Leyenda_Sorteo;
@@ -2117,6 +2143,7 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JTable Tabla_Sorteos_Reporte;
     private javax.swing.JButton btn_Buscar;
     private javax.swing.JButton btn_Filtrar_Sorteo_Jugar;
+    private javax.swing.JButton btn_Filtrar_Sorteo_Reporte;
     private javax.swing.JButton btn_Sorteos_Planes;
     private javax.swing.JButton btn_agregar_premio;
     private javax.swing.JButton btn_agregar_sorteo;
