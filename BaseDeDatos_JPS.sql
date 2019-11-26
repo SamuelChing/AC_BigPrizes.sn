@@ -452,8 +452,6 @@ Where G.TipoSorteo = 'Lotería'
 Order by Identificador Desc
 Limit 1;
 
-Select * From Ganador
-
 #**********************************************************************************************************************
 #Vista para el premio mayor del ultimo sorteo lotería
 Create View PremioMayorLoteria
@@ -482,8 +480,6 @@ From UltimoSorteoChances
 Inner Join Ganador as G
 On G.NumeroSorteo = Maximo
 Order By G.MontoGanado Desc;
-
-Select * From 
 
 
 
