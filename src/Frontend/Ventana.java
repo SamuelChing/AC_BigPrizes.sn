@@ -9,6 +9,7 @@ import Controlador.ControladorDB;
 import Controlador.ControladorGUI;
 import ac_proyecto.ReproductorAnimacion;
 import ac_proyecto.Sorteo;
+import ac_proyecto.Utilitarios;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -20,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Ventana extends javax.swing.JFrame {
     
+    Utilitarios Validar = new Utilitarios();
     /**
      * Creates new form VClientes
      */
@@ -1697,9 +1699,13 @@ public class Ventana extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error, espacios vacíos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
         }
         else{
-            try{                    
-                ControladorDB.getControlador().ManejoSorteo(1, Leyenda, Fecha, Tipo, Integer.parseInt(Fracciones), Integer.parseInt(Precio), 0);                
-                Recargar();
+            try{         
+                if(Validar.ValidarFecha(Tipo, Fecha)){
+                    ControladorDB.getControlador().ManejoSorteo(1, Leyenda, Fecha, Tipo, Integer.parseInt(Fracciones), Integer.parseInt(Precio), 0);                
+                    Recargar();
+                }else{
+                   JOptionPane.showMessageDialog(null, "Error, día incorrecto para jugar el sorteo", "Mensaje de error", JOptionPane.ERROR_MESSAGE); 
+                }                
             }
             catch(Exception ex){                    
                 JOptionPane.showMessageDialog(null, "Error, el dato ingresado como precio es incorrecto", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
@@ -1958,7 +1964,6 @@ public class Ventana extends javax.swing.JFrame {
         try
         {
             String Largo = Tabla_Encabezado_Reporte.getValueAt(0, 0).toString();
-            
             
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Error, debe generar el reporte primero", "Mensaje de error", JOptionPane.ERROR_MESSAGE);

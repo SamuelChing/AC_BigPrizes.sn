@@ -81,6 +81,7 @@ public class ControladorDB
                 JOptionPane.showMessageDialog(null, "Sorteo eliminado con éxito", "Mensaje de éxito", JOptionPane.INFORMATION_MESSAGE);                    
                 break;
             case "3":
+                JOptionPane.showMessageDialog(null, "Sorteo finalizado", "Mensaje de éxito", JOptionPane.INFORMATION_MESSAGE);
                 break;
             case "4":
                 JOptionPane.showMessageDialog(null, "Sorteo actualizado con éxito", "Mensaje de éxito", JOptionPane.INFORMATION_MESSAGE);                    

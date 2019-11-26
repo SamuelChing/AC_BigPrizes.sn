@@ -38,6 +38,7 @@ BEGIN
     end if;	    
 END //
 DELIMITER ;
+
 #**********************************************************************************************************************
 #Tabla para el manejo de Sorteos
 Create Table Sorteo
@@ -205,12 +206,13 @@ Where Estado = 'Sin jugar';
 #Vista para los planes de premios
 Create View Planes
 As
-SELECT Identificador,S.Leyenda as 'Sorteo', 
+SELECT Identificador,S.Leyenda as 'Sorteo',
 (Select Count(Identificador) as Cantidad FROM Premio where PlanPremios = PP.Identificador) as 'Cantidad de premios',
 (Select SUM(Monto*Cantidad) FROM Premio where PlanPremios = PP.Identificador) as 'Monto Total'
 FROM PlanPremios as PP
-Inner Join Sorteo as S
+Inner Join Sorteos as S
 On S.Numero = PP.Sorteo;
+
 
 #**********************************************************************************************************************
 #Vista para sorteos que no tengan plan de premios
