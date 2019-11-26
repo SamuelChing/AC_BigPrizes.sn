@@ -576,11 +576,11 @@ public class Ventana extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Monto", "Cantidad"
+                "Monto", "Cantidad", "Plan de premio"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1847,23 +1847,27 @@ public class Ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(Tabla_Premios.getRowCount()>2){            
             if(CB_Numero_Sorteo.getItemCount()>0){
-                String IdentificadorSorteo = CB_Numero_Sorteo.getSelectedItem().toString();                
-                if(ControladorDB.getControlador().ManejoPlanPremios(1,0,0,Integer.parseInt(IdentificadorSorteo))){
-                    String Identificador = ControladorGUI.getControlador().getDatoCosnulta("Select * From PlanPremios Where PlanPremios.Sorteo = "+IdentificadorSorteo+";");
-                    //  Se procede a hacer un inser en cascada del plan de premios
-                    for(int Fila = 0; Fila<Tabla_Premios.getRowCount();Fila++){
-                        int Monto = Integer.parseInt(Tabla_Premios.getValueAt(Fila, 0).toString());
-                        int Cantidad = Integer.parseInt(Tabla_Premios.getValueAt(Fila, 1).toString());
-                        if(ControladorDB.getControlador().ManejoPlanPremios(2,Monto,Cantidad,Integer.parseInt(Identificador))){
-                            //  En esta sección se debería hacer un registro de bitácora
-                        }else{
-                            JOptionPane.showMessageDialog(null, "Error, no se pudo agregar el plan de premios", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+                String IdentificadorSorteo = CB_Numero_Sorteo.getSelectedItem().toString();
+                String TipoSorteo = ControladorGUI.getControlador().getDatoCosnulta("Select Tipo From Sorteo Where Numero = "+IdentificadorSorteo+";");
+                if(Validar.PremiosMontoCantidad(Tabla_Premios,TipoSorteo))
+                {                    
+                    if(ControladorDB.getControlador().ManejoPlanPremios(1,0,0,Integer.parseInt(IdentificadorSorteo))){
+                        String Identificador = ControladorGUI.getControlador().getDatoCosnulta("Select * From PlanPremios Where PlanPremios.Sorteo = "+IdentificadorSorteo+";");
+                        //  Se procede a hacer un inser en cascada del plan de premios
+                        for(int Fila = 0; Fila<Tabla_Premios.getRowCount();Fila++){
+                            int Monto = Integer.parseInt(Tabla_Premios.getValueAt(Fila, 0).toString());
+                            int Cantidad = Integer.parseInt(Tabla_Premios.getValueAt(Fila, 1).toString());
+                            if(ControladorDB.getControlador().ManejoPlanPremios(2,Monto,Cantidad,Integer.parseInt(Identificador))){
+                                //  En esta sección se debería hacer un registro de bitácora
+                            }else{
+                                JOptionPane.showMessageDialog(null, "Error, no se pudo agregar el plan de premios", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+                            }
                         }
-                    }
-                    JOptionPane.showMessageDialog(null, "Plan de premios agregado con éxito", "Mensaje de éxito", JOptionPane.INFORMATION_MESSAGE);
-                    Recargar();
-                }else{
-                    JOptionPane.showMessageDialog(null, "Error, no se pudo agregar el plan de premios", "Mensaje de error", JOptionPane.ERROR_MESSAGE);}
+                        JOptionPane.showMessageDialog(null, "Plan de premios agregado con éxito", "Mensaje de éxito", JOptionPane.INFORMATION_MESSAGE);
+                        Recargar();
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Error, no se pudo agregar el plan de premios", "Mensaje de error", JOptionPane.ERROR_MESSAGE);}
+                }                
             }else{
                 JOptionPane.showMessageDialog(null, "Error, no existe sorteo sin plan de premios", "Mensaje de error", JOptionPane.ERROR_MESSAGE);}
         }else{
@@ -1878,7 +1882,7 @@ public class Ventana extends javax.swing.JFrame {
             if(Monto>0){
                 DefaultTableModel model = (DefaultTableModel)Tabla_Premios.getModel();
                 String[] row = new String[]{""+Monto,""+Cantidad,"Nuevo"};
-                model.addRow(row);                
+                model.addRow(row);               
             }
             else{
                 JOptionPane.showMessageDialog(null, "Error, el monto debe ser entero positivo", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
@@ -1905,21 +1909,26 @@ public class Ventana extends javax.swing.JFrame {
         int Fila = Tabla_Plan_Premios.getSelectedRow();
         if(Fila >= 0){
             String Identificador = Tabla_Plan_Premios.getValueAt(Fila, 0).toString();
-            if(ControladorDB.getControlador().ManejoPlanPremios(4,0,0,Integer.parseInt(Identificador))){                    
-                //  Se procede a hacer un inser en cascada del plan de premios
-                for(int FilaPremios = 0; FilaPremios<Tabla_Premios.getRowCount();FilaPremios++){
-                    int Monto = Integer.parseInt(Tabla_Premios.getValueAt(FilaPremios, 0).toString());
-                    int Cantidad = Integer.parseInt(Tabla_Premios.getValueAt(FilaPremios, 1).toString());
-                    if(ControladorDB.getControlador().ManejoPlanPremios(2,Monto,Cantidad,Integer.parseInt(Identificador))){
-                        //  En esta sección se debería hacer un registro de bitácora
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Error, no se pudo actualizar el plan de premios", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+            String IdentificadorSorteo = ControladorGUI.getControlador().getDatoCosnulta("Select Sorteo From PlanPremios Where Identificador = "+Identificador+";");
+            String TipoSorteo = ControladorGUI.getControlador().getDatoCosnulta("Select Tipo From Sorteo Where Numero = "+IdentificadorSorteo+";");            
+            if(Validar.PremiosMontoCantidad(Tabla_Premios,TipoSorteo))
+            {                    
+                if(ControladorDB.getControlador().ManejoPlanPremios(4,0,0,Integer.parseInt(Identificador))){                    
+                    //  Se procede a hacer un inser en cascada del plan de premios
+                    for(int FilaPremios = 0; FilaPremios<Tabla_Premios.getRowCount();FilaPremios++){
+                        int Monto = Integer.parseInt(Tabla_Premios.getValueAt(FilaPremios, 0).toString());
+                        int Cantidad = Integer.parseInt(Tabla_Premios.getValueAt(FilaPremios, 1).toString());
+                        if(ControladorDB.getControlador().ManejoPlanPremios(2,Monto,Cantidad,Integer.parseInt(Identificador))){
+                            //  En esta sección se debería hacer un registro de bitácora
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Error, no se pudo actualizar el plan de premios", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+                        }
                     }
-                }
-                JOptionPane.showMessageDialog(null, "Plan de premios actualizado con éxito", "Mensaje de éxito", JOptionPane.INFORMATION_MESSAGE);
-                Recargar();
-            }else{
-                JOptionPane.showMessageDialog(null, "Error, el plan de premios pertenece a sorteo ya jugado", "Mensaje de error", JOptionPane.ERROR_MESSAGE);}
+                    JOptionPane.showMessageDialog(null, "Plan de premios actualizado con éxito", "Mensaje de éxito", JOptionPane.INFORMATION_MESSAGE);
+                    Recargar();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Error, el plan de premios pertenece a sorteo ya jugado", "Mensaje de error", JOptionPane.ERROR_MESSAGE);}
+            }                         
         }else{
             JOptionPane.showMessageDialog(null, "Error, debe seleccionar un plan de premios", "Mensaje de error", JOptionPane.ERROR_MESSAGE);}
     }//GEN-LAST:event_btn_editar_planActionPerformed

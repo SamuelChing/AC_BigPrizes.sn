@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  * Clase Contralador que permite hacer una solicitud a a base de datos
- * @author Nahum
+ * @author SAMUEL
  */
 public class ControladorDB 
 {    
@@ -67,7 +67,16 @@ public class ControladorDB
         }                                        
         Objeto.dispose();// Cierra la ventana login        
     }            
-    
+    /**
+     * Método que maneja las consultas a sorteos
+     * @param Cmd
+     * @param Leyenda
+     * @param Fecha
+     * @param Tipo
+     * @param CantFraciones
+     * @param PrecioBillete
+     * @param Identificador 
+     */
     public void ManejoSorteo(int Cmd, String Leyenda, String Fecha, String Tipo, int CantFraciones, int PrecioBillete, int Identificador)
     {        
         String Consulta = "SELECT ManejoSorteo("+Cmd+",'"+Leyenda+"','"+Fecha+"','"+Tipo+"',"+CantFraciones+","+PrecioBillete+","+Identificador+");";        
@@ -89,6 +98,14 @@ public class ControladorDB
         }        
     }  
     
+    /**
+     * Método que maneja las consultas a planes de premio
+     * @param Cmd
+     * @param Monto
+     * @param Cantidad
+     * @param Identificador
+     * @return true o false
+     */
     public boolean ManejoPlanPremios(int Cmd, int Monto,int Cantidad, int Identificador)
     {
         String Consulta = "Select ManejoPlanDePremio("+Cmd+","+Monto+","+Cantidad+","+Identificador+");";
@@ -107,6 +124,16 @@ public class ControladorDB
         return false;
     }
     
+    /**
+     * Método que maneja las consultas de ganadores
+     * @param Cmd
+     * @param Sorteo
+     * @param Tipo
+     * @param Numero
+     * @param Serie
+     * @param Monto
+     * @return true o false
+     */
     public boolean ManejoGanadores(int Cmd, int Sorteo, String Tipo, int Numero, int Serie, int Monto)
     {
         String Consulta = "Select ManejoGanadores("+Cmd+","+Sorteo+",'"+Tipo+"',"+Numero+","+Serie+","+Monto+");";
