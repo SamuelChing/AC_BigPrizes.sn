@@ -24,7 +24,7 @@ import javazoom.jl.player.Player;
  * @author Nahum
  */
 public class ReproductorAnimacion extends Thread{
-
+    
     private String Sonido;
     private JLabel Imagen;
     private JLabel Numero;
@@ -33,8 +33,9 @@ public class ReproductorAnimacion extends Thread{
     private Sorteo Sorteo;
     private Ventana ventana;    
     private JTable TablaUpdate;
+    private int opcion;
 
-    public ReproductorAnimacion(String Sonido, JLabel Imagen, JLabel Numero, JLabel Serie, JLabel Premio, Sorteo Sorteo, Ventana ventana, JTable TablaUpdate) {
+    public ReproductorAnimacion(String Sonido, JLabel Imagen, JLabel Numero, JLabel Serie, JLabel Premio, Sorteo Sorteo, Ventana ventana, JTable TablaUpdate, int opcion) {
         this.Sonido = Sonido;
         this.Imagen = Imagen;
         this.Numero = Numero;
@@ -42,40 +43,66 @@ public class ReproductorAnimacion extends Thread{
         this.Premio = Premio;
         this.Sorteo = Sorteo;
         this.ventana = ventana;
-        this.TablaUpdate = TablaUpdate;        
+        this.TablaUpdate = TablaUpdate;
+        this.opcion = opcion;
     }
+
+        
+    
     
     @Override
     public void run()
-    {        
-        //  Se muestra la tombola
-        Imagen.setVisible(true);
-        Imagen.update(Imagen.getGraphics());
-        String[] TempArray = Sorteo.GirarTombola();
-        while(TempArray != null)
-        {               
-            //  Se da play al efecto
-            Sonido("Loteria.mp3");
-            //  Se muestran los números            
-            Numero.setText("Número: "+TempArray[0]);
-            Serie.setText("Serie: "+TempArray[1]);
-            Premio.setText("Premio: "+TempArray[2]);
+    {    
+        try{
+        if(opcion == 1)
+        {            
+            //  Se muestra la tombola
+            Imagen.setVisible(true);
+            Imagen.update(Imagen.getGraphics());
+            String[] TempArray = Sorteo.GirarTombola();
+            while(TempArray != null)
+            {                               
+                Sonido("Loteria.mp3");
+                Numero.setText("");
+                Serie.setText("");
+                Premio.setText("");
+                //  Se despliegan en pantalla
+                Numero.update(Numero.getGraphics());
+                Serie.update(Serie.getGraphics());
+                Premio.update(Premio.getGraphics());
+                                
+                //  Se da play al efecto                
+                //  Se muestran los números            
+                Numero.setText("Número: "+TempArray[0]);
+                Serie.setText("Serie: "+TempArray[1]);
+                Premio.setText("Premio: "+TempArray[2]);
+                //  Se despliegan en pantalla
+                Numero.update(Numero.getGraphics());
+                Serie.update(Serie.getGraphics());
+                Premio.update(Premio.getGraphics());
+                //  Play efecto premio                
+
+                //  Se guardan los datos del ganador            
+                ControladorDB.getControlador().ManejoGanadores(1,Sorteo.getNumero(),Sorteo.getTipo(),Integer.parseInt(TempArray[0]),Integer.parseInt(TempArray[1]),Integer.parseInt(TempArray[2]));
+                ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Ganador Where NumeroSorteo = "+Sorteo.getNumero(), TablaUpdate);
+                //  Se continúa con el siguiente premio
+                TempArray = Sorteo.GirarTombola();
+            }
+            Imagen.setVisible(false);
+            Imagen.update(Imagen.getGraphics());  
+            Numero.setText("");
+            Serie.setText("");
+            Premio.setText("");
             //  Se despliegan en pantalla
             Numero.update(Numero.getGraphics());
             Serie.update(Serie.getGraphics());
             Premio.update(Premio.getGraphics());
-            //  Play efecto premio
-            Sonido("Premio.mp3");
-            //  Se guardan los datos del ganador            
-            ControladorDB.getControlador().ManejoGanadores(1,Sorteo.getNumero(),Sorteo.getTipo(),Integer.parseInt(TempArray[0]),Integer.parseInt(TempArray[1]),Integer.parseInt(TempArray[2]));
-            ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Ganador Where NumeroSorteo = "+Sorteo.getNumero(), TablaUpdate);
-            //  Se continúa con el siguiente premio
-            TempArray = Sorteo.GirarTombola();
-        }
-        Imagen.setVisible(false);
-        Imagen.update(Imagen.getGraphics());  
-        ControladorDB.getControlador().ManejoSorteo(3, "", "12/10/15", "", 0, 0, Sorteo.getNumero());            
-        ventana.Recargar();
+            ControladorDB.getControlador().ManejoSorteo(3, "", "12/10/15", "", 0, 0, Sorteo.getNumero());            
+            ventana.Recargar();              
+        }else{
+            Sonido(Sonido);
+        }       
+        }catch(Exception ex){}
     }    
     public void Sonido(String Sonido)
     {
@@ -83,7 +110,8 @@ public class ReproductorAnimacion extends Thread{
             BufferedInputStream buffer = new BufferedInputStream(new FileInputStream(Sonido));
             Player player = new Player(buffer);
             player.play();
-        } catch(Exception ex){            
+        } catch(Exception ex){ 
+            System.out.println(ex);
             this.interrupt();
         }
     }

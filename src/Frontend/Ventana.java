@@ -53,6 +53,9 @@ public class Ventana extends javax.swing.JFrame {
         
         DefaultTableModel model = (DefaultTableModel)Tabla_Premios.getModel();
         model.setRowCount(0);           
+        
+        DefaultTableModel mode2 = (DefaultTableModel)Tabla_Resultado_Jugar.getModel();
+        mode2.setRowCount(0);
                 
         Label_Bolitas.setVisible(false);
         LB_Imagen_Triste.setVisible(false);
@@ -1629,10 +1632,18 @@ public class Ventana extends javax.swing.JFrame {
 
                     LB_Contenido_Resultado.setText(ContenidoGanador);                    
                     LB_Contenido_Resultado.setVisible(true);
+                    LB_Contenido_Resultado.update(LB_Contenido_Resultado.getGraphics());
+                    LB_Titulo_Resultado.update(LB_Titulo_Resultado.getGraphics());
+                    ReproductorAnimacion RA = new ReproductorAnimacion("Gane.mp3",null,null,null,null,null,this,null,0);
+                    RA.start();
                 }else{
                     LB_Titulo_Resultado.setText("Billete sin premio");
                     LB_Imagen_Triste.setVisible(true);
                     LB_Contenido_Resultado.setVisible(false);
+                    LB_Contenido_Resultado.update(LB_Contenido_Resultado.getGraphics());
+                    LB_Imagen_Triste.update(LB_Imagen_Triste.getGraphics());                                        
+                    ReproductorAnimacion RA = new ReproductorAnimacion("Perdedor.mp3",null,null,null,null,null,this,null,0);
+                    RA.start();
                 }
             }else{
                 JOptionPane.showMessageDialog(null, "Error, los números deben ser enteros positivos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
@@ -1786,7 +1797,7 @@ public class Ventana extends javax.swing.JFrame {
             String Identificador = Tabla_Sorteos_Jugar.getValueAt(Fila, 0).toString();
             try{                
                 Sorteo TempSorteo = ControladorGUI.getControlador().MapeoSorte(Identificador);                
-                ReproductorAnimacion RA = new ReproductorAnimacion("Loteria.mp3", Label_Bolitas, Label_Numero_Ganador, Label_Serie_Ganador, Label_Premio_Ganador,TempSorteo,this,Tabla_Resultado_Jugar);                
+                ReproductorAnimacion RA = new ReproductorAnimacion("",Label_Bolitas, Label_Numero_Ganador, Label_Serie_Ganador, Label_Premio_Ganador,TempSorteo,this,Tabla_Resultado_Jugar,1);
                 RA.start();
             }
             catch(Exception ex){                
