@@ -230,7 +230,7 @@ SELECT Identificador,S.Leyenda as 'Sorteo',
 (Select Count(Identificador) as Cantidad FROM Premio where PlanPremios = PP.Identificador) as 'Cantidad de premios',
 (Select SUM(Monto*Cantidad) FROM Premio where PlanPremios = PP.Identificador) as 'Monto Total'
 FROM PlanPremios as PP
-Inner Join Sorteos as S
+Inner Join Sorteo as S
 On S.Numero = PP.Sorteo;
 
 
@@ -442,6 +442,50 @@ As
 Select NumeroGanador, (VL.Cantidad/TG.Cantidad) as Probabilidad
 From VecesSalidoTodos as VL
 Inner Join TotalGanadoresTodos as TG;
+
+#**********************************************************************************************************************
+Create View UltimoSorteoLoteria
+As
+Select G.NumeroSorteo as Maximo
+From Ganador as G
+Where G.TipoSorteo = 'Lotería'
+Order by Identificador Desc
+Limit 1;
+
+Select * From Ganador
+
+#**********************************************************************************************************************
+#Vista para el premio mayor del ultimo sorteo lotería
+Create View PremioMayorLoteria
+as
+Select Maximo as 'Número de sorteo', G.NumeroGanador, G.SerieGanadora, G.MontoGanado
+From UltimoSorteoLoteria
+Inner Join Ganador as G
+On G.NumeroSorteo = Maximo
+Order By G.MontoGanado Desc;
+
+#**********************************************************************************************************************
+Create View UltimoSorteoChances
+As
+Select G.NumeroSorteo as Maximo
+From Ganador as G
+Where G.TipoSorteo = 'Chances'
+Order by Identificador Desc
+Limit 1;
+
+#**********************************************************************************************************************
+#Vista para el premio mayor del ultimo sorteo lotería
+Create View PremioMayorChances
+as
+Select Maximo as 'Número de sorteo', G.NumeroGanador, G.SerieGanadora, G.MontoGanado
+From UltimoSorteoChances
+Inner Join Ganador as G
+On G.NumeroSorteo = Maximo
+Order By G.MontoGanado Desc;
+
+Select * From 
+
+
 
 
 

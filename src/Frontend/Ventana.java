@@ -49,7 +49,9 @@ public class Ventana extends javax.swing.JFrame {
         ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteos;", Tabla_Sorteos);
         ControladorGUI.getControlador().LlenarTablaConsulta("Select * From SorteosParaJugar", Tabla_Sorteos_Jugar);        
         ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Planes;", Tabla_Plan_Premios);
-        ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteo where Estado = 'Jugado';", Tabla_Sorteos_Reporte);                
+        ControladorGUI.getControlador().LlenarTablaConsulta("Select * From Sorteo where Estado = 'Jugado';", Tabla_Sorteos_Reporte);
+        ControladorGUI.getControlador().LlenarTablaConsulta("Select * From PremioMayorChances;", Tabla_Chances_Inicial);
+        ControladorGUI.getControlador().LlenarTablaConsulta("Select * From PremioMayorLoteria;", Tabla_Loteria_Inicial);
         
         DefaultTableModel model = (DefaultTableModel)Tabla_Premios.getModel();
         model.setRowCount(0);           
@@ -58,8 +60,8 @@ public class Ventana extends javax.swing.JFrame {
         mode2.setRowCount(0);
                 
         Label_Bolitas.setVisible(false);
-        LB_Imagen_Triste.setVisible(false);
-    }
+        LB_Imagen_Triste.setVisible(false);        
+    }    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -166,55 +168,11 @@ public class Ventana extends javax.swing.JFrame {
         Lb_FondoG = new javax.swing.JLabel();
         Body_Inicio = new javax.swing.JPanel();
         Panel_Inicio_Loteria = new javax.swing.JPanel();
-        LabelTitulo = new javax.swing.JLabel();
-        Label_Fecha_Loteria = new javax.swing.JLabel();
-        LB_Titulo_Loteria = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        LB_PP_Monto_Loteria = new javax.swing.JLabel();
-        LB_PP_Numero_Loteria = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        LB_PP_Serie_Loteria = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        LB_SP_Monto_Loteria = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        LB_SP_Numero_Loteria = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        LB_SP_Serie_Loteria = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        LB_TP_Monto_Loteria = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        LB_TP_Numero_Loteria = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        LB_TP_Serie_Loteria = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        Tabla_Loteria_Inicial = new javax.swing.JTable();
         Panel_Inicio_Chances = new javax.swing.JPanel();
-        LabelTitulo1 = new javax.swing.JLabel();
-        Label_Fecha_Chances = new javax.swing.JLabel();
-        LB_Titulo_Chances = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        LB_PP_Monto_Chances = new javax.swing.JLabel();
-        LB_PP_Numero_Chances = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        LB_PP_Serie_Chances = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        LB_SP_Monto_Chances = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        LB_SP_Numero_Chances = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        LB_SP_Serie_Chances = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        LB_TP_Monto_Chances = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        LB_TP_Numero_Chances = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        LB_TP_Serie_Chances = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        Tabla_Chances_Inicial = new javax.swing.JTable();
         Lb_FondoI = new javax.swing.JLabel();
         Body_Estadísticas = new javax.swing.JPanel();
         Panel_Contenedor_Estadisticas = new javax.swing.JTabbedPane();
@@ -1125,79 +1083,17 @@ public class Ventana extends javax.swing.JFrame {
         Body_Inicio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Panel_Inicio_Loteria.setBackground(new java.awt.Color(204, 204, 255));
+        Panel_Inicio_Loteria.setBorder(javax.swing.BorderFactory.createTitledBorder("Último sorteo de lotería jugado"));
 
-        LabelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        LabelTitulo.setText("Lotería nacional");
+        Tabla_Loteria_Inicial.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        Label_Fecha_Loteria.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Label_Fecha_Loteria.setText("04/11/2019");
+            },
+            new String [] {
 
-        LB_Titulo_Loteria.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        LB_Titulo_Loteria.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LB_Titulo_Loteria.setText("Sorteo 1200000");
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel8.setText("Primer premio");
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel9.setText("Segundo premio");
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel10.setText("Primer premio");
-
-        LB_PP_Monto_Loteria.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LB_PP_Monto_Loteria.setText(" ₡250 000 000");
-
-        LB_PP_Numero_Loteria.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LB_PP_Numero_Loteria.setText("79");
-
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel14.setText("Número");
-
-        LB_PP_Serie_Loteria.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LB_PP_Serie_Loteria.setText("555");
-
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel15.setText("serie");
-
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel16.setText("por entero");
-
-        LB_SP_Monto_Loteria.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LB_SP_Monto_Loteria.setText(" ₡250 000 000");
-
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel17.setText("por entero");
-
-        LB_SP_Numero_Loteria.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LB_SP_Numero_Loteria.setText("79");
-
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel18.setText("Número");
-
-        LB_SP_Serie_Loteria.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LB_SP_Serie_Loteria.setText("555");
-
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel19.setText("serie");
-
-        LB_TP_Monto_Loteria.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LB_TP_Monto_Loteria.setText(" ₡250 000 000");
-
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel20.setText("por entero");
-
-        LB_TP_Numero_Loteria.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LB_TP_Numero_Loteria.setText("79");
-
-        jLabel21.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel21.setText("Número");
-
-        LB_TP_Serie_Loteria.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LB_TP_Serie_Loteria.setText("555");
-
-        jLabel22.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel22.setText("serie");
+            }
+        ));
+        jScrollPane6.setViewportView(Tabla_Loteria_Inicial);
 
         javax.swing.GroupLayout Panel_Inicio_LoteriaLayout = new javax.swing.GroupLayout(Panel_Inicio_Loteria);
         Panel_Inicio_Loteria.setLayout(Panel_Inicio_LoteriaLayout);
@@ -1205,200 +1101,31 @@ public class Ventana extends javax.swing.JFrame {
             Panel_Inicio_LoteriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Panel_Inicio_LoteriaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(Panel_Inicio_LoteriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Panel_Inicio_LoteriaLayout.createSequentialGroup()
-                        .addComponent(LabelTitulo)
-                        .addGap(120, 120, 120)
-                        .addComponent(Label_Fecha_Loteria))
-                    .addGroup(Panel_Inicio_LoteriaLayout.createSequentialGroup()
-                        .addGroup(Panel_Inicio_LoteriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LB_Titulo_Loteria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10))
-                        .addGap(424, 424, 424)))
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(Panel_Inicio_LoteriaLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(Panel_Inicio_LoteriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, Panel_Inicio_LoteriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(Panel_Inicio_LoteriaLayout.createSequentialGroup()
-                            .addGroup(Panel_Inicio_LoteriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(LB_SP_Monto_Loteria)
-                                .addGroup(Panel_Inicio_LoteriaLayout.createSequentialGroup()
-                                    .addGap(50, 50, 50)
-                                    .addComponent(jLabel17)))
-                            .addGap(75, 75, 75)
-                            .addGroup(Panel_Inicio_LoteriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel18)
-                                .addGroup(Panel_Inicio_LoteriaLayout.createSequentialGroup()
-                                    .addGap(10, 10, 10)
-                                    .addComponent(LB_SP_Numero_Loteria)))
-                            .addGap(19, 19, 19)
-                            .addGroup(Panel_Inicio_LoteriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(LB_SP_Serie_Loteria)
-                                .addComponent(jLabel19)))
-                        .addGroup(Panel_Inicio_LoteriaLayout.createSequentialGroup()
-                            .addGroup(Panel_Inicio_LoteriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(LB_TP_Monto_Loteria)
-                                .addGroup(Panel_Inicio_LoteriaLayout.createSequentialGroup()
-                                    .addGap(50, 50, 50)
-                                    .addComponent(jLabel20)))
-                            .addGap(75, 75, 75)
-                            .addGroup(Panel_Inicio_LoteriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel21)
-                                .addGroup(Panel_Inicio_LoteriaLayout.createSequentialGroup()
-                                    .addGap(10, 10, 10)
-                                    .addComponent(LB_TP_Numero_Loteria)))
-                            .addGap(19, 19, 19)
-                            .addGroup(Panel_Inicio_LoteriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(LB_TP_Serie_Loteria)
-                                .addComponent(jLabel22))
-                            .addGap(1, 1, 1)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, Panel_Inicio_LoteriaLayout.createSequentialGroup()
-                        .addGroup(Panel_Inicio_LoteriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LB_PP_Monto_Loteria)
-                            .addGroup(Panel_Inicio_LoteriaLayout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(jLabel16)))
-                        .addGap(75, 75, 75)
-                        .addGroup(Panel_Inicio_LoteriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel14)
-                            .addGroup(Panel_Inicio_LoteriaLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(LB_PP_Numero_Loteria)))
-                        .addGap(19, 19, 19)
-                        .addGroup(Panel_Inicio_LoteriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LB_PP_Serie_Loteria)
-                            .addComponent(jLabel15))
-                        .addGap(60, 60, 60))))
         );
         Panel_Inicio_LoteriaLayout.setVerticalGroup(
             Panel_Inicio_LoteriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Panel_Inicio_LoteriaLayout.createSequentialGroup()
-                .addGroup(Panel_Inicio_LoteriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LabelTitulo)
-                    .addComponent(Label_Fecha_Loteria, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(LB_Titulo_Loteria)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addGroup(Panel_Inicio_LoteriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LB_PP_Monto_Loteria, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LB_PP_Numero_Loteria, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LB_PP_Serie_Loteria, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(Panel_Inicio_LoteriaLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(Panel_Inicio_LoteriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(29, 29, 29)
-                .addComponent(jLabel9)
-                .addGap(18, 18, 18)
-                .addGroup(Panel_Inicio_LoteriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LB_SP_Monto_Loteria, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LB_SP_Numero_Loteria, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LB_SP_Serie_Loteria, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(Panel_Inicio_LoteriaLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(Panel_Inicio_LoteriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(44, 44, 44)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(Panel_Inicio_LoteriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LB_TP_Monto_Loteria, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LB_TP_Numero_Loteria, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LB_TP_Serie_Loteria, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(Panel_Inicio_LoteriaLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(Panel_Inicio_LoteriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(70, 70, 70))
+                .addGap(19, 19, 19)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        Body_Inicio.add(Panel_Inicio_Loteria, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 420, 490));
+        Body_Inicio.add(Panel_Inicio_Loteria, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 620, 260));
 
         Panel_Inicio_Chances.setBackground(new java.awt.Color(204, 204, 255));
+        Panel_Inicio_Chances.setBorder(javax.swing.BorderFactory.createTitledBorder("Último sortero de chances jugado"));
 
-        LabelTitulo1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        LabelTitulo1.setText("Chances");
+        Tabla_Chances_Inicial.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        Label_Fecha_Chances.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Label_Fecha_Chances.setText("04/11/2019");
+            },
+            new String [] {
 
-        LB_Titulo_Chances.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        LB_Titulo_Chances.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LB_Titulo_Chances.setText("Sorteo 1200000");
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel11.setText("Primer premio");
-
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel12.setText("Segundo premio");
-
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel13.setText("Tercer premio");
-
-        LB_PP_Monto_Chances.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LB_PP_Monto_Chances.setText(" ₡250 000 000");
-
-        LB_PP_Numero_Chances.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LB_PP_Numero_Chances.setText("79");
-
-        jLabel23.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel23.setText("Número");
-
-        LB_PP_Serie_Chances.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LB_PP_Serie_Chances.setText("555");
-
-        jLabel24.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel24.setText("serie");
-
-        jLabel25.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel25.setText("por entero");
-
-        LB_SP_Monto_Chances.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LB_SP_Monto_Chances.setText(" ₡250 000 000");
-
-        jLabel26.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel26.setText("por entero");
-
-        LB_SP_Numero_Chances.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LB_SP_Numero_Chances.setText("79");
-
-        jLabel27.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel27.setText("Número");
-
-        LB_SP_Serie_Chances.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LB_SP_Serie_Chances.setText("555");
-
-        jLabel28.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel28.setText("serie");
-
-        LB_TP_Monto_Chances.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LB_TP_Monto_Chances.setText(" ₡250 000 000");
-
-        jLabel29.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel29.setText("por entero");
-
-        LB_TP_Numero_Chances.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LB_TP_Numero_Chances.setText("79");
-
-        jLabel30.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel30.setText("Número");
-
-        LB_TP_Serie_Chances.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LB_TP_Serie_Chances.setText("555");
-
-        jLabel31.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel31.setText("serie");
+            }
+        ));
+        jScrollPane12.setViewportView(Tabla_Chances_Inicial);
 
         javax.swing.GroupLayout Panel_Inicio_ChancesLayout = new javax.swing.GroupLayout(Panel_Inicio_Chances);
         Panel_Inicio_Chances.setLayout(Panel_Inicio_ChancesLayout);
@@ -1406,127 +1133,18 @@ public class Ventana extends javax.swing.JFrame {
             Panel_Inicio_ChancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Panel_Inicio_ChancesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(Panel_Inicio_ChancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LB_Titulo_Chances, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(Panel_Inicio_ChancesLayout.createSequentialGroup()
-                        .addGroup(Panel_Inicio_ChancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(Panel_Inicio_ChancesLayout.createSequentialGroup()
-                        .addComponent(LabelTitulo1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Label_Fecha_Chances)))
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(Panel_Inicio_ChancesLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(Panel_Inicio_ChancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(Panel_Inicio_ChancesLayout.createSequentialGroup()
-                        .addGroup(Panel_Inicio_ChancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LB_PP_Monto_Chances)
-                            .addGroup(Panel_Inicio_ChancesLayout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(jLabel25)))
-                        .addGap(75, 75, 75)
-                        .addGroup(Panel_Inicio_ChancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel23)
-                            .addGroup(Panel_Inicio_ChancesLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(LB_PP_Numero_Chances)))
-                        .addGap(19, 19, 19)
-                        .addGroup(Panel_Inicio_ChancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LB_PP_Serie_Chances)
-                            .addComponent(jLabel24)))
-                    .addGroup(Panel_Inicio_ChancesLayout.createSequentialGroup()
-                        .addGroup(Panel_Inicio_ChancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(Panel_Inicio_ChancesLayout.createSequentialGroup()
-                                .addGroup(Panel_Inicio_ChancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LB_SP_Monto_Chances)
-                                    .addGroup(Panel_Inicio_ChancesLayout.createSequentialGroup()
-                                        .addGap(50, 50, 50)
-                                        .addComponent(jLabel26)))
-                                .addGap(75, 75, 75)
-                                .addGroup(Panel_Inicio_ChancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel27)
-                                    .addGroup(Panel_Inicio_ChancesLayout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(LB_SP_Numero_Chances)))
-                                .addGap(19, 19, 19)
-                                .addGroup(Panel_Inicio_ChancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LB_SP_Serie_Chances)
-                                    .addComponent(jLabel28)))
-                            .addGroup(Panel_Inicio_ChancesLayout.createSequentialGroup()
-                                .addGroup(Panel_Inicio_ChancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LB_TP_Monto_Chances)
-                                    .addGroup(Panel_Inicio_ChancesLayout.createSequentialGroup()
-                                        .addGap(50, 50, 50)
-                                        .addComponent(jLabel29)))
-                                .addGap(75, 75, 75)
-                                .addGroup(Panel_Inicio_ChancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel30)
-                                    .addGroup(Panel_Inicio_ChancesLayout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(LB_TP_Numero_Chances)))
-                                .addGap(19, 19, 19)
-                                .addGroup(Panel_Inicio_ChancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LB_TP_Serie_Chances)
-                                    .addComponent(jLabel31))
-                                .addGap(1, 1, 1)))
-                        .addGap(1, 1, 1)))
-                .addContainerGap(71, Short.MAX_VALUE))
         );
         Panel_Inicio_ChancesLayout.setVerticalGroup(
             Panel_Inicio_ChancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Panel_Inicio_ChancesLayout.createSequentialGroup()
-                .addGroup(Panel_Inicio_ChancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LabelTitulo1)
-                    .addComponent(Label_Fecha_Chances, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(LB_Titulo_Chances)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel11)
-                .addGap(18, 18, 18)
-                .addGroup(Panel_Inicio_ChancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LB_PP_Monto_Chances, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LB_PP_Numero_Chances, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LB_PP_Serie_Chances, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(Panel_Inicio_ChancesLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(Panel_Inicio_ChancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(29, 29, 29)
-                .addComponent(jLabel12)
-                .addGap(18, 18, 18)
-                .addGroup(Panel_Inicio_ChancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LB_SP_Monto_Chances, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LB_SP_Numero_Chances, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LB_SP_Serie_Chances, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(Panel_Inicio_ChancesLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(Panel_Inicio_ChancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(44, 44, 44)
-                .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(Panel_Inicio_ChancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LB_TP_Monto_Chances, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LB_TP_Numero_Chances, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LB_TP_Serie_Chances, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(Panel_Inicio_ChancesLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(Panel_Inicio_ChancesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 31, Short.MAX_VALUE))
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        Body_Inicio.add(Panel_Inicio_Chances, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 90, -1, -1));
+        Body_Inicio.add(Panel_Inicio_Chances, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 390, 620, 180));
 
         Lb_FondoI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/lottery.png"))); // NOI18N
         Body_Inicio.add(Lb_FondoI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 640));
@@ -2034,6 +1652,7 @@ public class Ventana extends javax.swing.JFrame {
 
     private void btn_exportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exportarActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btn_exportarActionPerformed
 
     /**
@@ -2108,34 +1727,10 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JLabel LB_Etiqueta2;
     private javax.swing.JLabel LB_Etiqueta3;
     private javax.swing.JLabel LB_Imagen_Triste;
-    private javax.swing.JLabel LB_PP_Monto_Chances;
-    private javax.swing.JLabel LB_PP_Monto_Loteria;
-    private javax.swing.JLabel LB_PP_Numero_Chances;
-    private javax.swing.JLabel LB_PP_Numero_Loteria;
-    private javax.swing.JLabel LB_PP_Serie_Chances;
-    private javax.swing.JLabel LB_PP_Serie_Loteria;
-    private javax.swing.JLabel LB_SP_Monto_Chances;
-    private javax.swing.JLabel LB_SP_Monto_Loteria;
-    private javax.swing.JLabel LB_SP_Numero_Chances;
-    private javax.swing.JLabel LB_SP_Numero_Loteria;
-    private javax.swing.JLabel LB_SP_Serie_Chances;
-    private javax.swing.JLabel LB_SP_Serie_Loteria;
-    private javax.swing.JLabel LB_TP_Monto_Chances;
-    private javax.swing.JLabel LB_TP_Monto_Loteria;
-    private javax.swing.JLabel LB_TP_Numero_Chances;
-    private javax.swing.JLabel LB_TP_Numero_Loteria;
-    private javax.swing.JLabel LB_TP_Serie_Chances;
-    private javax.swing.JLabel LB_TP_Serie_Loteria;
     private javax.swing.JLabel LB_Titulo;
-    private javax.swing.JLabel LB_Titulo_Chances;
-    private javax.swing.JLabel LB_Titulo_Loteria;
     private javax.swing.JLabel LB_Titulo_Resultado;
-    private javax.swing.JLabel LabelTitulo;
-    private javax.swing.JLabel LabelTitulo1;
     private javax.swing.JLabel LabelTitulo2;
     private javax.swing.JLabel Label_Bolitas;
-    private javax.swing.JLabel Label_Fecha_Chances;
-    private javax.swing.JLabel Label_Fecha_Loteria;
     private javax.swing.JLabel Label_Numero_Ganador;
     private javax.swing.JLabel Label_Premio_Ganador;
     private javax.swing.JLabel Label_Serie_Ganador;
@@ -2161,9 +1756,11 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JPanel Panel_Reporte_Plan;
     private javax.swing.JPanel Panel_Resultado_Jugar;
     private javax.swing.JPanel Panel_Sorteo;
+    private javax.swing.JTable Tabla_Chances_Inicial;
     private javax.swing.JTable Tabla_Encabezado_Reporte;
     private javax.swing.JTable Tabla_Estadisticas;
     private javax.swing.JTable Tabla_Ganadores_Reporte;
+    private javax.swing.JTable Tabla_Loteria_Inicial;
     private javax.swing.JTable Tabla_Plan_Premios;
     private javax.swing.JTable Tabla_Premios;
     private javax.swing.JTable Tabla_Premios_Reporte;
@@ -2188,29 +1785,7 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JButton btn_jugar;
     private javax.swing.JButton btn_ver_reporte;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel75;
@@ -2218,18 +1793,18 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel77;
     private javax.swing.JLabel jLabel78;
     private javax.swing.JLabel jLabel79;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel80;
     private javax.swing.JLabel jLabel81;
     private javax.swing.JLabel jLabel83;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;

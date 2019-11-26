@@ -61,8 +61,7 @@ public class ConexionDB
             Resultado.close();         
             return ResultadoFin;
         }catch(Exception ex){
-            System.out.println(ex);
-            JOptionPane.showMessageDialog(null, "Ocurrió un error al conectarse a la base de datos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(ex);            
             return null;
         }
     }
@@ -81,8 +80,7 @@ public class ConexionDB
 
             return Resultado;           
         }catch(Exception ex){
-            System.out.println(ex);
-            JOptionPane.showMessageDialog(null, "Ocurrió un error al conectarse a la base de datos", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(ex);            
             return null;
         }
     }    
