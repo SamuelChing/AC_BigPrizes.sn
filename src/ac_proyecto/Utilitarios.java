@@ -25,13 +25,12 @@ public class Utilitarios {
      * @param fecha
      * @return true o false
      */
-    public boolean ValidarFecha(String Sorteo, String fecha)
-    {
-        String[] Date = fecha.split("/");        
+    public boolean ValidarFecha(String Sorteo, String año, String mes, String dia)
+    {        
         if(Sorteo.equals("Lotería")){                        
-            return FechaLoteria(Date[2],Date[1],Date[0]);
+            return FechaLoteria(año,mes,dia);
         }else{            
-            return FechaChance(Date[2],Date[1],Date[0]);
+            return FechaChance(año,mes,dia);
         }
     }
     

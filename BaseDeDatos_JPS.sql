@@ -109,6 +109,7 @@ BEGIN
 END ;
 //
 DELIMITER ;
+Select * From Sorteo;
 
 #**********************************************************************************************************************
 #Funcion para el manejo de Sorteos
@@ -127,12 +128,26 @@ CREATE Function ManejoSorteo
     Pidentificador int
 )
 Returns int
-BEGIN
-	Declare Resultado int;        
-	if Cmd = 1 then # Insertar un sorteo
-		INSERT INTO Sorteo(Leyenda,Fecha,Tipo,CantidadFracciones,PrecioBillete)
-        VALUES(PLeyenda,PFecha,PTipo,PCantidad_fracciones,PPrecio_billete);
-        return 1;
+BEGIN	
+    Declare Resultado int;
+    Declare FechaMax date;
+    
+	if Cmd = 1 then # Insertar un sorteo		
+		Select Max(Numero) Into Resultado From Sorteo Where Tipo = PTipo;
+        if(Resultado is NULL)then
+			INSERT INTO Sorteo(Leyenda,Fecha,Tipo,CantidadFracciones,PrecioBillete)
+			VALUES(PLeyenda,PFecha,PTipo,PCantidad_fracciones,PPrecio_billete);
+			return 1;
+        else
+			Select Fecha Into FechaMax From Sorteo Where Numero = Resultado;
+			if(FechaMax<PFecha)then
+				INSERT INTO Sorteo(Leyenda,Fecha,Tipo,CantidadFracciones,PrecioBillete)
+				VALUES(PLeyenda,PFecha,PTipo,PCantidad_fracciones,PPrecio_billete);
+				return 1;
+			else				
+				return -1;
+			End if;		
+        End if;        
     end if;		
     if cmd = 2 then # Eliminar un sorteo
 		Select Identificador Into Resultado From PlanPremios as PP where (PP.Sorteo = Pidentificador);
@@ -151,9 +166,15 @@ BEGIN
         return 3;        
     End if;
     if cmd = 4 then
-		update Sorteo set Leyenda=PLeyenda,Fecha=PFecha,Tipo=PTipo,CantidadFracciones=PCantidad_fracciones,PrecioBillete=PPrecio_billete
-        where (Sorteo.Numero = Pidentificador);
-        return 4;
+		Select Max(Numero) Into Resultado From Sorteo Where Tipo = PTipo;        
+        Select Fecha Into FechaMax From Sorteo Where Numero = Resultado;
+        if(FechaMax<PFecha)then
+			update Sorteo set Leyenda=PLeyenda,Fecha=PFecha,Tipo=PTipo,CantidadFracciones=PCantidad_fracciones,PrecioBillete=PPrecio_billete
+			where (Sorteo.Numero = Pidentificador);
+			return 4;
+        else
+			return -1;
+        End if;		
     End if;
 END ;
 //

@@ -77,7 +77,7 @@ public class ControladorDB
      * @param PrecioBillete
      * @param Identificador 
      */
-    public void ManejoSorteo(int Cmd, String Leyenda, String Fecha, String Tipo, int CantFraciones, int PrecioBillete, int Identificador)
+    public boolean ManejoSorteo(int Cmd, String Leyenda, String Fecha, String Tipo, int CantFraciones, int PrecioBillete, int Identificador)
     {        
         String Consulta = "SELECT ManejoSorteo("+Cmd+",'"+Leyenda+"','"+Fecha+"','"+Tipo+"',"+CantFraciones+","+PrecioBillete+","+Identificador+");";        
         String Resultado = ConexionDB.getConexionDB().ResultadoString(ConexionDB.getConexionDB().EjecutarConsulta(Consulta));
@@ -85,17 +85,21 @@ public class ControladorDB
         {
             case "1":
                 JOptionPane.showMessageDialog(null, "Sorteo agregado con éxito", "Mensaje de éxito", JOptionPane.INFORMATION_MESSAGE);                    
-                break;
+                return true;
             case "2":
                 JOptionPane.showMessageDialog(null, "Sorteo eliminado con éxito", "Mensaje de éxito", JOptionPane.INFORMATION_MESSAGE);                    
-                break;
+                return true;
             case "3":
                 JOptionPane.showMessageDialog(null, "Sorteo finalizado", "Mensaje de éxito", JOptionPane.INFORMATION_MESSAGE);
-                break;
+                return true;
             case "4":
                 JOptionPane.showMessageDialog(null, "Sorteo actualizado con éxito", "Mensaje de éxito", JOptionPane.INFORMATION_MESSAGE);                    
-                break;
-        }        
+                return true;
+            case "-1":
+                JOptionPane.showMessageDialog(null, "Error, fecha no disponible para el nuevo sorteo", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+                return false;
+        }             
+        return false;
     }  
     
     /**
