@@ -96,7 +96,7 @@ public class ControladorDB
                 JOptionPane.showMessageDialog(null, "Sorteo actualizado con éxito", "Mensaje de éxito", JOptionPane.INFORMATION_MESSAGE);                    
                 return true;
             case "-1":
-                JOptionPane.showMessageDialog(null, "Error, fecha no disponible para el nuevo sorteo", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error, fecha no disponible para el tipo de sorteo", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
                 return false;
         }             
         return false;

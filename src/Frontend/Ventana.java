@@ -1738,8 +1738,7 @@ public class Ventana extends javax.swing.JFrame {
         else{
             try{     
                 String[] Date = Fecha.split("/");
-                String FechaInsert = Date[2]+"-"+Date[1]+"-"+Date[0];
-                System.out.println(FechaInsert);
+                String FechaInsert = Date[2]+"-"+Date[1]+"-"+Date[0];                
                 if(Validar.ValidarFecha(Tipo, Date[2],Date[1],Date[0])){
                     if(ControladorDB.getControlador().ManejoSorteo(1, Leyenda, FechaInsert, Tipo, Integer.parseInt(Fracciones), Integer.parseInt(Precio), 0)){
                         Recargar();
@@ -1764,8 +1763,7 @@ public class Ventana extends javax.swing.JFrame {
             Campo_Leyenda_Sorteo.setText(row[1]);
                         
             String[] Fecha = row[2].split("-");
-            String date = Fecha[2]+"/"+Fecha[1]+"/"+Fecha[0].substring(2, 4);
-            System.out.println(date);
+            String date = Fecha[2]+"/"+Fecha[1]+"/"+Fecha[0].substring(2, 4);            
             Chooser_Date_Sorteo.setText(date);
             Campo_Fracciones_Sorteo.setValue(Integer.valueOf(row[4]));
             CB_Tipo_Sorteo.setSelectedItem(row[3]);
@@ -1789,8 +1787,14 @@ public class Ventana extends javax.swing.JFrame {
             }
             else{
                 try{
-                    if(ControladorDB.getControlador().ManejoSorteo(4, Leyenda, Fecha, Tipo, Integer.parseInt(Fracciones), Integer.parseInt(Precio), Integer.parseInt(Identificador))){
-                        Recargar();
+                    String[] Date = Fecha.split("/");
+                    String FechaInsert = Date[2]+"-"+Date[1]+"-"+Date[0];
+                    if(Validar.ValidarFecha(Tipo, Date[2],Date[1],Date[0])){
+                        if(ControladorDB.getControlador().ManejoSorteo(4, Leyenda, FechaInsert, Tipo, Integer.parseInt(Fracciones), Integer.parseInt(Precio), Integer.parseInt(Identificador))){
+                            Recargar();
+                        }                    
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Error, día incorrecto para jugar el sorteo", "Mensaje de error", JOptionPane.ERROR_MESSAGE); 
                     }                    
                 }
                 catch(Exception ex){

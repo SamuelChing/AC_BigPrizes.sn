@@ -44,7 +44,7 @@ public class Utilitarios {
     public boolean FechaChance(String año, String mes, String dia)
     {
         Calendar date = Calendar.getInstance();
-        date.set(Integer.parseInt(año),Integer.parseInt(mes), Integer.parseInt(dia));
+        date.set(Integer.parseInt(año)+2000,Integer.parseInt(mes)-1, Integer.parseInt(dia));
         if(date.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY || date.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY)
             return true;
         else
@@ -61,7 +61,7 @@ public class Utilitarios {
     public boolean FechaLoteria(String año, String mes, String dia)
     {
         Calendar date = Calendar.getInstance();
-        date.set(Integer.parseInt(año),Integer.parseInt(mes), Integer.parseInt(dia));
+        date.set(Integer.parseInt(año)+2000,Integer.parseInt(mes)-1, Integer.parseInt(dia));
         if(date.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)
             return true;
         else
