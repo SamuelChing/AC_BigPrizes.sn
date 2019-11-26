@@ -60,8 +60,7 @@ public class ConexionDB
             String ResultadoFin = Resultado.getObject(1).toString();
             Resultado.close();         
             return ResultadoFin;
-        }catch(Exception ex){
-            System.out.println(ex);            
+        }catch(Exception ex){                      
             return null;
         }
     }
@@ -76,11 +75,9 @@ public class ConexionDB
     {              
         try{
             Statement Statement = DataBase.createStatement();
-            ResultSet Resultado = Statement.executeQuery(Consulta);
-
+            ResultSet Resultado = Statement.executeQuery(Consulta);            
             return Resultado;           
-        }catch(Exception ex){
-            System.out.println(ex);            
+        }catch(Exception ex){                       
             return null;
         }
     }    

@@ -31,5 +31,9 @@ public class Premio {
         return Cantidad;
     }
 
+    public void setCantidad() {
+        this.Cantidad = Cantidad-1;
+    }
+
     
 }

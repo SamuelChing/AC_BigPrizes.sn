@@ -22,6 +22,7 @@ public class Sorteo {
     private int PrecioBillete;
     private String Estado;
     private PlanPremios Plan;
+    private Random random = new Random();
 
     public Sorteo(int Numero, String Leyenda, String Fecha, String Tipo, int CantidadFracciones, int PrecioBillete, String Estado, PlanPremios Plan) {
         this.Numero = Numero;
@@ -38,11 +39,18 @@ public class Sorteo {
     {
         ArrayList<Premio> Lista = this.Plan.getListaPremios();
         if(Lista.size()>0){
-            Random random = new Random();
             int Numero = random.nextInt(99)+1;
             int Serie = random.nextInt(999)+1;
             int NumeroPremio = random.nextInt(Lista.size());
-            int Monto = Lista.remove(NumeroPremio).getMonto();
+            int Monto = Lista.get(NumeroPremio).getMonto();
+            
+            
+            Lista.get(NumeroPremio).setCantidad();
+            int Cantidad = Lista.get(NumeroPremio).getCantidad();
+            if(Cantidad == 0)
+            {
+                Lista.remove(NumeroPremio).getCantidad();
+            }                        
             String[] Array = new String[]{""+Numero,""+Serie,""+Monto};
             return Array;
         }

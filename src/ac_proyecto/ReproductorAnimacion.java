@@ -110,8 +110,7 @@ public class ReproductorAnimacion extends Thread{
             BufferedInputStream buffer = new BufferedInputStream(new FileInputStream(Sonido));
             Player player = new Player(buffer);
             player.play();
-        } catch(Exception ex){ 
-            System.out.println(ex);
+        } catch(Exception ex){             
             this.interrupt();
         }
     }
